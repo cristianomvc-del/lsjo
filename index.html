@@ -576,29 +576,116 @@
             font-weight: bold;
         }
 
-        /* Botão do patinho no perfil - SÓ ÍCONE */
-        .btn-pato-perfil-icone {
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
-            color: #000;
-            border: 2px solid #d97706;
-            margin: 10px auto 5px;
-            font-size: 28px;
-            padding: 8px;
-            width: 60px;
-            height: 60px;
+        /* ===== ÍCONES DO PERFIL - TAMANHO REDUZIDO (40x40) ===== */
+        .icones-perfil-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .icone-perfil {
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: 0.3s;
+            font-size: 20px;
             cursor: pointer;
+            transition: 0.3s;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border: 2px solid transparent;
         }
 
-        .btn-pato-perfil-icone:hover {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            transform: scale(1.1) rotate(10deg);
-            box-shadow: 0 6px 15px rgba(245, 158, 11, 0.5);
+        .icone-perfil.pato {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #000;
+            border-color: #d97706;
+        }
+
+        .icone-perfil.bola8 {
+            background: linear-gradient(135deg, #2c3e50, #000000);
+            color: white;
+            border-color: #f1c40f;
+        }
+
+        .icone-perfil.bola9 {
+            background: linear-gradient(135deg, #f1c40f, #f39c12);
+            color: #000;
+            border-color: #fff;
+        }
+
+        .icone-perfil.truco {
+            background: linear-gradient(135deg, #27ae60, #16a085);
+            color: #fff;
+            border-color: #f1c40f;
+        }
+
+        .icone-perfil:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 15px rgba(241, 196, 15, 0.5);
+        }
+
+        .icone-perfil.inativo {
+            opacity: 0.3;
+            filter: grayscale(80%);
+            cursor: not-allowed;
+        }
+
+        .icone-perfil.inativo:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Modal de seleção de liga */
+        .modal-select-liga {
+            background: linear-gradient(135deg, #2c3e50, #1a2634);
+            border-radius: 25px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            border: 3px solid #f1c40f;
+            color: white;
+            text-align: center;
+        }
+
+        .modal-select-liga h3 {
+            color: #f1c40f;
+            margin-bottom: 20px;
+        }
+
+        .opcoes-liga {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .opcao-liga {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 15px 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .opcao-liga:hover {
+            transform: scale(1.05);
+            border-color: #f1c40f;
+            background: rgba(241, 196, 15, 0.2);
+        }
+
+        .opcao-liga .icone-grande {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .opcao-liga .nome-liga {
+            font-size: 12px;
+            font-weight: bold;
         }
 
         /* Estilos do Painel Master */
@@ -834,6 +921,154 @@
             font-size: 10px;
             font-weight: bold;
             margin-left: 5px;
+        }
+
+        /* ===== MODAIS DE ESTATÍSTICAS ===== */
+        .estatisticas-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content-estatisticas {
+            background: linear-gradient(135deg, #2c3e50, #1a2634);
+            border-radius: 25px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            border: 3px solid #f1c40f;
+            color: white;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f1c40f;
+        }
+
+        .modal-header h2 {
+            color: #f1c40f;
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #f1c40f;
+            transition: 0.3s;
+        }
+
+        .modal-close:hover {
+            transform: scale(1.2);
+            color: #e67e22;
+        }
+
+        .estatisticas-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .estatistica-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(241, 196, 15, 0.3);
+        }
+
+        .estatistica-card .valor {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f1c40f;
+            margin: 5px 0;
+        }
+
+        .estatistica-card .rotulo {
+            font-size: 11px;
+            color: #bdc3c7;
+            text-transform: uppercase;
+        }
+
+        .ranking-posicao {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 50px;
+        }
+
+        .ranking-posicao .posicao-numero {
+            font-size: 32px;
+            font-weight: 900;
+            color: #f1c40f;
+        }
+
+        .ranking-posicao .posicao-label {
+            font-size: 12px;
+            color: #bdc3c7;
+        }
+
+        .streak-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-size: 18px;
+        }
+
+        .streak-info .fire {
+            color: #f59e0b;
+            font-size: 24px;
+        }
+
+        .btn-fechar-modal {
+            background: #f1c40f;
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px auto 0;
+            display: block;
+            width: fit-content;
+            transition: 0.3s;
+        }
+
+        .btn-fechar-modal:hover {
+            background: #f39c12;
+            transform: scale(1.05);
         }
 
         /* Formulários responsivos */
@@ -1349,6 +1584,16 @@
                 min-width: 100% !important;
                 margin-bottom: 5px;
             }
+            
+            .icones-perfil-container {
+                gap: 5px;
+            }
+            
+            .icone-perfil {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
         }
 
         .char-counter {
@@ -1659,7 +1904,7 @@
                 </div>
             </div>
 
-            <!-- PERFIL COM PATINHO SÓ ÍCONE -->
+            <!-- PERFIL COM ÍCONES MENORES (40x40) -->
             <div class="right-box" id="box-perfil" style="display:none;">
                 <div class="right-box-title">🪪 PERFIL DO SUPREMO</div>
                 <div class="right-box-content profile-card">
@@ -1671,12 +1916,28 @@
                         <div class="stat-item"><span>Status:</span> <strong style="color:green">Ativa</strong></div>
                     </div>
                     
-                    <!-- PATINHO SÓ ÍCONE -->
-                    <div class="btn-pato-perfil-icone" onclick="showSection('notificar')" title="Notificar Derrota">
-                        🦆
+                    <!-- CONTAINER COM ÍCONES MENORES -->
+                    <div class="icones-perfil-container">
+                        <!-- PATINHO (40x40) -->
+                        <div class="icone-perfil pato" onclick="showSection('notificar')" title="Notificar Derrota">
+                            🦆
+                        </div>
+                        
+                        <!-- ÍCONES DAS LIGAS (40x40) -->
+                        <div id="icone-bola8" class="icone-perfil bola8 inativo" onclick="abrirEstatisticasLiga('BOLA 8')" title="Bola 8 (Não inscrito)">
+                            🎱
+                        </div>
+                        
+                        <div id="icone-bola9" class="icone-perfil bola9 inativo" onclick="abrirEstatisticasLiga('BOLA 9')" title="Bola 9 (Não inscrito)">
+                            9️⃣
+                        </div>
+                        
+                        <div id="icone-truco" class="icone-perfil truco inativo" onclick="abrirEstatisticasLiga('TRUCO')" title="Truco (Não inscrito)">
+                            🃏
+                        </div>
                     </div>
                     
-                    <button class="btn-action btn-join">INSCREVER NA LIGA</button>
+                    <button class="btn-action btn-join" onclick="abrirModalSelecionarLiga()">INSCREVER NA LIGA</button>
                     <button class="btn-action btn-special">MEMBRO ESPECIAL ⭐</button>
                     <button class="btn-action btn-logout" onclick="fazerLogout()">DESLIGAR</button>
                 </div>
@@ -1699,7 +1960,32 @@
     <footer class="footer-line">LSJO © 2026 - Todos os direitos reservados</footer>
 </div>
 
-<!-- Modais -->
+<!-- MODAL DE SELEÇÃO DE LIGA -->
+<div id="modal-select-liga" class="modal">
+    <div class="modal-select-liga">
+        <h3>🎯 ESCOLHA UMA LIGA</h3>
+        <p style="color: #bdc3c7; margin-bottom: 15px;">Selecione qual liga você quer participar:</p>
+        
+        <div class="opcoes-liga">
+            <div class="opcao-liga" onclick="inscreverNaLiga('BOLA 8')">
+                <div class="icone-grande">🎱</div>
+                <div class="nome-liga">BOLA 8</div>
+            </div>
+            <div class="opcao-liga" onclick="inscreverNaLiga('BOLA 9')">
+                <div class="icone-grande">9️⃣</div>
+                <div class="nome-liga">BOLA 9</div>
+            </div>
+            <div class="opcao-liga" onclick="inscreverNaLiga('TRUCO')">
+                <div class="icone-grande">🃏</div>
+                <div class="nome-liga">TRUCO</div>
+            </div>
+        </div>
+        
+        <button class="btn-fechar-modal" onclick="fecharModal('modal-select-liga')" style="margin-top: 0;">CANCELAR</button>
+    </div>
+</div>
+
+<!-- Modais do Master -->
 <div id="modal-edit-id" class="modal">
     <div class="modal-content">
         <h3>✏️ ALTERAR ID</h3>
@@ -1720,6 +2006,142 @@
             <button class="modal-confirm" onclick="confirmarReverter()">REVERTER</button>
             <button class="modal-cancel" onclick="fecharModal('modal-revert-notif')">CANCELAR</button>
         </div>
+    </div>
+</div>
+
+<!-- MODAIS DE ESTATÍSTICAS DAS LIGAS -->
+<!-- Modal Estatísticas Bola 8 -->
+<div id="modal-bola8" class="estatisticas-modal">
+    <div class="modal-content-estatisticas">
+        <span class="modal-close" onclick="fecharModalEstatisticas('modal-bola8')">&times;</span>
+        <div class="modal-header">
+            <div style="font-size: 48px;">🎱</div>
+            <h2>BOLA 8</h2>
+        </div>
+        
+        <div class="ranking-posicao">
+            <span class="posicao-label">Ranking Geral:</span>
+            <span class="posicao-numero" id="bola8-posicao">#0</span>
+        </div>
+        
+        <div class="estatisticas-grid">
+            <div class="estatistica-card">
+                <div class="rotulo">PONTOS</div>
+                <div class="valor" id="bola8-pontos">0</div>
+            </div>
+            <div class="estatistica-card">
+                <div class="rotulo">V/D</div>
+                <div class="valor" id="bola8-vd">0/0</div>
+            </div>
+            <div class="estatistica-card">
+                <div class="rotulo">STREAK</div>
+                <div class="valor streak-info">
+                    <span class="fire">🔥</span>
+                    <span id="bola8-streak">0</span>
+                </div>
+            </div>
+            <div class="estatistica-card">
+                <div class="rotulo">APROVEIT.</div>
+                <div class="valor" id="bola8-aproveitamento">0%</div>
+            </div>
+        </div>
+        
+        <div class="ranking-posicao" style="background: rgba(241,196,15,0.1);">
+            <span class="posicao-label">Ranking Aproveitamento:</span>
+            <span class="posicao-numero" id="bola8-posicao-aproveitamento">#0</span>
+        </div>
+        
+        <button class="btn-fechar-modal" onclick="fecharModalEstatisticas('modal-bola8')">FECHAR</button>
+    </div>
+</div>
+
+<!-- Modal Estatísticas Bola 9 -->
+<div id="modal-bola9" class="estatisticas-modal">
+    <div class="modal-content-estatisticas">
+        <span class="modal-close" onclick="fecharModalEstatisticas('modal-bola9')">&times;</span>
+        <div class="modal-header">
+            <div style="font-size: 48px;">9️⃣</div>
+            <h2>BOLA 9</h2>
+        </div>
+        
+        <div class="ranking-posicao">
+            <span class="posicao-label">Ranking Geral:</span>
+            <span class="posicao-numero" id="bola9-posicao">#0</span>
+        </div>
+        
+        <div class="estatisticas-grid">
+            <div class="estatistica-card">
+                <div class="rotulo">PONTOS</div>
+                <div class="valor" id="bola9-pontos">0</div>
+            </div>
+            <div class="estatistica-card">
+                <div class="rotulo">V/D</div>
+                <div class="valor" id="bola9-vd">0/0</div>
+            </div>
+            <div class="estatistica-card">
+                <div class="rotulo">STREAK</div>
+                <div class="valor streak-info">
+                    <span class="fire">🔥</span>
+                    <span id="bola9-streak">0</span>
+                </div>
+            </div>
+            <div class="estatistica-card">
+                <div class="rotulo">APROVEIT.</div>
+                <div class="valor" id="bola9-aproveitamento">0%</div>
+            </div>
+        </div>
+        
+        <div class="ranking-posicao" style="background: rgba(241,196,15,0.1);">
+            <span class="posicao-label">Ranking Aproveitamento:</span>
+            <span class="posicao-numero" id="bola9-posicao-aproveitamento">#0</span>
+        </div>
+        
+        <button class="btn-fechar-modal" onclick="fecharModalEstatisticas('modal-bola9')">FECHAR</button>
+    </div>
+</div>
+
+<!-- Modal Estatísticas Truco -->
+<div id="modal-truco" class="estatisticas-modal">
+    <div class="modal-content-estatisticas">
+        <span class="modal-close" onclick="fecharModalEstatisticas('modal-truco')">&times;</span>
+        <div class="modal-header">
+            <div style="font-size: 48px;">🃏</div>
+            <h2>TRUCO</h2>
+        </div>
+        
+        <div class="ranking-posicao">
+            <span class="posicao-label">Ranking Geral:</span>
+            <span class="posicao-numero" id="truco-posicao">#0</span>
+        </div>
+        
+        <div class="estatisticas-grid">
+            <div class="estatistica-card">
+                <div class="rotulo">PONTOS</div>
+                <div class="valor" id="truco-pontos">0</div>
+            </div>
+            <div class="estatistica-card">
+                <div class="rotulo">V/D</div>
+                <div class="valor" id="truco-vd">0/0</div>
+            </div>
+            <div class="estatistica-card">
+                <div class="rotulo">STREAK</div>
+                <div class="valor streak-info">
+                    <span class="fire">🔥</span>
+                    <span id="truco-streak">0</span>
+                </div>
+            </div>
+            <div class="estatistica-card">
+                <div class="rotulo">APROVEIT.</div>
+                <div class="valor" id="truco-aproveitamento">0%</div>
+            </div>
+        </div>
+        
+        <div class="ranking-posicao" style="background: rgba(241,196,15,0.1);">
+            <span class="posicao-label">Ranking Aproveitamento:</span>
+            <span class="posicao-numero" id="truco-posicao-aproveitamento">#0</span>
+        </div>
+        
+        <button class="btn-fechar-modal" onclick="fecharModalEstatisticas('modal-truco')">FECHAR</button>
     </div>
 </div>
 
@@ -1914,6 +2336,7 @@
         }
     };
 
+    // Função para entrar no perfil
     function entrarNoPerfil(user) {
         usuarioLogado = user;
         document.getElementById('user-name').innerText = user.nickname;
@@ -1923,6 +2346,173 @@
         document.getElementById('box-perfil').style.display = 'block';
         document.getElementById('nav-pato').style.display = 'block';
         document.getElementById('nav-cadastro').style.display = 'none';
+        
+        // Atualizar ícones das ligas
+        atualizarIconesLigas();
+    }
+
+    // ===== FUNÇÕES DAS LIGAS =====
+    
+    // Abrir modal para selecionar liga
+    window.abrirModalSelecionarLiga = () => {
+        if (!usuarioLogado) {
+            alert("Faça login primeiro!");
+            return;
+        }
+        document.getElementById('modal-select-liga').style.display = 'flex';
+    };
+
+    // Inscrever na liga selecionada
+    window.inscreverNaLiga = async (liga) => {
+        if (!usuarioLogado) {
+            alert("Faça login primeiro!");
+            return;
+        }
+        
+        // Verificar se já está inscrito
+        const inscricaoRef = ref(db, `ligas/${liga}/inscritos/${usuarioLogado.id}`);
+        const snap = await get(inscricaoRef);
+        
+        if (snap.exists()) {
+            alert(`Você já está inscrito na liga ${liga}!`);
+            fecharModal('modal-select-liga');
+            return;
+        }
+        
+        // Inscrever na liga
+        await set(ref(db, `ligas/${liga}/inscritos/${usuarioLogado.id}`), {
+            id: usuarioLogado.id,
+            nickname: usuarioLogado.nickname,
+            dataInscricao: Date.now()
+        });
+        
+        // Inicializar estatísticas
+        await set(ref(db, `ligas/${liga}/estatisticas/${usuarioLogado.id}`), {
+            pontos: 0,
+            vitorias: 0,
+            derrotas: 0
+        });
+        
+        alert(`✅ Inscrito na liga ${liga} com sucesso!`);
+        fecharModal('modal-select-liga');
+        atualizarIconesLigas();
+    };
+
+    // Abrir estatísticas da liga
+    window.abrirEstatisticasLiga = async (liga) => {
+        if (!usuarioLogado) {
+            alert("Faça login primeiro!");
+            return;
+        }
+        
+        // Verificar se o usuário está inscrito na liga
+        const inscricaoRef = ref(db, `ligas/${liga}/inscritos/${usuarioLogado.id}`);
+        const snap = await get(inscricaoRef);
+        
+        if (!snap.exists()) {
+            alert(`Você não está inscrito na liga ${liga}!`);
+            return;
+        }
+        
+        // Buscar estatísticas da liga
+        const estatisticasRef = ref(db, `ligas/${liga}/estatisticas/${usuarioLogado.id}`);
+        const statsSnap = await get(estatisticasRef);
+        const stats = statsSnap.val() || {
+            pontos: 0,
+            vitorias: 0,
+            derrotas: 0
+        };
+        
+        // Buscar todos os jogadores da liga para calcular rankings
+        const rankingRef = ref(db, `ligas/${liga}/estatisticas`);
+        const rankingSnap = await get(rankingRef);
+        const rankingData = rankingSnap.val() || {};
+        
+        // Calcular posição no ranking geral
+        const rankingGeral = Object.entries(rankingData)
+            .map(([id, data]) => ({ id, pontos: data.pontos || 0, vitorias: data.vitorias || 0, derrotas: data.derrotas || 0 }))
+            .sort((a, b) => b.pontos - a.pontos);
+        
+        const posicaoGeral = rankingGeral.findIndex(j => j.id === usuarioLogado.id) + 1;
+        
+        // Calcular ranking por aproveitamento
+        const rankingAproveitamento = Object.entries(rankingData)
+            .map(([id, data]) => {
+                const vitorias = data.vitorias || 0;
+                const derrotas = data.derrotas || 0;
+                const total = vitorias + derrotas;
+                const aproveitamento = total > 0 ? (vitorias / total) * 100 : 0;
+                return { id, aproveitamento, vitorias, derrotas };
+            })
+            .sort((a, b) => b.aproveitamento - a.aproveitamento);
+        
+        const posicaoAproveitamento = rankingAproveitamento.findIndex(j => j.id === usuarioLogado.id) + 1;
+        
+        // Calcular streak (últimas partidas na liga)
+        const historicoRef = ref(db, `usuarios/${usuarioLogado.id}/historico`);
+        const historicoSnap = await get(historicoRef);
+        const historico = historicoSnap.val() || [];
+        const historicoLiga = historico.filter(h => h.liga === liga);
+        const ultimas5 = historicoLiga.slice(-5);
+        let streak = 0;
+        for (let i = ultimas5.length - 1; i >= 0; i--) {
+            if (ultimas5[i].resultado === 'vitoria') streak++;
+            else break;
+        }
+        
+        // Calcular aproveitamento
+        const vitorias = stats.vitorias || 0;
+        const derrotas = stats.derrotas || 0;
+        const total = vitorias + derrotas;
+        const aproveitamento = total > 0 ? Math.round((vitorias / total) * 100) : 0;
+        
+        // Atualizar modal com os dados
+        const modalId = liga === 'BOLA 8' ? 'modal-bola8' : (liga === 'BOLA 9' ? 'modal-bola9' : 'modal-truco');
+        const prefixo = liga === 'BOLA 8' ? 'bola8' : (liga === 'BOLA 9' ? 'bola9' : 'truco');
+        
+        document.getElementById(`${prefixo}-posicao`).innerText = `#${posicaoGeral || 0}`;
+        document.getElementById(`${prefixo}-pontos`).innerText = stats.pontos || 0;
+        document.getElementById(`${prefixo}-vd`).innerText = `${stats.vitorias || 0}/${stats.derrotas || 0}`;
+        document.getElementById(`${prefixo}-streak`).innerText = streak;
+        document.getElementById(`${prefixo}-aproveitamento`).innerText = `${aproveitamento}%`;
+        document.getElementById(`${prefixo}-posicao-aproveitamento`).innerText = `#${posicaoAproveitamento || 0}`;
+        
+        // Mostrar modal
+        document.getElementById(modalId).style.display = 'flex';
+    };
+
+    // Fechar modal de estatísticas
+    window.fecharModalEstatisticas = (modalId) => {
+        document.getElementById(modalId).style.display = 'none';
+    };
+
+    // Atualizar ícones das ligas no perfil
+    async function atualizarIconesLigas() {
+        if (!usuarioLogado) return;
+        
+        const ligas = ['BOLA 8', 'BOLA 9', 'TRUCO'];
+        const icones = {
+            'BOLA 8': 'icone-bola8',
+            'BOLA 9': 'icone-bola9',
+            'TRUCO': 'icone-truco'
+        };
+        
+        for (const liga of ligas) {
+            const iconeId = icones[liga];
+            const icone = document.getElementById(iconeId);
+            
+            // Verificar se está inscrito
+            const inscricaoRef = ref(db, `ligas/${liga}/inscritos/${usuarioLogado.id}`);
+            const snap = await get(inscricaoRef);
+            
+            if (snap.exists()) {
+                icone.classList.remove('inativo');
+                icone.title = `${liga} (Clique para ver estatísticas)`;
+            } else {
+                icone.classList.add('inativo');
+                icone.title = `${liga} (Não inscrito)`;
+            }
+        }
     }
 
     // RANKING COM PAGINAÇÃO
@@ -2190,6 +2780,27 @@
             v: (snapV.val().v || 0) + qtd 
         });
         
+        // Atualizar estatísticas da liga
+        const statsPerdedorRef = ref(db, `ligas/${liga}/estatisticas/${usuarioLogado.id}`);
+        const statsPerdedorSnap = await get(statsPerdedorRef);
+        const statsPerdedor = statsPerdedorSnap.val() || { pontos: 0, vitorias: 0, derrotas: 0 };
+        
+        await set(statsPerdedorRef, {
+            pontos: (statsPerdedor.pontos || 0) - pontosPerdidos,
+            vitorias: statsPerdedor.vitorias || 0,
+            derrotas: (statsPerdedor.derrotas || 0) + qtd
+        });
+        
+        const statsVencedorRef = ref(db, `ligas/${liga}/estatisticas/${idVenc}`);
+        const statsVencedorSnap = await get(statsVencedorRef);
+        const statsVencedor = statsVencedorSnap.val() || { pontos: 0, vitorias: 0, derrotas: 0 };
+        
+        await set(statsVencedorRef, {
+            pontos: (statsVencedor.pontos || 0) + pontosGanhos,
+            vitorias: (statsVencedor.vitorias || 0) + qtd,
+            derrotas: statsVencedor.derrotas || 0
+        });
+        
         // Atualizar histórico
         const perdedorHist = [...(usuarioLogado.historico || [])];
         const vencedorHist = [...(snapV.val().historico || [])];
@@ -2220,6 +2831,9 @@
 
         document.getElementById('duckSound').play();
         alert(`🦆 Derrota Notificada na liga ${liga} com sucesso!`);
+        
+        // Atualizar ícones das ligas
+        atualizarIconesLigas();
         location.reload();
     };
 
@@ -2519,6 +3133,9 @@
     // Fechar modal ao clicar fora
     window.onclick = function(event) {
         if (event.target.classList.contains('modal')) {
+            event.target.style.display = 'none';
+        }
+        if (event.target.classList.contains('estatisticas-modal')) {
             event.target.style.display = 'none';
         }
     }

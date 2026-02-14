@@ -601,6 +601,241 @@
             box-shadow: 0 6px 15px rgba(245, 158, 11, 0.5);
         }
 
+        /* Estilos do Painel Master */
+        .master-tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .master-tab {
+            background: #2c3e50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px 30px 0 0;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+            transition: 0.3s;
+            opacity: 0.7;
+        }
+
+        .master-tab.active {
+            background: #f1c40f;
+            color: #000;
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .master-panel {
+            background: #1a2634;
+            border-radius: 15px;
+            padding: 20px;
+            color: white;
+            margin-top: 15px;
+        }
+
+        .search-box {
+            background: #2c3e50;
+            border: 1px solid #f1c40f;
+            border-radius: 30px;
+            padding: 8px 15px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .search-box input::placeholder {
+            color: #95a5a6;
+        }
+
+        .search-box button {
+            background: #f1c40f;
+            border: none;
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .master-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #2c3e50;
+            border-radius: 15px;
+            overflow: hidden;
+            font-size: 12px;
+        }
+
+        .master-table th {
+            background: #000;
+            color: #f1c40f;
+            padding: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .master-table td {
+            padding: 10px;
+            border-bottom: 1px solid #405060;
+        }
+
+        .master-table tr:hover {
+            background: #34495e;
+        }
+
+        .btn-ban {
+            background: #c0392b;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .btn-unban {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .btn-edit {
+            background: #2980b9;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            margin-right: 3px;
+        }
+
+        .btn-revert {
+            background: #f39c12;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #2c3e50;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            border: 3px solid #f1c40f;
+        }
+
+        .modal-content h3 {
+            color: #f1c40f;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-content input, .modal-content select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #f1c40f;
+            background: #34495e;
+            color: white;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .modal-buttons button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal-confirm {
+            background: #27ae60;
+            color: white;
+        }
+
+        .modal-cancel {
+            background: #c0392b;
+            color: white;
+        }
+
+        .notificacao-item {
+            background: #2c3e50;
+            border-left: 4px solid #f1c40f;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 0 8px 8px 0;
+            font-size: 12px;
+        }
+
+        .notificacao-item .vencedor {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .notificacao-item .perdedor {
+            color: #c0392b;
+            font-weight: bold;
+        }
+
+        .notificacao-item .tempo {
+            color: #f1c40f;
+            font-size: 10px;
+            margin-top: 5px;
+        }
+
+        .badge {
+            background: #f1c40f;
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
         /* Formulários responsivos */
         .form-group { 
             display: grid; 
@@ -1067,6 +1302,19 @@
                 padding: 6px 15px;
                 font-size: 12px;
             }
+            
+            .master-table {
+                font-size: 10px;
+            }
+            
+            .master-table th, .master-table td {
+                padding: 6px;
+            }
+            
+            .btn-edit, .btn-ban, .btn-unban, .btn-revert {
+                padding: 3px 6px;
+                font-size: 9px;
+            }
         }
 
         @media (max-width: 400px) {
@@ -1186,21 +1434,44 @@
 
             <section id="section-master" style="display:none;">
                 <div class="section-title" style="background: #000; border: 1px solid #f1c40f; color: #f1c40f;">👑 SISTEMA DEUS - CONTROLE MASTER</div>
-                <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; color: #333;">
-                    <h3 style="margin-bottom: 10px; font-size: 16px;">Gestão de Membros</h3>
+                
+                <!-- Abas do Master -->
+                <div class="master-tabs">
+                    <button class="master-tab active" onclick="mudarMasterTab('usuarios')">👥 USUÁRIOS</button>
+                    <button class="master-tab" onclick="mudarMasterTab('notificacoes')">📢 NOTIFICAÇÕES (30min)</button>
+                </div>
+                
+                <!-- Painel de Usuários -->
+                <div id="master-usuarios" class="master-panel">
+                    <div class="search-box">
+                        <input type="text" id="search-user" placeholder="Buscar por ID ou Nick..." onkeyup="filtrarUsuarios()">
+                        <button>🔍</button>
+                    </div>
+                    
                     <div style="overflow-x: auto;">
-                        <table class="ranking-table-moderno" style="background: white;">
+                        <table class="master-table" id="tabela-usuarios">
                             <thead>
-                                <tr style="background:#2c3e50; color:white;">
+                                <tr>
                                     <th>ID</th>
                                     <th>NICK</th>
                                     <th>SENHA</th>
                                     <th>PONTOS</th>
-                                    <th>AÇÃO</th>
+                                    <th>STATUS</th>
+                                    <th>AÇÕES</th>
                                 </tr>
                             </thead>
-                            <tbody id="lista-usuarios-master"></tbody>
+                            <tbody id="lista-usuarios-master">
+                                <!-- Será preenchido via JS -->
+                            </tbody>
                         </table>
+                    </div>
+                </div>
+                
+                <!-- Painel de Notificações (últimos 30min) -->
+                <div id="master-notificacoes" class="master-panel" style="display: none;">
+                    <h3 style="color: #f1c40f; margin-bottom: 15px;">📋 ÚLTIMAS NOTIFICAÇÕES (30 MINUTOS)</h3>
+                    <div id="lista-notificacoes" style="max-height: 500px; overflow-y: auto;">
+                        <!-- Será preenchido via JS -->
                     </div>
                 </div>
             </section>
@@ -1428,11 +1699,35 @@
     <footer class="footer-line">LSJO © 2026 - Todos os direitos reservados</footer>
 </div>
 
+<!-- Modais -->
+<div id="modal-edit-id" class="modal">
+    <div class="modal-content">
+        <h3>✏️ ALTERAR ID</h3>
+        <input type="text" id="edit-user-id" placeholder="ID atual" readonly>
+        <input type="text" id="edit-new-id" placeholder="Novo ID (4 dígitos)" maxlength="4">
+        <div class="modal-buttons">
+            <button class="modal-confirm" onclick="confirmarAlterarId()">CONFIRMAR</button>
+            <button class="modal-cancel" onclick="fecharModal('modal-edit-id')">CANCELAR</button>
+        </div>
+    </div>
+</div>
+
+<div id="modal-revert-notif" class="modal">
+    <div class="modal-content">
+        <h3>↩️ REVERTER NOTIFICAÇÃO</h3>
+        <p id="revert-info" style="color: white; margin-bottom: 15px;"></p>
+        <div class="modal-buttons">
+            <button class="modal-confirm" onclick="confirmarReverter()">REVERTER</button>
+            <button class="modal-cancel" onclick="fecharModal('modal-revert-notif')">CANCELAR</button>
+        </div>
+    </div>
+</div>
+
 <audio id="duckSound" src="https://www.soundjay.com/nature/sounds/duck-quack-1.mp3"></audio>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getDatabase, ref, set, get, child, onValue, update, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    import { getDatabase, ref, set, get, child, onValue, update, remove, push } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
     // CONFIGURAÇÃO CORRIGIDA COM REGIÃO EUROPE-WEST1
     const firebaseConfig = {
@@ -1454,6 +1749,10 @@
     let todosJogadores = [];
     let rankingTipoAtual = 'BOLA 8';
     let tipoOrdenacaoAtual = 'PONTOS';
+    
+    // Variáveis para o modal
+    let usuarioSelecionado = null;
+    let notificacaoSelecionada = null;
 
     // Gerar opções de data
     function gerarOpcoesData() {
@@ -1575,6 +1874,8 @@
                 pontos: 0,
                 v: 0, 
                 d: 0,
+                status: 'ativo',
+                banido: false,
                 historico: [], // Inicializa histórico vazio
                 dataNasc: `${dia}/${mes}/${ano}`,
                 email: document.getElementById('reg-email')?.value || '',
@@ -1595,13 +1896,17 @@
 
         if(id === "0001" && pass === "20042018") {
             document.getElementById('nav-master').style.display = 'block';
-            entrarNoPerfil({nickname: "LSJO_MASTER", id: "0001", pontos: "0"});
+            entrarNoPerfil({nickname: "LSJO_MASTER", id: "0001", pontos: "0", status: 'ativo'});
             return;
         }
 
         const dbRef = ref(db);
         const snap = await get(child(dbRef, `usuarios/${id}`));
         if (snap.exists() && snap.val().senha === pass) {
+            if (snap.val().banido) {
+                alert("❌ Esta conta está banida!");
+                return;
+            }
             usuarioLogado = snap.val();
             entrarNoPerfil(usuarioLogado);
         } else {
@@ -1643,26 +1948,25 @@
             todosJogadores = [];
             
             if(data) {
-                todosJogadores = Object.values(data).filter(u => u.id !== "0001");
-                
-                // Garantir que todos tenham histórico
-                todosJogadores = todosJogadores.map(jogador => {
-                    if (!jogador.historico) {
-                        // Criar histórico baseado nas vitórias/derrotas
-                        const historico = [];
-                        const totalVitorias = jogador.v || 0;
-                        const totalDerrotas = jogador.d || 0;
-                        
-                        for (let i = 0; i < totalVitorias; i++) {
-                            historico.push({ resultado: 'vitoria' });
+                todosJogadores = Object.values(data)
+                    .filter(u => u.id !== "0001" && !u.banido)
+                    .map(jogador => {
+                        if (!jogador.historico) {
+                            // Criar histórico baseado nas vitórias/derrotas
+                            const historico = [];
+                            const totalVitorias = jogador.v || 0;
+                            const totalDerrotas = jogador.d || 0;
+                            
+                            for (let i = 0; i < totalVitorias; i++) {
+                                historico.push({ resultado: 'vitoria' });
+                            }
+                            for (let i = 0; i < totalDerrotas; i++) {
+                                historico.push({ resultado: 'derrota' });
+                            }
+                            return { ...jogador, historico };
                         }
-                        for (let i = 0; i < totalDerrotas; i++) {
-                            historico.push({ resultado: 'derrota' });
-                        }
-                        return { ...jogador, historico };
-                    }
-                    return jogador;
-                });
+                        return jogador;
+                    });
             }
             
             totalJogadores = todosJogadores.length;
@@ -1853,6 +2157,11 @@
             alert("Vencedor não existe!");
             return;
         }
+        
+        if (snapV.val().banido) {
+            alert("Vencedor está banido!");
+            return;
+        }
 
         const travaRef = ref(db, `travas/${usuarioLogado.id}_vs_${idVenc}`);
         const snapT = await get(travaRef);
@@ -1881,32 +2190,31 @@
             v: (snapV.val().v || 0) + qtd 
         });
         
-        // Atualizar pontos específicos por liga
-        const ligaPointsRef = ref(db, `ligas/${liga}/pontos`);
-        const ligaSnap = await get(ligaPointsRef);
-        let ligaData = ligaSnap.val() || {};
-        
-        await update(ref(db, `ligas/${liga}/pontos/${usuarioLogado.id}`), {
-            pontos: (ligaData[usuarioLogado.id]?.pontos || 0) - pontosPerdidos
-        });
-        
-        await update(ref(db, `ligas/${liga}/pontos/${idVenc}`), {
-            pontos: (ligaData[idVenc]?.pontos || 0) + pontosGanhos
-        });
-        
         // Atualizar histórico
         const perdedorHist = [...(usuarioLogado.historico || [])];
-        for (let i = 0; i < qtd; i++) {
-            perdedorHist.push({ resultado: 'derrota', data: agora, liga: liga });
-        }
-        await update(ref(db, `usuarios/${usuarioLogado.id}`), { historico: perdedorHist });
+        const vencedorHist = [...(snapV.val().historico || [])];
         
-        const vencedorData = snapV.val();
-        const vencedorHist = [...(vencedorData.historico || [])];
         for (let i = 0; i < qtd; i++) {
-            vencedorHist.push({ resultado: 'vitoria', data: agora, liga: liga });
+            perdedorHist.push({ resultado: 'derrota', data: agora, liga: liga, vencedorId: idVenc });
+            vencedorHist.push({ resultado: 'vitoria', data: agora, liga: liga, perdedorId: usuarioLogado.id });
         }
+        
+        await update(ref(db, `usuarios/${usuarioLogado.id}`), { historico: perdedorHist });
         await update(ref(db, `usuarios/${idVenc}`), { historico: vencedorHist });
+        
+        // Registrar notificação para o master
+        const notifRef = ref(db, 'notificacoes');
+        await push(notifRef, {
+            liga: liga,
+            vencedorId: idVenc,
+            vencedorNome: snapV.val().nickname,
+            perdedorId: usuarioLogado.id,
+            perdedorNome: usuarioLogado.nickname,
+            quantidade: qtd,
+            pontosGanhos: pontosGanhos,
+            pontosPerdidos: pontosPerdidos,
+            timestamp: agora
+        });
         
         await set(travaRef, { quantidade: count + qtd, timestamp: agora });
 
@@ -1915,33 +2223,247 @@
         location.reload();
     };
 
-    // PAINEL MASTER
-    onValue(ref(db, 'usuarios'), (snapshot) => {
-        const data = snapshot.val();
-        const listaMaster = document.getElementById('lista-usuarios-master');
-        if(!listaMaster) return;
-        listaMaster.innerHTML = "";
-        if(data) {
-            Object.values(data).forEach(u => {
-                if(u.id !== "0001") {
-                    listaMaster.innerHTML += `<tr>
-                        <td>${u.id}</td>
-                        <td>${u.nickname}</td>
-                        <td>${u.senha}</td>
-                        <td>${u.pontos || 0}</td>
-                        <td><button onclick="banirUsuario('${u.id}')" style="background:#c0392b; color:white; border:none; padding:5px 8px; cursor:pointer; border-radius:4px; font-size:11px;">🚫 BANIR</button></td>
-                    </tr>`;
-                }
-            });
-        }
-    });
-
-    window.banirUsuario = async (id) => {
-        if(confirm("⚠️ Tem certeza que deseja banir o ID " + id + "?")) {
-            await remove(ref(db, 'usuarios/' + id));
-            alert("✅ Usuário banido com sucesso!");
+    // ===== FUNÇÕES DO PAINEL MASTER =====
+    
+    window.mudarMasterTab = (tab) => {
+        // Atualizar abas
+        document.querySelectorAll('.master-tab').forEach(t => t.classList.remove('active'));
+        event.target.classList.add('active');
+        
+        // Mostrar painel correspondente
+        if (tab === 'usuarios') {
+            document.getElementById('master-usuarios').style.display = 'block';
+            document.getElementById('master-notificacoes').style.display = 'none';
+            carregarUsuariosMaster();
+        } else {
+            document.getElementById('master-usuarios').style.display = 'none';
+            document.getElementById('master-notificacoes').style.display = 'block';
+            carregarNotificacoes();
         }
     };
+
+    // Carregar usuários no painel master
+    function carregarUsuariosMaster() {
+        const usuariosRef = ref(db, 'usuarios');
+        onValue(usuariosRef, (snapshot) => {
+            const data = snapshot.val();
+            const listaMaster = document.getElementById('lista-usuarios-master');
+            if(!listaMaster) return;
+            listaMaster.innerHTML = "";
+            
+            if(data) {
+                Object.values(data).forEach(u => {
+                    if(u.id !== "0001") {
+                        const status = u.banido ? '<span style="color: #c0392b;">🔴 BANIDO</span>' : '<span style="color: #27ae60;">🟢 ATIVO</span>';
+                        const acoes = u.banido ? 
+                            `<button class="btn-unban" onclick="desbanirUsuario('${u.id}')">DESBANIR</button>` :
+                            `<button class="btn-edit" onclick="abrirModalEditarId('${u.id}')">✏️ ID</button>
+                             <button class="btn-ban" onclick="banirUsuario('${u.id}')">🚫 BANIR</button>`;
+                        
+                        listaMaster.innerHTML += `<tr>
+                            <td><strong>${u.id}</strong></td>
+                            <td>${u.nickname}</td>
+                            <td>${u.senha}</td>
+                            <td>${u.pontos || 0}</td>
+                            <td>${status}</td>
+                            <td>${acoes}</td>
+                        </tr>`;
+                    }
+                });
+            }
+        });
+    }
+
+    // Carregar notificações dos últimos 30 minutos
+    async function carregarNotificacoes() {
+        const notifRef = ref(db, 'notificacoes');
+        const snapshot = await get(notifRef);
+        const data = snapshot.val();
+        const listaNotif = document.getElementById('lista-notificacoes');
+        
+        if (!listaNotif) return;
+        listaNotif.innerHTML = "";
+        
+        const agora = Date.now();
+        const meiaHora = 30 * 60 * 1000; // 30 minutos em ms
+        
+        if (data) {
+            const notificacoes = Object.entries(data)
+                .map(([key, value]) => ({ id: key, ...value }))
+                .filter(n => (agora - n.timestamp) <= meiaHora)
+                .sort((a, b) => b.timestamp - a.timestamp);
+            
+            if (notificacoes.length === 0) {
+                listaNotif.innerHTML = '<div style="text-align: center; padding: 30px; color: #95a5a6;">📭 Nenhuma notificação nos últimos 30 minutos</div>';
+                return;
+            }
+            
+            notificacoes.forEach(notif => {
+                const dataNotif = new Date(notif.timestamp).toLocaleString('pt-BR');
+                const tempoAtras = Math.round((agora - notif.timestamp) / 60000); // minutos
+                
+                listaNotif.innerHTML += `
+                    <div class="notificacao-item">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <span class="badge">${notif.liga}</span>
+                                <strong class="vencedor">${notif.vencedorNome}</strong> 🏆 vs 
+                                <strong class="perdedor">${notif.perdedorNome}</strong>
+                            </div>
+                            <button class="btn-revert" onclick="abrirModalReverter('${notif.id}', '${notif.vencedorId}', '${notif.perdedorId}', ${notif.quantidade}, ${notif.pontosGanhos})">↩️ REVERTER</button>
+                        </div>
+                        <div style="margin-top: 5px; color: #bdc3c7;">
+                            ${notif.quantidade}x derrotas | +${notif.pontosGanhos} pts / -${notif.pontosPerdidos} pts
+                        </div>
+                        <div class="tempo">⏱️ ${dataNotif} (há ${tempoAtras} min)</div>
+                    </div>
+                `;
+            });
+        } else {
+            listaNotif.innerHTML = '<div style="text-align: center; padding: 30px; color: #95a5a6;">📭 Nenhuma notificação encontrada</div>';
+        }
+    }
+
+    // Funções do Master
+    window.banirUsuario = async (id) => {
+        if(confirm(`⚠️ Tem certeza que deseja BANIR o ID ${id}?`)) {
+            await update(ref(db, `usuarios/${id}`), { 
+                banido: true,
+                status: 'banido'
+            });
+            alert(`✅ Usuário ${id} banido com sucesso!`);
+            carregarUsuariosMaster();
+        }
+    };
+
+    window.desbanirUsuario = async (id) => {
+        if(confirm(`⚠️ Tem certeza que deseja DESBANIR o ID ${id}?`)) {
+            await update(ref(db, `usuarios/${id}`), { 
+                banido: false,
+                status: 'ativo'
+            });
+            alert(`✅ Usuário ${id} desbanido com sucesso!`);
+            carregarUsuariosMaster();
+        }
+    };
+
+    window.abrirModalEditarId = (id) => {
+        usuarioSelecionado = id;
+        document.getElementById('edit-user-id').value = id;
+        document.getElementById('modal-edit-id').style.display = 'flex';
+    };
+
+    window.confirmarAlterarId = async () => {
+        const novoId = document.getElementById('edit-new-id').value;
+        
+        if (!novoId || novoId.length !== 4 || isNaN(novoId)) {
+            alert("❌ Digite um ID válido de 4 dígitos!");
+            return;
+        }
+        
+        // Verificar se o novo ID já existe
+        const snap = await get(child(ref(db), `usuarios/${novoId}`));
+        if (snap.exists()) {
+            alert("❌ Este ID já está em uso por outro jogador!");
+            return;
+        }
+        
+        // Buscar dados do usuário antigo
+        const snapOld = await get(child(ref(db), `usuarios/${usuarioSelecionado}`));
+        const userData = snapOld.val();
+        
+        // Criar novo usuário com o novo ID
+        await set(ref(db, `usuarios/${novoId}`), {
+            ...userData,
+            id: novoId
+        });
+        
+        // Remover usuário antigo
+        await remove(ref(db, `usuarios/${usuarioSelecionado}`));
+        
+        alert(`✅ ID alterado de ${usuarioSelecionado} para ${novoId} com sucesso!`);
+        fecharModal('modal-edit-id');
+        document.getElementById('edit-new-id').value = '';
+        carregarUsuariosMaster();
+    };
+
+    window.abrirModalReverter = (notifId, vencedorId, perdedorId, qtd, pontos) => {
+        notificacaoSelecionada = { notifId, vencedorId, perdedorId, qtd, pontos };
+        document.getElementById('revert-info').innerHTML = 
+            `Reverter notificação?<br><br>` +
+            `🏆 Vencedor ID: ${vencedorId}<br>` +
+            `😢 Perdedor ID: ${perdedorId}<br>` +
+            `📊 Quantidade: ${qtd} derrotas<br>` +
+            `💰 Pontos: ${pontos}`;
+        document.getElementById('modal-revert-notif').style.display = 'flex';
+    };
+
+    window.confirmarReverter = async () => {
+        const n = notificacaoSelecionada;
+        
+        // Buscar dados atuais
+        const snapVencedor = await get(child(ref(db), `usuarios/${n.vencedorId}`));
+        const snapPerdedor = await get(child(ref(db), `usuarios/${n.perdedorId}`));
+        
+        const vencedor = snapVencedor.val();
+        const perdedor = snapPerdedor.val();
+        
+        // Reverter pontos
+        await update(ref(db, `usuarios/${n.vencedorId}`), {
+            pontos: (vencedor.pontos || 0) - n.pontos,
+            v: (vencedor.v || 0) - n.qtd
+        });
+        
+        await update(ref(db, `usuarios/${n.perdedorId}`), {
+            pontos: (perdedor.pontos || 0) + n.pontos,
+            d: (perdedor.d || 0) - n.qtd
+        });
+        
+        // Remover do histórico
+        const novoHistVencedor = (vencedor.historico || []).filter(h => 
+            !(h.data === n.timestamp && h.resultado === 'vitoria' && h.perdedorId === n.perdedorId)
+        );
+        
+        const novoHistPerdedor = (perdedor.historico || []).filter(h => 
+            !(h.data === n.timestamp && h.resultado === 'derrota' && h.vencedorId === n.vencedorId)
+        );
+        
+        await update(ref(db, `usuarios/${n.vencedorId}`), { historico: novoHistVencedor });
+        await update(ref(db, `usuarios/${n.perdedorId}`), { historico: novoHistPerdedor });
+        
+        // Remover notificação
+        await remove(ref(db, `notificacoes/${n.notifId}`));
+        
+        alert("✅ Notificação revertida com sucesso!");
+        fecharModal('modal-revert-notif');
+        carregarNotificacoes();
+    };
+
+    window.filtrarUsuarios = () => {
+        const filtro = document.getElementById('search-user').value.toLowerCase();
+        const linhas = document.querySelectorAll('#lista-usuarios-master tr');
+        
+        linhas.forEach(linha => {
+            const texto = linha.innerText.toLowerCase();
+            if (texto.includes(filtro) || filtro === '') {
+                linha.style.display = '';
+            } else {
+                linha.style.display = 'none';
+            }
+        });
+    };
+
+    window.fecharModal = (modalId) => {
+        document.getElementById(modalId).style.display = 'none';
+    };
+
+    // PAINEL MASTER - Monitorar notificações em tempo real
+    onValue(ref(db, 'notificacoes'), () => {
+        // Se a aba de notificações estiver visível, atualizar
+        if (document.getElementById('master-notificacoes').style.display === 'block') {
+            carregarNotificacoes();
+        }
+    });
 
     // Inicialização
     document.addEventListener('DOMContentLoaded', () => {
@@ -1949,6 +2471,12 @@
         setInterval(atualizarRelogio, 1000);
         atualizarRelogio();
         showSection('home');
+        
+        // Carregar usuários master se estiver logado
+        const navMaster = document.getElementById('nav-master');
+        if (navMaster.style.display === 'block') {
+            carregarUsuariosMaster();
+        }
     });
 
     function atualizarRelogio() {
@@ -1985,6 +2513,13 @@
     function fazerLogout() {
         if(confirm("Deseja realmente desligar?")) { 
             location.reload(); 
+        }
+    }
+    
+    // Fechar modal ao clicar fora
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.style.display = 'none';
         }
     }
 </script>

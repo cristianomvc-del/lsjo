@@ -576,6 +576,31 @@
             font-weight: bold;
         }
 
+        /* Botão do patinho no perfil - SÓ ÍCONE */
+        .btn-pato-perfil-icone {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #000;
+            border: 2px solid #d97706;
+            margin: 10px auto 5px;
+            font-size: 28px;
+            padding: 8px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .btn-pato-perfil-icone:hover {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 6px 15px rgba(245, 158, 11, 0.5);
+        }
+
         /* Formulários responsivos */
         .form-group { 
             display: grid; 
@@ -1134,9 +1159,9 @@
                     <div class="form-group">
                         <label>Liga do Jogo:</label>
                         <select id="notif-liga">
-                            <option>🎱 BOLA 8</option>
-                            <option>9️⃣ BOLA 9</option>
-                            <option>🃏 TRUCO</option>
+                            <option value="BOLA 8">🎱 BOLA 8</option>
+                            <option value="BOLA 9">9️⃣ BOLA 9</option>
+                            <option value="TRUCO">🃏 TRUCO</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -1363,6 +1388,7 @@
                 </div>
             </div>
 
+            <!-- PERFIL COM PATINHO SÓ ÍCONE -->
             <div class="right-box" id="box-perfil" style="display:none;">
                 <div class="right-box-title">🪪 PERFIL DO SUPREMO</div>
                 <div class="right-box-content profile-card">
@@ -1373,6 +1399,12 @@
                         <div class="stat-item"><span>Pontos:</span> <strong id="user-pts-card">0</strong></div>
                         <div class="stat-item"><span>Status:</span> <strong style="color:green">Ativa</strong></div>
                     </div>
+                    
+                    <!-- PATINHO SÓ ÍCONE -->
+                    <div class="btn-pato-perfil-icone" onclick="showSection('notificar')" title="Notificar Derrota">
+                        🦆
+                    </div>
+                    
                     <button class="btn-action btn-join">INSCREVER NA LIGA</button>
                     <button class="btn-action btn-special">MEMBRO ESPECIAL ⭐</button>
                     <button class="btn-action btn-logout" onclick="fazerLogout()">DESLIGAR</button>
@@ -1588,7 +1620,7 @@
         document.getElementById('nav-cadastro').style.display = 'none';
     }
 
-    // RANKING COM PAGINAÇÃO - TODOS OS BOTÕES FUNCIONANDO!
+    // RANKING COM PAGINAÇÃO
     window.abrirRanking = (tipo) => {
         rankingTipoAtual = tipo;
         showSection('ranking-view');
@@ -1791,18 +1823,18 @@
         renderizarPaginaAtual(tipoOrdenacaoAtual);
     };
 
-    // FUNÇÃO CORRIGIDA - AGORA MUDA A ORDENAÇÃO CORRETAMENTE
     window.mudarAbaRanking = (tipo, btn) => {
         document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         
         tipoOrdenacaoAtual = tipo;
-        paginaAtual = 1; // Voltar para primeira página ao mudar ordenação
+        paginaAtual = 1;
         renderizarPaginaAtual(tipo);
     };
 
-    // NOTIFICAR DERROTA - AGORA ATUALIZA HISTÓRICO
+    // NOTIFICAR DERROTA - AGORA COM LIGA ESPECÍFICA
     document.getElementById('btn-enviar-notif').onclick = async () => {
+        const liga = document.getElementById('notif-liga').value;
         const idVenc = document.getElementById('notif-venc').value;
         const qtd = parseInt(document.getElementById('notif-qtd').value);
         const agora = Date.now();
@@ -1834,36 +1866,52 @@
             return;
         }
 
-        // Atualizar pontos
+        // Atualizar pontos apenas na liga específica
+        const pontosPerdidos = qtd * 2;
+        const pontosGanhos = qtd * 2;
+        
+        // Atualizar no perfil geral
         await update(ref(db, `usuarios/${usuarioLogado.id}`), { 
-            pontos: (usuarioLogado.pontos || 0) - (qtd*2), 
+            pontos: (usuarioLogado.pontos || 0) - pontosPerdidos, 
             d: (usuarioLogado.d || 0) + qtd 
         });
         
         await update(ref(db, `usuarios/${idVenc}`), { 
-            pontos: (snapV.val().pontos || 0) + (qtd*2), 
+            pontos: (snapV.val().pontos || 0) + pontosGanhos, 
             v: (snapV.val().v || 0) + qtd 
         });
         
-        // Atualizar histórico do perdedor
+        // Atualizar pontos específicos por liga
+        const ligaPointsRef = ref(db, `ligas/${liga}/pontos`);
+        const ligaSnap = await get(ligaPointsRef);
+        let ligaData = ligaSnap.val() || {};
+        
+        await update(ref(db, `ligas/${liga}/pontos/${usuarioLogado.id}`), {
+            pontos: (ligaData[usuarioLogado.id]?.pontos || 0) - pontosPerdidos
+        });
+        
+        await update(ref(db, `ligas/${liga}/pontos/${idVenc}`), {
+            pontos: (ligaData[idVenc]?.pontos || 0) + pontosGanhos
+        });
+        
+        // Atualizar histórico
         const perdedorHist = [...(usuarioLogado.historico || [])];
         for (let i = 0; i < qtd; i++) {
-            perdedorHist.push({ resultado: 'derrota', data: agora });
+            perdedorHist.push({ resultado: 'derrota', data: agora, liga: liga });
         }
         await update(ref(db, `usuarios/${usuarioLogado.id}`), { historico: perdedorHist });
         
-        // Atualizar histórico do vencedor
         const vencedorData = snapV.val();
         const vencedorHist = [...(vencedorData.historico || [])];
         for (let i = 0; i < qtd; i++) {
-            vencedorHist.push({ resultado: 'vitoria', data: agora });
+            vencedorHist.push({ resultado: 'vitoria', data: agora, liga: liga });
         }
         await update(ref(db, `usuarios/${idVenc}`), { historico: vencedorHist });
         
         await set(travaRef, { quantidade: count + qtd, timestamp: agora });
 
         document.getElementById('duckSound').play();
-        alert("🦆 Derrota Notificada com sucesso!");
+        alert(`🦆 Derrota Notificada na liga ${liga} com sucesso!`);
         location.reload();
     };
 

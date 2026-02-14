@@ -639,7 +639,7 @@
             box-shadow: none;
         }
 
-        /* Modal de seleção de liga */
+        /* Modal de seleção de liga - CORRIGIDO */
         .modal-select-liga {
             background: linear-gradient(135deg, #2c3e50, #1a2634);
             border-radius: 25px;
@@ -654,6 +654,13 @@
         .modal-select-liga h3 {
             color: #f1c40f;
             margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .modal-select-liga p {
+            color: #bdc3c7;
+            margin-bottom: 20px;
+            font-size: 14px;
         }
 
         .opcoes-liga {
@@ -679,13 +686,14 @@
         }
 
         .opcao-liga .icone-grande {
-            font-size: 32px;
+            font-size: 36px;
             margin-bottom: 8px;
         }
 
         .opcao-liga .nome-liga {
-            font-size: 12px;
+            font-size: 13px;
             font-weight: bold;
+            color: white;
         }
 
         /* Estilos do Painel Master */
@@ -1904,7 +1912,7 @@
                 </div>
             </div>
 
-            <!-- PERFIL COM ÍCONES MENORES (40x40) -->
+            <!-- PERFIL CORRIGIDO - SEM MODAL AUTOMÁTICO -->
             <div class="right-box" id="box-perfil" style="display:none;">
                 <div class="right-box-title">🪪 PERFIL DO SUPREMO</div>
                 <div class="right-box-content profile-card">
@@ -1916,23 +1924,23 @@
                         <div class="stat-item"><span>Status:</span> <strong style="color:green">Ativa</strong></div>
                     </div>
                     
-                    <!-- CONTAINER COM ÍCONES MENORES -->
-                    <div class="icones-perfil-container">
-                        <!-- PATINHO (40x40) -->
+                    <!-- ÍCONES DAS LIGAS - APARECEM APENAS SE INSCRITO -->
+                    <div class="icones-perfil-container" id="icones-ligas-container">
+                        <!-- PATINHO (sempre visível) -->
                         <div class="icone-perfil pato" onclick="showSection('notificar')" title="Notificar Derrota">
                             🦆
                         </div>
                         
-                        <!-- ÍCONES DAS LIGAS (40x40) -->
-                        <div id="icone-bola8" class="icone-perfil bola8 inativo" onclick="abrirEstatisticasLiga('BOLA 8')" title="Bola 8 (Não inscrito)">
+                        <!-- ÍCONES DAS LIGAS (serão controlados por JS) -->
+                        <div id="icone-bola8" class="icone-perfil bola8 inativo" onclick="abrirEstatisticasLiga('BOLA 8')" title="Bola 8 (Não inscrito)" style="display: none;">
                             🎱
                         </div>
                         
-                        <div id="icone-bola9" class="icone-perfil bola9 inativo" onclick="abrirEstatisticasLiga('BOLA 9')" title="Bola 9 (Não inscrito)">
+                        <div id="icone-bola9" class="icone-perfil bola9 inativo" onclick="abrirEstatisticasLiga('BOLA 9')" title="Bola 9 (Não inscrito)" style="display: none;">
                             9️⃣
                         </div>
                         
-                        <div id="icone-truco" class="icone-perfil truco inativo" onclick="abrirEstatisticasLiga('TRUCO')" title="Truco (Não inscrito)">
+                        <div id="icone-truco" class="icone-perfil truco inativo" onclick="abrirEstatisticasLiga('TRUCO')" title="Truco (Não inscrito)" style="display: none;">
                             🃏
                         </div>
                     </div>
@@ -1960,11 +1968,11 @@
     <footer class="footer-line">LSJO © 2026 - Todos os direitos reservados</footer>
 </div>
 
-<!-- MODAL DE SELEÇÃO DE LIGA -->
+<!-- MODAL DE SELEÇÃO DE LIGA (só abre quando clicar no botão) -->
 <div id="modal-select-liga" class="modal">
     <div class="modal-select-liga">
         <h3>🎯 ESCOLHA UMA LIGA</h3>
-        <p style="color: #bdc3c7; margin-bottom: 15px;">Selecione qual liga você quer participar:</p>
+        <p>Selecione qual liga você quer participar:</p>
         
         <div class="opcoes-liga">
             <div class="opcao-liga" onclick="inscreverNaLiga('BOLA 8')">
@@ -2353,7 +2361,7 @@
 
     // ===== FUNÇÕES DAS LIGAS =====
     
-    // Abrir modal para selecionar liga
+    // Abrir modal para selecionar liga (só quando clicar no botão)
     window.abrirModalSelecionarLiga = () => {
         if (!usuarioLogado) {
             alert("Faça login primeiro!");
@@ -2506,11 +2514,11 @@
             const snap = await get(inscricaoRef);
             
             if (snap.exists()) {
+                icone.style.display = 'flex';
                 icone.classList.remove('inativo');
                 icone.title = `${liga} (Clique para ver estatísticas)`;
             } else {
-                icone.classList.add('inativo');
-                icone.title = `${liga} (Não inscrito)`;
+                icone.style.display = 'none'; // Só aparece se estiver inscrito
             }
         }
     }

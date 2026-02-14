@@ -208,9 +208,9 @@
             display: none; 
         }
 
-        /* Botão Jogos (inicialmente oculto) */
+        /* Botão Jogos (inicialmente oculto, aparece após login) */
         .btn-jogos {
-            display: none !important;
+            display: none;
         }
 
         /* Painel Central */
@@ -2147,7 +2147,7 @@
             <button class="btn-menu" onclick="showSection('home')">🏠 HOME</button>
             <button class="btn-menu btn-pato" id="nav-pato" onclick="showSection('notificar')">🦆 NOTIFICAR</button>
             <button class="btn-menu btn-master-especial" id="nav-master" onclick="showSection('master')">👑 PAINEL MASTER</button>
-            <!-- Botão Jogos (inicialmente oculto) -->
+            <!-- Botão Jogos (aparece após login) -->
             <button class="btn-menu btn-blue btn-jogos" id="nav-jogos" onclick="showSection('jogos')">🎮 JOGOS</button>
             <button class="btn-menu btn-blue" onclick="showSection('rankings-hub')">🏆 RANKINGS</button>
             <button class="btn-menu" id="nav-cadastro" onclick="showSection('cadastro')">📝 CADASTRO</button>
@@ -3367,7 +3367,10 @@
         usuarioLogado = user;
         
         // Mostrar botão JOGOS
-        document.getElementById('nav-jogos').style.display = 'block';
+        const btnJogos = document.getElementById('nav-jogos');
+        if (btnJogos) {
+            btnJogos.style.display = 'block';
+        }
         
         // Atualizar avatar
         document.getElementById('profile-avatar').innerText = user.avatar || '🎱';

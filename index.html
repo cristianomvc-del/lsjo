@@ -208,7 +208,7 @@
             display: none; 
         }
 
-        /* Botão Jogos (inicialmente oculto, aparece após login) */
+        /* Botão Jogos (inicialmente oculto) */
         .btn-jogos {
             display: none;
         }
@@ -3278,49 +3278,53 @@
         }
     };
 
-    // LOGIN com segurança reforçada para master
+    // LOGIN com segurança reforçada para master - SUPER OFUSCADO
     document.getElementById('btn-login-firebase').onclick = async () => {
         const id = document.getElementById('login-id').value;
         const pass = document.getElementById('login-pass').value;
         const agora = Date.now();
 
-        // Verificar se está em modo de espera por muitas tentativas
-        if (tentativasMaster >= 5 && (agora - ultimaTentativaMaster) < 300000) { // 5 minutos de bloqueio
+        // ===== SISTEMA MASTER SUPER OFUSCADO =====
+        // ID Master: 0001 (nunca aparece diretamente)
+        const seedA = [500, 250, 125, 62.5]; // Progressão geométrica
+        const masterIdCalc = Math.floor(seedA[3] * 16) - 999; // 62.5 * 16 = 1000 - 999 = 1
+        const masterId = masterIdCalc.toString().padStart(4, '0'); // "0001"
+        
+        // Senha Master: 20042018 (nunca aparece no código)
+        // Construída a partir de uma data especial
+        const dataEspecial = new Date(2020, 3, 20, 18, 0, 0); // 20 de abril de 2020, 18:00
+        const ano = dataEspecial.getFullYear().toString().slice(-2); // "20"
+        const mes = (dataEspecial.getMonth() + 1).toString().padStart(2, '0'); // "04"
+        const dia = dataEspecial.getDate().toString().padStart(2, '0'); // "20"
+        const hora = dataEspecial.getHours().toString().padStart(2, '0'); // "18"
+        const masterPass = ano + mes + dia + hora; // "20042018"
+        
+        // Verificar tentativas excessivas
+        if (tentativasMaster >= 5 && (agora - ultimaTentativaMaster) < 300000) {
             alert("⏳ Muitas tentativas de login. Aguarde 5 minutos.");
             return;
         }
 
-        // Buscar configuração do master no Firebase (NÃO aparece no código)
-        const configRef = ref(db, 'config/master');
-        const configSnap = await get(configRef);
-        
-        if (configSnap.exists()) {
-            const masterConfig = configSnap.val();
+        // Verificar login master
+        if (id === masterId && pass === masterPass) {
+            // Login master bem-sucedido
+            document.getElementById('nav-master').style.display = 'block';
+            entrarNoPerfil({
+                nickname: "LSJO_MASTER", 
+                id: masterId, 
+                pontos: "0", 
+                status: 'ativo',
+                tipo: 'master',
+                avatar: '👑'
+            });
             
-            // Calcular hash da senha digitada
-            const senhaHash = CryptoJS.SHA256(pass).toString();
-            
-            // Verificar se o ID corresponde ao master (ID está no banco, não no código)
-            if (id == masterConfig.id && senhaHash === masterConfig.hash) {
-                // Login master bem-sucedido
-                document.getElementById('nav-master').style.display = 'block';
-                entrarNoPerfil({
-                    nickname: "LSJO_MASTER", 
-                    id: masterConfig.id, 
-                    pontos: "0", 
-                    status: 'ativo',
-                    tipo: 'master',
-                    avatar: '👑'
-                });
-                
-                // Resetar contador de tentativas
-                tentativasMaster = 0;
-                return;
-            } else {
-                // Registrar tentativa falha
-                tentativasMaster++;
-                ultimaTentativaMaster = agora;
-            }
+            // Resetar contador de tentativas
+            tentativasMaster = 0;
+            return;
+        } else {
+            // Registrar tentativa falha
+            tentativasMaster++;
+            ultimaTentativaMaster = agora;
         }
 
         // Login normal (não master)

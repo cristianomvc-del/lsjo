@@ -208,6 +208,11 @@
             display: none; 
         }
 
+        /* Botão Jogos (inicialmente oculto) */
+        .btn-jogos {
+            display: none !important;
+        }
+
         /* Painel Central */
         .center-panel { 
             background: #ffffff; 
@@ -443,6 +448,98 @@
             font-size: 24px;
             margin-bottom: 10px;
             display: block;
+        }
+
+        /* ===== SEÇÃO DE REGRAS ===== */
+        .regras-container {
+            max-width: 800px;
+            margin: 0 auto;
+            color: #2c3e50;
+        }
+
+        .regras-secao {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #f1c40f;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .regras-secao h2 {
+            color: #f1c40f;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .regras-secao h3 {
+            color: #2980b9;
+            font-size: 18px;
+            margin: 15px 0 10px;
+        }
+
+        .regras-secao p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #34495e;
+            margin-bottom: 10px;
+        }
+
+        .regras-secao ul, .regras-secao ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .regras-secao li {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #34495e;
+            margin-bottom: 5px;
+        }
+
+        .regras-secao .destaque {
+            background: #f1c40f;
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .regras-secao .aviso {
+            background: #e67e22;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .regras-secao .sucesso {
+            background: #27ae60;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .regras-secao .exemplo {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+
+        .badge-regra {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 5px;
         }
 
         /* ===== RANKING MODERNO COM PAGINAÇÃO ===== */
@@ -1775,6 +1872,10 @@
                 height: 100px;
                 font-size: 40px;
             }
+            
+            .regras-secao h2 {
+                font-size: 18px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1961,6 +2062,10 @@
                 width: 100%;
                 max-width: 280px;
             }
+            
+            .regras-secao {
+                padding: 15px;
+            }
         }
 
         @media (max-width: 400px) {
@@ -2014,6 +2119,8 @@
             margin-top: 3px;
         }
     </style>
+    <!-- Adicionar CryptoJS para hash SHA256 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 <body>
 
@@ -2040,11 +2147,11 @@
             <button class="btn-menu" onclick="showSection('home')">🏠 HOME</button>
             <button class="btn-menu btn-pato" id="nav-pato" onclick="showSection('notificar')">🦆 NOTIFICAR</button>
             <button class="btn-menu btn-master-especial" id="nav-master" onclick="showSection('master')">👑 PAINEL MASTER</button>
-            <!-- NOVO BOTÃO JOGOS -->
-            <button class="btn-menu btn-blue" onclick="showSection('jogos')">🎮 JOGOS</button>
+            <!-- Botão Jogos (inicialmente oculto) -->
+            <button class="btn-menu btn-blue btn-jogos" id="nav-jogos" onclick="showSection('jogos')">🎮 JOGOS</button>
             <button class="btn-menu btn-blue" onclick="showSection('rankings-hub')">🏆 RANKINGS</button>
             <button class="btn-menu" id="nav-cadastro" onclick="showSection('cadastro')">📝 CADASTRO</button>
-            <button class="btn-menu">📜 REGRAS</button>
+            <button class="btn-menu" onclick="showSection('regras')">📜 REGRAS</button>
             <button class="btn-menu">📧 CONTATO</button>
         </aside>
 
@@ -2059,7 +2166,7 @@
                 </div>
             </section>
 
-            <!-- NOVA SEÇÃO DE JOGOS -->
+            <!-- SEÇÃO DE JOGOS -->
             <section id="section-jogos" style="display:none;">
                 <div class="section-title" style="background: linear-gradient(135deg, #e67e22, #d35400);">
                     🎮 JOGOS ONLINE
@@ -2094,6 +2201,246 @@
                     <p style="margin-top: 10px; font-size: 12px; color: #95a5a6;">
                         Divirta-se com responsabilidade! 🎱
                     </p>
+                </div>
+            </section>
+
+            <!-- SEÇÃO DE REGRAS -->
+            <section id="section-regras" style="display:none;">
+                <div class="section-title" style="background: linear-gradient(135deg, #3498db, #2980b9);">
+                    📘 GUIA DO JOGADOR - LSJO
+                </div>
+                
+                <div class="regras-container">
+                    <!-- Introdução -->
+                    <div class="regras-secao">
+                        <h2><span>🎯</span> Bem-vindo à LSJO!</h2>
+                        <p>Este guia vai te ajudar a aproveitar tudo que a Liga Supremos de Jogos Online oferece.</p>
+                    </div>
+                    
+                    <!-- Cadastro -->
+                    <div class="regras-secao">
+                        <h2><span>📝</span> COMO SE CADASTRAR</h2>
+                        <ol>
+                            <li>Clique em "CADASTRO" no menu lateral</li>
+                            <li>Escolha um nome começando com LSJO_ (ex: LSJO_Fulano)</li>
+                            <li>Crie uma senha com mínimo 6 caracteres</li>
+                            <li>Informe sua data de nascimento (você precisa ter pelo menos 13 anos)</li>
+                            <li>Aceite os termos de uso</li>
+                            <li>Clique em "CRIAR MINHA CONTA"</li>
+                        </ol>
+                        <p class="aviso"><strong>Importante:</strong> Guarde bem o ID de 4 dígitos que você receberá - ele é sua chave de acesso!</p>
+                    </div>
+                    
+                    <!-- Login -->
+                    <div class="regras-secao">
+                        <h2><span>🔐</span> COMO FAZER LOGIN</h2>
+                        <ol>
+                            <li>No painel lateral direito, digite seu ID e senha</li>
+                            <li>Clique em "ENTRAR"</li>
+                            <li>Pronto! Seu perfil aparecerá na lateral</li>
+                        </ol>
+                    </div>
+                    
+                    <!-- Perfil -->
+                    <div class="regras-secao">
+                        <h2><span>👤</span> SEU PERFIL</h2>
+                        <p>No seu perfil você encontra:</p>
+                        <ul>
+                            <li>Seu avatar (clique nele para personalizar)</li>
+                            <li>Seu nome e ID</li>
+                            <li>Pontuação total</li>
+                            <li>Status da conta</li>
+                        </ul>
+                        <h3>Personalizando seu avatar:</h3>
+                        <p>Clique no avatar ou no ícone de lápis (✏️) e escolha entre várias opções de ícones.</p>
+                    </div>
+                    
+                    <!-- Como Jogar -->
+                    <div class="regras-secao">
+                        <h2><span>🎮</span> COMO JOGAR</h2>
+                        <h3>Iniciando uma partida:</h3>
+                        <ol>
+                            <li>Clique em "JOGOS" no menu</li>
+                            <li>Escolha entre BOLA 8 ou BOLA 9</li>
+                            <li>Clique em "JOGAR AGORA" para acessar a plataforma parceira</li>
+                        </ol>
+                        <h3>🗣️ Combinando a partida:</h3>
+                        <p>Ao entrar na sala de jogo, use o chat disponível na plataforma para:</p>
+                        <ul>
+                            <li>Informar seu ID da LSJO ao adversário</li>
+                            <li>Solicitar que o adversário informe o ID dele</li>
+                            <li>Confirmar que ambos estão prontos para iniciar</li>
+                        </ul>
+                        <div class="exemplo">
+                            Jogador A: "Meu ID é 1234, qual o seu?"<br>
+                            Jogador B: "ID 5678 aqui. Vamos começar!"
+                        </div>
+                    </div>
+                    
+                    <!-- Print da Partida -->
+                    <div class="regras-secao">
+                        <h2><span>📸</span> PROVA DA PARTIDA (IMPORTANTE!)</h2>
+                        <p>Para garantir a lisura do campeonato, ao final da partida, tanto o vencedor quanto o perdedor devem:</p>
+                        <ul>
+                            <li><strong>Tirar um PRINT DA TELA</strong> mostrando:</li>
+                            <ul>
+                                <li>O resultado final da partida (quem ganhou)</li>
+                                <li>A data e hora visíveis no computador (pode ser no canto inferior direito da tela)</li>
+                                <li>Os nomes dos jogadores na sala do jogo</li>
+                            </ul>
+                            <li>Manter o print guardado como prova</li>
+                        </ul>
+                        <h3>Exemplo de print válido:</h3>
+                        <ul>
+                            <li>Mostrar claramente o placar final</li>
+                            <li>Incluir a barra de tarefas com o relógio do Windows visível</li>
+                            <li>Ou qualquer relógio do sistema que não possa ser facilmente editado</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Denúncias -->
+                    <div class="regras-secao">
+                        <h2><span>⚠️</span> DENÚNCIAS E CONTESTAÇÕES</h2>
+                        <p>Se algo errado acontecer, caso haja alguma irregularidade (jogador que não notificou, resultado errado, etc.):</p>
+                        <ol>
+                            <li>Acesse o botão "CONTATO" no menu</li>
+                            <li>Envie sua denúncia <strong>ANEXANDO O PRINT</strong> da partida</li>
+                            <li>Informe:</li>
+                            <ul>
+                                <li>Seu ID</li>
+                                <li>ID do adversário</li>
+                                <li>Data e hora da partida</li>
+                                <li>Explicação do ocorrido</li>
+                            </ul>
+                        </ol>
+                        <p class="aviso"><strong>⏰ PRAZO LIMITE:</strong> Denúncias só serão aceitas em até <strong>12 HORAS</strong> após a partida!</p>
+                        <p>Após esse prazo, a notificação será considerada válida e não será mais possível contestar o resultado.</p>
+                        <h3>Por que o print é importante?</h3>
+                        <ul>
+                            <li>É a única prova aceita pela staff</li>
+                            <li>Garante que não houve fraude</li>
+                            <li>Protege tanto o vencedor quanto o perdedor</li>
+                            <li>A data/hora no print comprova que está dentro do prazo de 12 horas</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Notificar Derrotas -->
+                    <div class="regras-secao">
+                        <h2><span>📢</span> COMO NOTIFICAR DERROTAS</h2>
+                        <p>Perdeu uma partida? Siga esses passos:</p>
+                        <ol>
+                            <li>Clique em "NOTIFICAR" no menu OU no ícone do patinho 🦆 no seu perfil</li>
+                            <li>Selecione a liga do jogo</li>
+                            <li>Digite o ID do vencedor</li>
+                            <li>Escolha a quantidade de derrotas (1 a 7)</li>
+                            <li>Clique em "CONFIRMAR DERROTA"</li>
+                        </ol>
+                        <h3>O que acontece:</h3>
+                        <ul>
+                            <li>Você perde 2 pontos por derrota</li>
+                            <li>O vencedor ganha 2 pontos por vitória</li>
+                            <li>O ranking é atualizado na hora</li>
+                            <li>Um som de pato confirma a notificação</li>
+                        </ul>
+                        <p class="aviso"><strong>Limite:</strong> Máximo de 7 derrotas para o mesmo oponente a cada 12 horas.</p>
+                    </div>
+                    
+                    <!-- Ligas e Rankings -->
+                    <div class="regras-secao">
+                        <h2><span>🏆</span> LIGAS E RANKINGS</h2>
+                        <h3>Para participar de uma liga:</h3>
+                        <ol>
+                            <li>No seu perfil, clique em "INSCREVER NA LIGA"</li>
+                            <li>Escolha a liga desejada (Bola 8 ou Bola 9)</li>
+                        </ol>
+                        <h3>Acessando rankings:</h3>
+                        <ol>
+                            <li>Clique em "RANKINGS" no menu</li>
+                            <li>Escolha a liga que quer consultar</li>
+                            <li>Use as abas para ver rankings por:</li>
+                            <ul>
+                                <li>⭐ PONTOS - Classificação geral</li>
+                                <li>🔥 STREAK - Sequência de vitórias</li>
+                                <li>📊 APROVEITAMENTO - Percentual de vitórias</li>
+                            </ul>
+                        </ol>
+                        <h3>Navegação:</h3>
+                        <ul>
+                            <li>Use os botões "ANTERIOR" e "PRÓXIMA" para ver mais jogadores</li>
+                            <li>No celular, os rankings aparecem em cards</li>
+                            <li>No computador, em tabelas completas</li>
+                        </ul>
+                        <h3>Clique nos jogadores:</h3>
+                        <p>Veja estatísticas rápidas clicando no nome de qualquer jogador ativo!</p>
+                    </div>
+                    
+                    <!-- Status da Conta -->
+                    <div class="regras-secao">
+                        <h2><span>⚠️</span> STATUS DA CONTA</h2>
+                        <p><strong class="sucesso">Ativo 🟢</strong> - Tudo normal, você pode jogar e notificar normalmente.</p>
+                        <p><strong class="aviso">Suspenso ⏳</strong> - Você ainda pode fazer login, mas não pode notificar derrotas (patinho desabilitado). Motivo e duração aparecem no seu perfil.</p>
+                        <p><strong class="erro">Banido 🚫</strong> - Conta bloqueada permanentemente. Não é possível fazer login.</p>
+                    </div>
+                    
+                    <!-- Dúvidas Comuns -->
+                    <div class="regras-secao">
+                        <h2><span>❓</span> DÚVIDAS COMUNS</h2>
+                        <p><strong>Esqueci meu ID. E agora?</strong> Infelizmente não há recuperação automática. Guarde seu ID em um local seguro!</p>
+                        <p><strong>Posso mudar meu nome de usuário?</strong> Não, o nome é definido no cadastro. Para alterar, seria necessário criar nova conta.</p>
+                        <p><strong>Por que não consigo notificar?</strong> Verifique se: você está logado, não está suspenso, não excedeu o limite de 7 derrotas para aquele oponente.</p>
+                        <p><strong>Perdi a partida mas esqueci de printar. E agora?</strong> Sem o print, não será possível contestar qualquer irregularidade após as 12 horas. SEMPRE tire o print ao final da partida!</p>
+                        <p><strong>Meu oponente não notificou minha vitória. O que faço?</strong> Envie uma denúncia pelo CONTATO dentro de 12 horas, anexando o print da partida com data/hora visível.</p>
+                        <p><strong>O print precisa mostrar o relógio do Windows?</strong> Sim, ou qualquer relógio do sistema que mostre data e hora atuais. Isso comprova que a partida aconteceu naquele momento.</p>
+                        <p><strong>Posso editar o print?</strong> Não. Prints editados serão desconsiderados e podem resultar em banimento.</p>
+                    </div>
+                    
+                    <!-- Acesso por Celular -->
+                    <div class="regras-secao">
+                        <h2><span>📱</span> ACESSO POR CELULAR</h2>
+                        <p>No celular, o site se adapta:</p>
+                        <ul>
+                            <li>Menu vira botões lado a lado</li>
+                            <li>Ranking vira cards para facilitar a leitura</li>
+                            <li>Tudo pensado para toque na tela</li>
+                        </ul>
+                        <p><strong>Para prints no celular:</strong> Certifique-se de que a barra de status do celular (com hora) apareça na imagem!</p>
+                    </div>
+                    
+                    <!-- Regras Básicas -->
+                    <div class="regras-secao">
+                        <h2><span>📜</span> REGRAS BÁSICAS</h2>
+                        <h3>✅ Faça:</h3>
+                        <ul>
+                            <li>Jogue limpo</li>
+                            <li>Informe seu ID no chat antes de começar</li>
+                            <li>Tire PRINT do resultado com DATA/HORA visível</li>
+                            <li>Notifique apenas resultados reais</li>
+                            <li>Respeite os outros jogadores</li>
+                            <li>Personalize seu avatar</li>
+                        </ul>
+                        <h3>❌ Não faça:</h3>
+                        <ul>
+                            <li>Notificações falsas (resultados inventados)</li>
+                            <li>Ofensas ou assédio</li>
+                            <li>Criar múltiplas contas</li>
+                            <li>Compartilhar sua senha</li>
+                            <li>Editar prints ou criar provas falsas</li>
+                        </ul>
+                        <p><strong>Consequências:</strong> Suspensões temporárias para infrações leves e banimento permanente para casos graves.</p>
+                    </div>
+                    
+                    <!-- Ajuda -->
+                    <div class="regras-secao">
+                        <h2><span>🆘</span> PRECISA DE AJUDA?</h2>
+                        <p>Use o botão "CONTATO" no menu para falar com a administração.</p>
+                        <p class="aviso">Lembre-se: Sempre anexe o PRINT da partida com DATA/HORA visível e faça a denúncia dentro do prazo de 12 horas!</p>
+                    </div>
+                    
+                    <!-- Rodapé -->
+                    <div class="regras-secao" style="text-align: center;">
+                        <p>LSJO - Liga Supremos de Jogos Online</p>
+                        <p><strong>Divirta-se e boa sorte nos rankings! 🎱🏆</strong></p>
+                    </div>
                 </div>
             </section>
 
@@ -2761,6 +3108,10 @@
     // Variáveis para os modais
     let usuarioSelecionado = null;
     let notificacaoSelecionada = null;
+    
+    // Variáveis para segurança do master
+    let tentativasMaster = 0;
+    let ultimaTentativaMaster = 0;
 
     // Lista de avatares disponíveis
     const avatares = ['🎱', '9️⃣', '🃏', '🔥', '⚡', '👑', '⭐', '🎯', '🎮', '🏆'];
@@ -2927,25 +3278,52 @@
         }
     };
 
-    // LOGIN
+    // LOGIN com segurança reforçada para master
     document.getElementById('btn-login-firebase').onclick = async () => {
         const id = document.getElementById('login-id').value;
         const pass = document.getElementById('login-pass').value;
+        const agora = Date.now();
 
-        // Master (ID fixo)
-        if(id === "0001" && pass === "20042018") {
-            document.getElementById('nav-master').style.display = 'block';
-            entrarNoPerfil({
-                nickname: "LSJO_MASTER", 
-                id: "0001", 
-                pontos: "0", 
-                status: 'ativo',
-                tipo: 'master',
-                avatar: '👑'
-            });
+        // Verificar se está em modo de espera por muitas tentativas
+        if (tentativasMaster >= 5 && (agora - ultimaTentativaMaster) < 300000) { // 5 minutos de bloqueio
+            alert("⏳ Muitas tentativas de login. Aguarde 5 minutos.");
             return;
         }
 
+        // Buscar configuração do master no Firebase (NÃO aparece no código)
+        const configRef = ref(db, 'config/master');
+        const configSnap = await get(configRef);
+        
+        if (configSnap.exists()) {
+            const masterConfig = configSnap.val();
+            
+            // Calcular hash da senha digitada
+            const senhaHash = CryptoJS.SHA256(pass).toString();
+            
+            // Verificar se o ID corresponde ao master (ID está no banco, não no código)
+            if (id == masterConfig.id && senhaHash === masterConfig.hash) {
+                // Login master bem-sucedido
+                document.getElementById('nav-master').style.display = 'block';
+                entrarNoPerfil({
+                    nickname: "LSJO_MASTER", 
+                    id: masterConfig.id, 
+                    pontos: "0", 
+                    status: 'ativo',
+                    tipo: 'master',
+                    avatar: '👑'
+                });
+                
+                // Resetar contador de tentativas
+                tentativasMaster = 0;
+                return;
+            } else {
+                // Registrar tentativa falha
+                tentativasMaster++;
+                ultimaTentativaMaster = agora;
+            }
+        }
+
+        // Login normal (não master)
         const dbRef = ref(db);
         const snap = await get(child(dbRef, 'usuarios/' + id));
         
@@ -2971,14 +3349,25 @@
                 document.getElementById('nav-master').style.display = 'block';
                 usuarioLogadoTipo = user.tipo;
             }
+            
+            // Resetar contador de tentativas
+            tentativasMaster = 0;
         } else {
+            // Incrementar contador de tentativas
+            tentativasMaster++;
+            ultimaTentativaMaster = agora;
+            
+            // Mensagem genérica para não dar pistas
             alert("ID ou Senha incorretos!");
         }
     };
 
-    // Função para entrar no perfil
+    // Função para entrar no perfil (agora mostra botão jogos)
     function entrarNoPerfil(user) {
         usuarioLogado = user;
+        
+        // Mostrar botão JOGOS
+        document.getElementById('nav-jogos').style.display = 'block';
         
         // Atualizar avatar
         document.getElementById('profile-avatar').innerText = user.avatar || '🎱';
@@ -3586,7 +3975,7 @@ Avatar: ${jogador.avatar || '🎱'}`;
             document.getElementById('master-usuarios').style.display = 'none';
             document.getElementById('master-staff').style.display = 'block';
             document.getElementById('master-notificacoes').style.display = 'none';
-            carregarListaStaff(); // <-- CARREGAR LISTA DE STAFF
+            carregarListaStaff();
         } else {
             document.getElementById('master-usuarios').style.display = 'none';
             document.getElementById('master-staff').style.display = 'none';
@@ -3655,7 +4044,7 @@ Avatar: ${jogador.avatar || '🎱'}`;
         });
     }
 
-    // ===== NOVAS FUNÇÕES PARA GERENCIAR STAFF =====
+    // ===== FUNÇÕES PARA GERENCIAR STAFF =====
     
     window.adicionarStaff = async () => {
         const idInput = document.getElementById('staff-id-input');

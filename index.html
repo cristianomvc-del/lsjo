@@ -576,7 +576,7 @@
             font-weight: bold;
         }
 
-        /* ===== ÍCONES DO PERFIL - TAMANHO REDUZIDO (40x40) ===== */
+        /* ===== ÍCONES DO PERFIL - SEMPRE VISÍVEIS ===== */
         .icones-perfil-container {
             display: flex;
             justify-content: center;
@@ -639,7 +639,7 @@
             box-shadow: none;
         }
 
-        /* Modal de seleção de liga - CORRIGIDO */
+        /* Modal de seleção de liga - MELHORADO PARA CELULAR */
         .modal-select-liga {
             background: linear-gradient(135deg, #2c3e50, #1a2634);
             border-radius: 25px;
@@ -649,6 +649,12 @@
             border: 3px solid #f1c40f;
             color: white;
             text-align: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .modal-select-liga h3 {
@@ -673,10 +679,16 @@
         .opcao-liga {
             background: rgba(255,255,255,0.1);
             border-radius: 15px;
-            padding: 15px 5px;
+            padding: 20px 5px;
             cursor: pointer;
             transition: 0.3s;
             border: 2px solid transparent;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .opcao-liga:active {
+            transform: scale(0.95);
+            background: rgba(241, 196, 15, 0.3);
         }
 
         .opcao-liga:hover {
@@ -686,14 +698,56 @@
         }
 
         .opcao-liga .icone-grande {
-            font-size: 36px;
+            font-size: 48px;
             margin-bottom: 8px;
         }
 
         .opcao-liga .nome-liga {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: bold;
             color: white;
+        }
+
+        .btn-fechar-modal {
+            background: #f1c40f;
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 20px auto 0;
+            display: block;
+            width: fit-content;
+            transition: 0.3s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn-fechar-modal:active {
+            transform: scale(0.95);
+            background: #f39c12;
+        }
+
+        .btn-fechar-modal:hover {
+            background: #f39c12;
+            transform: scale(1.05);
+        }
+
+        /* Mensagem de sucesso */
+        .success-message {
+            background: #27ae60;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-weight: bold;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Estilos do Painel Master */
@@ -1558,6 +1612,24 @@
                 padding: 3px 6px;
                 font-size: 9px;
             }
+            
+            .icones-perfil-container {
+                gap: 8px;
+            }
+            
+            .icone-perfil {
+                width: 45px;
+                height: 45px;
+                font-size: 22px;
+            }
+            
+            .opcoes-liga {
+                gap: 10px;
+            }
+            
+            .opcao-liga .icone-grande {
+                font-size: 40px;
+            }
         }
 
         @media (max-width: 400px) {
@@ -1593,14 +1665,14 @@
                 margin-bottom: 5px;
             }
             
-            .icones-perfil-container {
-                gap: 5px;
+            .icone-perfil {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
             }
             
-            .icone-perfil {
-                width: 35px;
-                height: 35px;
-                font-size: 18px;
+            .opcao-liga .icone-grande {
+                font-size: 36px;
             }
         }
 
@@ -1661,7 +1733,7 @@
                         <label>Liga do Jogo:</label>
                         <select id="notif-liga">
                             <option value="BOLA 8">🎱 BOLA 8</option>
-                            <option value="BOLA 9">9️⃣ BOLA 9</option>
+                            <option value="BOLA 9">⚪ BOLA 9</option>
                             <option value="TRUCO">🃏 TRUCO</option>
                         </select>
                     </div>
@@ -1737,7 +1809,7 @@
                         <h3>Bola 8</h3>
                     </div>
                     <div class="rank-card" onclick="abrirRanking('BOLA 9')">
-                        <div class="rank-icon icon-9">9</div>
+                        <div class="rank-icon" style="background: radial-gradient(circle at 30% 30%, #f1c40f, #f39c12); color: #000;">9</div>
                         <h3>Bola 9</h3>
                     </div>
                     <div class="rank-card" onclick="abrirRanking('TRUCO')">
@@ -1912,7 +1984,7 @@
                 </div>
             </div>
 
-            <!-- PERFIL CORRIGIDO - SEM MODAL AUTOMÁTICO -->
+            <!-- PERFIL COM ÍCONES SEMPRE VISÍVEIS -->
             <div class="right-box" id="box-perfil" style="display:none;">
                 <div class="right-box-title">🪪 PERFIL DO SUPREMO</div>
                 <div class="right-box-content profile-card">
@@ -1924,23 +1996,25 @@
                         <div class="stat-item"><span>Status:</span> <strong style="color:green">Ativa</strong></div>
                     </div>
                     
-                    <!-- ÍCONES DAS LIGAS - APARECEM APENAS SE INSCRITO -->
-                    <div class="icones-perfil-container" id="icones-ligas-container">
-                        <!-- PATINHO (sempre visível) -->
+                    <!-- ÍCONES SEMPRE VISÍVEIS (mudam de cor conforme inscrição) -->
+                    <div class="icones-perfil-container">
+                        <!-- PATINHO (sempre ativo) -->
                         <div class="icone-perfil pato" onclick="showSection('notificar')" title="Notificar Derrota">
                             🦆
                         </div>
                         
-                        <!-- ÍCONES DAS LIGAS (serão controlados por JS) -->
-                        <div id="icone-bola8" class="icone-perfil bola8 inativo" onclick="abrirEstatisticasLiga('BOLA 8')" title="Bola 8 (Não inscrito)" style="display: none;">
+                        <!-- BOLA 8 (sempre visível) -->
+                        <div id="icone-bola8" class="icone-perfil bola8 inativo" onclick="abrirEstatisticasLiga('BOLA 8')" title="Bola 8 (Clique para ver estatísticas)">
                             🎱
                         </div>
                         
-                        <div id="icone-bola9" class="icone-perfil bola9 inativo" onclick="abrirEstatisticasLiga('BOLA 9')" title="Bola 9 (Não inscrito)" style="display: none;">
-                            9️⃣
+                        <!-- BOLA 9 (sempre visível) -->
+                        <div id="icone-bola9" class="icone-perfil bola9 inativo" onclick="abrirEstatisticasLiga('BOLA 9')" title="Bola 9 (Clique para ver estatísticas)">
+                            9
                         </div>
                         
-                        <div id="icone-truco" class="icone-perfil truco inativo" onclick="abrirEstatisticasLiga('TRUCO')" title="Truco (Não inscrito)" style="display: none;">
+                        <!-- TRUCO (sempre visível) -->
+                        <div id="icone-truco" class="icone-perfil truco inativo" onclick="abrirEstatisticasLiga('TRUCO')" title="Truco (Clique para ver estatísticas)">
                             🃏
                         </div>
                     </div>
@@ -1968,11 +2042,11 @@
     <footer class="footer-line">LSJO © 2026 - Todos os direitos reservados</footer>
 </div>
 
-<!-- MODAL DE SELEÇÃO DE LIGA (só abre quando clicar no botão) -->
+<!-- MODAL DE SELEÇÃO DE LIGA (otimizado para celular) -->
 <div id="modal-select-liga" class="modal">
     <div class="modal-select-liga">
         <h3>🎯 ESCOLHA UMA LIGA</h3>
-        <p>Selecione qual liga você quer participar:</p>
+        <p>Toque na liga que deseja participar:</p>
         
         <div class="opcoes-liga">
             <div class="opcao-liga" onclick="inscreverNaLiga('BOLA 8')">
@@ -1980,7 +2054,7 @@
                 <div class="nome-liga">BOLA 8</div>
             </div>
             <div class="opcao-liga" onclick="inscreverNaLiga('BOLA 9')">
-                <div class="icone-grande">9️⃣</div>
+                <div class="icone-grande" style="background: radial-gradient(circle at 30% 30%, #f1c40f, #f39c12); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; color: #000; font-weight: 900; font-size: 32px;">9</div>
                 <div class="nome-liga">BOLA 9</div>
             </div>
             <div class="opcao-liga" onclick="inscreverNaLiga('TRUCO')">
@@ -1989,7 +2063,11 @@
             </div>
         </div>
         
-        <button class="btn-fechar-modal" onclick="fecharModal('modal-select-liga')" style="margin-top: 0;">CANCELAR</button>
+        <div id="mensagem-sucesso" style="display: none;" class="success-message">
+            ✅ Inscrição realizada com sucesso!
+        </div>
+        
+        <button class="btn-fechar-modal" onclick="fecharModal('modal-select-liga')">FECHAR</button>
     </div>
 </div>
 
@@ -2068,7 +2146,7 @@
     <div class="modal-content-estatisticas">
         <span class="modal-close" onclick="fecharModalEstatisticas('modal-bola9')">&times;</span>
         <div class="modal-header">
-            <div style="font-size: 48px;">9️⃣</div>
+            <div style="font-size: 48px; background: radial-gradient(circle at 30% 30%, #f1c40f, #f39c12); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; color: #000; font-weight: 900;">9</div>
             <h2>BOLA 9</h2>
         </div>
         
@@ -2361,49 +2439,65 @@
 
     // ===== FUNÇÕES DAS LIGAS =====
     
-    // Abrir modal para selecionar liga (só quando clicar no botão)
+    // Abrir modal para selecionar liga
     window.abrirModalSelecionarLiga = () => {
         if (!usuarioLogado) {
             alert("Faça login primeiro!");
             return;
         }
+        document.getElementById('mensagem-sucesso').style.display = 'none';
         document.getElementById('modal-select-liga').style.display = 'flex';
     };
 
-    // Inscrever na liga selecionada
+    // Inscrever na liga selecionada (com feedback visual)
     window.inscreverNaLiga = async (liga) => {
         if (!usuarioLogado) {
             alert("Faça login primeiro!");
-            return;
-        }
-        
-        // Verificar se já está inscrito
-        const inscricaoRef = ref(db, `ligas/${liga}/inscritos/${usuarioLogado.id}`);
-        const snap = await get(inscricaoRef);
-        
-        if (snap.exists()) {
-            alert(`Você já está inscrito na liga ${liga}!`);
             fecharModal('modal-select-liga');
             return;
         }
         
-        // Inscrever na liga
-        await set(ref(db, `ligas/${liga}/inscritos/${usuarioLogado.id}`), {
-            id: usuarioLogado.id,
-            nickname: usuarioLogado.nickname,
-            dataInscricao: Date.now()
-        });
-        
-        // Inicializar estatísticas
-        await set(ref(db, `ligas/${liga}/estatisticas/${usuarioLogado.id}`), {
-            pontos: 0,
-            vitorias: 0,
-            derrotas: 0
-        });
-        
-        alert(`✅ Inscrito na liga ${liga} com sucesso!`);
-        fecharModal('modal-select-liga');
-        atualizarIconesLigas();
+        try {
+            // Verificar se já está inscrito
+            const inscricaoRef = ref(db, `ligas/${liga}/inscritos/${usuarioLogado.id}`);
+            const snap = await get(inscricaoRef);
+            
+            if (snap.exists()) {
+                alert(`Você já está inscrito na liga ${liga}!`);
+                fecharModal('modal-select-liga');
+                return;
+            }
+            
+            // Inscrever na liga
+            await set(ref(db, `ligas/${liga}/inscritos/${usuarioLogado.id}`), {
+                id: usuarioLogado.id,
+                nickname: usuarioLogado.nickname,
+                dataInscricao: Date.now()
+            });
+            
+            // Inicializar estatísticas
+            await set(ref(db, `ligas/${liga}/estatisticas/${usuarioLogado.id}`), {
+                pontos: 0,
+                vitorias: 0,
+                derrotas: 0
+            });
+            
+            // Mostrar mensagem de sucesso
+            const msgDiv = document.getElementById('mensagem-sucesso');
+            msgDiv.style.display = 'block';
+            msgDiv.innerHTML = `✅ Inscrito na ${liga} com sucesso!`;
+            
+            // Atualizar ícones
+            await atualizarIconesLigas();
+            
+            // Fechar modal após 1.5 segundos
+            setTimeout(() => {
+                fecharModal('modal-select-liga');
+            }, 1500);
+            
+        } catch (error) {
+            alert("Erro ao inscrever: " + error.message);
+        }
     };
 
     // Abrir estatísticas da liga
@@ -2494,7 +2588,7 @@
         document.getElementById(modalId).style.display = 'none';
     };
 
-    // Atualizar ícones das ligas no perfil
+    // Atualizar ícones das ligas no perfil (sempre visíveis, mudam de cor)
     async function atualizarIconesLigas() {
         if (!usuarioLogado) return;
         
@@ -2514,11 +2608,11 @@
             const snap = await get(inscricaoRef);
             
             if (snap.exists()) {
-                icone.style.display = 'flex';
                 icone.classList.remove('inativo');
                 icone.title = `${liga} (Clique para ver estatísticas)`;
             } else {
-                icone.style.display = 'none'; // Só aparece se estiver inscrito
+                icone.classList.add('inativo');
+                icone.title = `${liga} (Não inscrito - Clique em "INSCREVER NA LIGA")`;
             }
         }
     }
@@ -2841,8 +2935,7 @@
         alert(`🦆 Derrota Notificada na liga ${liga} com sucesso!`);
         
         // Atualizar ícones das ligas
-        atualizarIconesLigas();
-        location.reload();
+        await atualizarIconesLigas();
     };
 
     // ===== FUNÇÕES DO PAINEL MASTER =====

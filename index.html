@@ -300,6 +300,151 @@
             border: 3px solid #fff; 
         }
 
+        /* ===== SEÇÃO DE JOGOS ===== */
+        .jogos-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .jogo-card {
+            background: linear-gradient(145deg, #2c3e50, #1e2a3a);
+            border-radius: 20px;
+            padding: 25px;
+            width: 260px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.4s;
+            border: 2px solid #f1c40f;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .jogo-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: rotate(30deg);
+            transition: 0.6s;
+        }
+
+        .jogo-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(241, 196, 15, 0.3);
+            border-color: #f39c12;
+        }
+
+        .jogo-card:hover::before {
+            transform: rotate(30deg) translate(10%, 10%);
+        }
+
+        .bola-jogo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: 900;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 -5px 15px rgba(0,0,0,0.6), inset 0 5px 15px rgba(255,255,255,0.3);
+            position: relative;
+            transition: 0.4s;
+        }
+
+        .bola-jogo::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 25px;
+            width: 25px;
+            height: 25px;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 70%);
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+
+        .bola8 {
+            background: radial-gradient(circle at 30% 30%, #333, #000);
+            color: white;
+            border: 3px solid #f1c40f;
+        }
+
+        .bola9 {
+            background: radial-gradient(circle at 30% 30%, #f1c40f, #f39c12);
+            color: #000;
+            border: 3px solid white;
+        }
+
+        .jogo-card h3 {
+            color: #f1c40f;
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .btn-jogar {
+            background: linear-gradient(135deg, #f1c40f, #f39c12);
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.3s;
+            border: 2px solid transparent;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-jogar:hover {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            transform: scale(1.05);
+            border-color: white;
+            box-shadow: 0 5px 15px rgba(241, 196, 15, 0.4);
+        }
+
+        .aviso-jogos {
+            text-align: center;
+            margin: 30px auto;
+            padding: 20px;
+            max-width: 600px;
+            background: rgba(52, 73, 94, 0.5);
+            border-radius: 15px;
+            border-left: 4px solid #f1c40f;
+            border-right: 4px solid #f1c40f;
+            backdrop-filter: blur(5px);
+        }
+
+        .aviso-jogos p {
+            color: #ecf0f1;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .aviso-jogos .destaque {
+            color: #f1c40f;
+            font-weight: bold;
+        }
+
+        .aviso-jogos .icone {
+            font-size: 24px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
         /* ===== RANKING MODERNO COM PAGINAÇÃO ===== */
         .tab-container { 
             display: flex; 
@@ -576,7 +721,7 @@
             font-weight: bold;
         }
 
-        /* ===== ÍCONES DO PERFIL - SEMPRE VISÍVEIS ===== */
+        /* ===== ÍCONES DO PERFIL ===== */
         .icones-perfil-container {
             display: flex;
             justify-content: center;
@@ -603,6 +748,13 @@
             background: linear-gradient(135deg, #fbbf24, #f59e0b);
             color: #000;
             border-color: #d97706;
+        }
+
+        .icone-perfil.pato.disabled {
+            opacity: 0.3;
+            filter: grayscale(80%);
+            cursor: not-allowed;
+            pointer-events: none;
         }
 
         .icone-perfil.bola8 {
@@ -639,7 +791,91 @@
             box-shadow: none;
         }
 
-        /* Modal de seleção de liga - MELHORADO PARA CELULAR */
+        /* Avatar editável */
+        .avatar-container {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 10px;
+        }
+
+        .profile-avatar {
+            width: 60px;
+            height: 60px;
+            background: #34495e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            border: 2px solid #f1c40f;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .profile-avatar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #f1c40f;
+        }
+
+        .edit-avatar-icon {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: #f1c40f;
+            color: #000;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            cursor: pointer;
+            border: 2px solid #fff;
+            transition: 0.3s;
+        }
+
+        .edit-avatar-icon:hover {
+            transform: scale(1.1);
+            background: #f39c12;
+        }
+
+        /* Modal de avatares */
+        .avatares-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .avatar-opcao {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #34495e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: 0.3s;
+            margin: 0 auto;
+        }
+
+        .avatar-opcao:hover {
+            transform: scale(1.1);
+            border-color: #f1c40f;
+        }
+
+        .avatar-opcao.selecionado {
+            border-color: #f1c40f;
+            box-shadow: 0 0 15px #f1c40f;
+        }
+
+        /* Modal de seleção de liga */
         .modal-select-liga {
             background: linear-gradient(135deg, #2c3e50, #1a2634);
             border-radius: 25px;
@@ -748,6 +984,22 @@
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Status de suspensão */
+        .status-suspenso {
+            color: #f39c12 !important;
+            font-weight: bold;
+        }
+
+        .suspenso-badge {
+            background: #f39c12;
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+            margin-left: 5px;
         }
 
         /* Estilos do Painel Master */
@@ -866,6 +1118,16 @@
             font-size: 11px;
         }
 
+        .btn-suspend {
+            background: #f39c12;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
         .btn-edit {
             background: #2980b9;
             color: white;
@@ -885,6 +1147,34 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 11px;
+        }
+
+        .btn-staff {
+            background: #8e44ad;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .badge-staff {
+            background: #8e44ad;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 9px;
+            margin-left: 5px;
+        }
+
+        .badge-master {
+            background: #f1c40f;
+            color: #000;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 9px;
+            margin-left: 5px;
         }
 
         .modal {
@@ -983,6 +1273,26 @@
             font-size: 10px;
             font-weight: bold;
             margin-left: 5px;
+        }
+
+        /* Estilo para links no ranking */
+        .jogador-link {
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .jogador-link:hover {
+            color: #27ae60 !important;
+            text-decoration: underline;
+        }
+
+        .jogador-banido {
+            color: #c0392b !important;
+        }
+
+        .jogador-suspenso {
+            color: #f39c12 !important;
         }
 
         /* ===== MODAIS DE ESTATÍSTICAS ===== */
@@ -1228,19 +1538,7 @@
         .profile-card { 
             text-align: center; 
         }
-        .profile-avatar { 
-            width: 60px; 
-            height: 60px; 
-            background: #34495e; 
-            border-radius: 50%; 
-            margin: 0 auto 10px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            color: white; 
-            font-size: 24px; 
-            border: 2px solid #f1c40f; 
-        }
+        
         .profile-stats {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -1458,6 +1756,25 @@
                 flex-direction: column;
                 text-align: center;
             }
+            
+            .avatares-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .jogos-container {
+                gap: 20px;
+            }
+            
+            .jogo-card {
+                width: 220px;
+                padding: 20px;
+            }
+            
+            .bola-jogo {
+                width: 100px;
+                height: 100px;
+                font-size: 40px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1608,7 +1925,7 @@
                 padding: 6px;
             }
             
-            .btn-edit, .btn-ban, .btn-unban, .btn-revert {
+            .btn-edit, .btn-ban, .btn-unban, .btn-revert, .btn-suspend, .btn-staff {
                 padding: 3px 6px;
                 font-size: 9px;
             }
@@ -1629,6 +1946,20 @@
             
             .opcao-liga .icone-grande {
                 font-size: 40px;
+            }
+            
+            .avatares-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .jogos-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .jogo-card {
+                width: 100%;
+                max-width: 280px;
             }
         }
 
@@ -1709,6 +2040,8 @@
             <button class="btn-menu" onclick="showSection('home')">🏠 HOME</button>
             <button class="btn-menu btn-pato" id="nav-pato" onclick="showSection('notificar')">🦆 NOTIFICAR</button>
             <button class="btn-menu btn-master-especial" id="nav-master" onclick="showSection('master')">👑 PAINEL MASTER</button>
+            <!-- NOVO BOTÃO JOGOS -->
+            <button class="btn-menu btn-blue" onclick="showSection('jogos')">🎮 JOGOS</button>
             <button class="btn-menu btn-blue" onclick="showSection('rankings-hub')">🏆 RANKINGS</button>
             <button class="btn-menu" id="nav-cadastro" onclick="showSection('cadastro')">📝 CADASTRO</button>
             <button class="btn-menu">📜 REGRAS</button>
@@ -1723,6 +2056,44 @@
                     <div class="step-card card-blue"><strong>🎮 2. JOGUE</strong><p>Desafie adversários em nossos servidores parceiros.</p></div>
                     <div class="step-card card-orange"><strong>📢 3. NOTIFIQUE</strong><p>Ao perder, envie o resultado para validar o ranking.</p></div>
                     <div class="step-card card-gold"><strong>🏆 4. RANKING</strong><p>Acompanhe sua posição e torne-se um Supremo.</p></div>
+                </div>
+            </section>
+
+            <!-- NOVA SEÇÃO DE JOGOS -->
+            <section id="section-jogos" style="display:none;">
+                <div class="section-title" style="background: linear-gradient(135deg, #e67e22, #d35400);">
+                    🎮 JOGOS ONLINE
+                </div>
+                
+                <div class="jogos-container">
+                    <!-- Card Bola 8 -->
+                    <div class="jogo-card" onclick="window.open('https://www.flyordie.com/pt_BR/bola8', '_blank')">
+                        <div class="bola-jogo bola8">🎱</div>
+                        <h3>BOLA 8</h3>
+                        <p style="color: #bdc3c7; margin: 10px 0; font-size: 13px;">O clássico jogo de sinuca</p>
+                        <button class="btn-jogar">JOGAR AGORA</button>
+                    </div>
+                    
+                    <!-- Card Bola 9 -->
+                    <div class="jogo-card" onclick="window.open('https://www.flyordie.com/pt_BR/bola9', '_blank')">
+                        <div class="bola-jogo bola9">9</div>
+                        <h3>BOLA 9</h3>
+                        <p style="color: #bdc3c7; margin: 10px 0; font-size: 13px;">Modo competitivo com 9 bolas</p>
+                        <button class="btn-jogar">JOGAR AGORA</button>
+                    </div>
+                </div>
+                
+                <!-- Aviso de responsabilidade -->
+                <div class="aviso-jogos">
+                    <span class="icone">🎯</span>
+                    <p>
+                        <span class="destaque">Os jogos são hospedados por terceiros.</span><br>
+                        O LSJO não é responsável pelo conteúdo, funcionamento ou disponibilidade dos sites externos. 
+                        Ao clicar em "JOGAR AGORA", você será redirecionado para plataformas parceiras.
+                    </p>
+                    <p style="margin-top: 10px; font-size: 12px; color: #95a5a6;">
+                        Divirta-se com responsabilidade! 🎱
+                    </p>
                 </div>
             </section>
 
@@ -1763,6 +2134,7 @@
                 <!-- Abas do Master -->
                 <div class="master-tabs">
                     <button class="master-tab active" onclick="mudarMasterTab('usuarios')">👥 USUÁRIOS</button>
+                    <button class="master-tab" onclick="mudarMasterTab('staff')">🛡️ GERENCIAR STAFF</button>
                     <button class="master-tab" onclick="mudarMasterTab('notificacoes')">📢 NOTIFICAÇÕES (30min)</button>
                 </div>
                 
@@ -1778,8 +2150,8 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>AVATAR</th>
                                     <th>NICK</th>
-                                    <th>SENHA</th>
                                     <th>PONTOS</th>
                                     <th>STATUS</th>
                                     <th>AÇÕES</th>
@@ -1789,6 +2161,54 @@
                                 <!-- Será preenchido via JS -->
                             </tbody>
                         </table>
+                    </div>
+                </div>
+                
+                <!-- Painel de Staff -->
+                <div id="master-staff" class="master-panel" style="display: none;">
+                    <h3 style="color: #f1c40f; margin-bottom: 20px;">🛡️ GERENCIAR STAFF</h3>
+                    
+                    <!-- ÁREA PARA ADICIONAR STAFF -->
+                    <div style="background: #2c3e50; border-radius: 15px; padding: 20px; margin-bottom: 25px;">
+                        <h4 style="color: white; margin-bottom: 15px;">ADICIONAR NOVO STAFF</h4>
+                        
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <input type="text" id="staff-id-input" placeholder="Digite o ID do jogador (ex: 1234)" 
+                                   style="flex: 2; min-width: 200px; padding: 12px; border-radius: 8px; border: 2px solid #f1c40f; background: #34495e; color: white; font-size: 14px;">
+                            
+                            <button id="btn-add-staff" onclick="adicionarStaff()" 
+                                    style="flex: 1; min-width: 120px; background: #27ae60; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 14px; padding: 12px; transition: 0.3s;">
+                                ➕ ADICIONAR STAFF
+                            </button>
+                        </div>
+                        
+                        <div id="staff-mensagem" style="margin-top: 10px; font-size: 12px; min-height: 20px;"></div>
+                    </div>
+                    
+                    <!-- LISTA DE STAFF ATUAIS -->
+                    <div style="background: #2c3e50; border-radius: 15px; padding: 20px;">
+                        <h4 style="color: white; margin-bottom: 15px;">LISTA DE STAFF ATUAIS</h4>
+                        
+                        <div style="overflow-x: auto;">
+                            <table class="master-table" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>AVATAR</th>
+                                        <th>ID</th>
+                                        <th>NICKNAME</th>
+                                        <th>CARGO</th>
+                                        <th>AÇÃO</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="lista-staff-tbody">
+                                    <!-- Será preenchido via JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div id="staff-vazio" style="text-align: center; padding: 30px; color: #95a5a6; display: none;">
+                            📭 Nenhum staff cadastrado ainda
+                        </div>
                     </div>
                 </div>
                 
@@ -1850,7 +2270,8 @@
                     <table class="ranking-table-moderno">
                         <thead>
                             <tr>
-                                <th>POSIÇÃO</th>
+                                <th>POS</th>
+                                <th>AVATAR</th>
                                 <th>JOGADOR</th>
                                 <th>ID</th>
                                 <th>PONTOS</th>
@@ -1984,36 +2405,46 @@
                 </div>
             </div>
 
-            <!-- PERFIL COM ÍCONES SEMPRE VISÍVEIS -->
+            <!-- PERFIL COM AVATAR EDITÁVEL -->
             <div class="right-box" id="box-perfil" style="display:none;">
                 <div class="right-box-title">🪪 PERFIL DO SUPREMO</div>
                 <div class="right-box-content profile-card">
-                    <div class="profile-avatar">🎱</div>
+                    <!-- Avatar com opção de editar -->
+                    <div class="avatar-container">
+                        <div class="profile-avatar" id="profile-avatar" onclick="abrirModalAvatar()">🎱</div>
+                        <div class="edit-avatar-icon" onclick="abrirModalAvatar()">✏️</div>
+                    </div>
+                    
                     <span class="profile-name" id="user-name">LSJO_PLAYER</span>
                     <div class="profile-stats">
                         <div class="stat-item"><span>ID:</span> <strong id="user-id-card">0000</strong></div>
                         <div class="stat-item"><span>Pontos:</span> <strong id="user-pts-card">0</strong></div>
-                        <div class="stat-item"><span>Status:</span> <strong style="color:green">Ativa</strong></div>
+                        <div class="stat-item"><span id="status-label">Status:</span> <strong id="status-value" style="color:green">Ativa</strong></div>
                     </div>
                     
-                    <!-- ÍCONES SEMPRE VISÍVEIS (mudam de cor conforme inscrição) -->
+                    <!-- Mensagem de suspensão (aparece se suspenso) -->
+                    <div id="suspenso-mensagem" style="display: none; background: #f39c12; color: #000; padding: 8px; border-radius: 8px; margin: 10px 0; font-size: 11px; font-weight: bold;">
+                        ⚠️ Você está suspenso até <span id="suspenso-ate"></span>
+                    </div>
+                    
+                    <!-- ÍCONES DAS LIGAS -->
                     <div class="icones-perfil-container">
-                        <!-- PATINHO (sempre ativo) -->
-                        <div class="icone-perfil pato" onclick="showSection('notificar')" title="Notificar Derrota">
+                        <!-- PATINHO (desabilitado se suspenso) -->
+                        <div id="pato-perfil" class="icone-perfil pato" onclick="showSection('notificar')" title="Notificar Derrota">
                             🦆
                         </div>
                         
-                        <!-- BOLA 8 (sempre visível) -->
+                        <!-- BOLA 8 -->
                         <div id="icone-bola8" class="icone-perfil bola8 inativo" onclick="abrirEstatisticasLiga('BOLA 8')" title="Bola 8 (Clique para ver estatísticas)">
                             🎱
                         </div>
                         
-                        <!-- BOLA 9 (sempre visível) -->
+                        <!-- BOLA 9 -->
                         <div id="icone-bola9" class="icone-perfil bola9 inativo" onclick="abrirEstatisticasLiga('BOLA 9')" title="Bola 9 (Clique para ver estatísticas)">
                             9
                         </div>
                         
-                        <!-- TRUCO (sempre visível) -->
+                        <!-- TRUCO -->
                         <div id="icone-truco" class="icone-perfil truco inativo" onclick="abrirEstatisticasLiga('TRUCO')" title="Truco (Clique para ver estatísticas)">
                             🃏
                         </div>
@@ -2042,7 +2473,34 @@
     <footer class="footer-line">LSJO © 2026 - Todos os direitos reservados</footer>
 </div>
 
-<!-- MODAL DE SELEÇÃO DE LIGA (otimizado para celular) -->
+<!-- MODAL DE SELEÇÃO DE AVATAR -->
+<div id="modal-avatar" class="modal">
+    <div class="modal-select-liga">
+        <h3>🎨 ESCOLHA SEU AVATAR</h3>
+        <p>Selecione um avatar para seu perfil:</p>
+        
+        <div class="avatares-grid">
+            <div class="avatar-opcao" onclick="selecionarAvatar('🎱')">🎱</div>
+            <div class="avatar-opcao" onclick="selecionarAvatar('9️⃣')">9️⃣</div>
+            <div class="avatar-opcao" onclick="selecionarAvatar('🃏')">🃏</div>
+            <div class="avatar-opcao" onclick="selecionarAvatar('🔥')">🔥</div>
+            <div class="avatar-opcao" onclick="selecionarAvatar('⚡')">⚡</div>
+            <div class="avatar-opcao" onclick="selecionarAvatar('👑')">👑</div>
+            <div class="avatar-opcao" onclick="selecionarAvatar('⭐')">⭐</div>
+            <div class="avatar-opcao" onclick="selecionarAvatar('🎯')">🎯</div>
+            <div class="avatar-opcao" onclick="selecionarAvatar('🎮')">🎮</div>
+            <div class="avatar-opcao" onclick="selecionarAvatar('🏆')">🏆</div>
+        </div>
+        
+        <div id="avatar-sucesso" style="display: none;" class="success-message">
+            ✅ Avatar atualizado com sucesso!
+        </div>
+        
+        <button class="btn-fechar-modal" onclick="fecharModal('modal-avatar')">FECHAR</button>
+    </div>
+</div>
+
+<!-- MODAL DE SELEÇÃO DE LIGA -->
 <div id="modal-select-liga" class="modal">
     <div class="modal-select-liga">
         <h3>🎯 ESCOLHA UMA LIGA</h3>
@@ -2071,7 +2529,48 @@
     </div>
 </div>
 
-<!-- Modais do Master -->
+<!-- MODAL DE SUSPENSÃO -->
+<div id="modal-suspender" class="modal">
+    <div class="modal-content">
+        <h3>⏰ SUSPENDER JOGADOR</h3>
+        <p id="suspend-user-info" style="color: white; margin-bottom: 15px;"></p>
+        
+        <select id="tempo-suspensao">
+            <option value="3600000">1 hora</option>
+            <option value="21600000">6 horas</option>
+            <option value="43200000">12 horas</option>
+            <option value="86400000">1 dia</option>
+            <option value="259200000">3 dias</option>
+            <option value="604800000">7 dias</option>
+            <option value="2592000000">30 dias</option>
+        </select>
+        
+        <div class="modal-buttons">
+            <button class="modal-confirm" onclick="confirmarSuspender()">SUSPENDER</button>
+            <button class="modal-cancel" onclick="fecharModal('modal-suspender')">CANCELAR</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DE STAFF -->
+<div id="modal-staff" class="modal">
+    <div class="modal-content">
+        <h3>🛡️ GERENCIAR STAFF</h3>
+        <p id="staff-user-info" style="color: white; margin-bottom: 15px;"></p>
+        
+        <select id="staff-tipo">
+            <option value="staff">Tornar Staff</option>
+            <option value="remover">Remover Staff</option>
+        </select>
+        
+        <div class="modal-buttons">
+            <button class="modal-confirm" onclick="confirmarStaff()">CONFIRMAR</button>
+            <button class="modal-cancel" onclick="fecharModal('modal-staff')">CANCELAR</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modais do Master (já existentes) -->
 <div id="modal-edit-id" class="modal">
     <div class="modal-content">
         <h3>✏️ ALTERAR ID</h3>
@@ -2237,7 +2736,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getDatabase, ref, set, get, child, onValue, update, remove, push } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-    // CONFIGURAÇÃO CORRIGIDA COM REGIÃO EUROPE-WEST1
+    // CONFIGURAÇÃO COM REGIÃO EUROPE-WEST1
     const firebaseConfig = {
         apiKey: "AIzaSyDez172nRfLpCffiEKRRtxMsVR0LL12sbE",
         authDomain: "lsjo-a5672.firebaseapp.com",
@@ -2249,6 +2748,7 @@
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
     let usuarioLogado = null;
+    let usuarioLogadoTipo = 'usuario'; // 'master', 'staff', 'usuario'
     
     // Variáveis de paginação
     let paginaAtual = 1;
@@ -2258,9 +2758,12 @@
     let rankingTipoAtual = 'BOLA 8';
     let tipoOrdenacaoAtual = 'PONTOS';
     
-    // Variáveis para o modal
+    // Variáveis para os modais
     let usuarioSelecionado = null;
     let notificacaoSelecionada = null;
+
+    // Lista de avatares disponíveis
+    const avatares = ['🎱', '9️⃣', '🃏', '🔥', '⚡', '👑', '⭐', '🎯', '🎮', '🏆'];
 
     // Gerar opções de data
     function gerarOpcoesData() {
@@ -2320,6 +2823,31 @@
         
         if (totalJogos === 0) return 0;
         return Math.round((vitorias / totalJogos) * 100);
+    }
+
+    // Função para verificar se usuário está suspenso
+    function estaSuspenso(user) {
+        if (!user.suspensoAte) return false;
+        return Date.now() < user.suspensoAte;
+    }
+
+    // Função para formatar data de suspensão
+    function formatarDataSuspenso(timestamp) {
+        return new Date(timestamp).toLocaleDateString('pt-BR');
+    }
+
+    // Função para obter classe de status do jogador
+    function getStatusClass(jogador) {
+        if (jogador.banido) return 'jogador-banido';
+        if (estaSuspenso(jogador)) return 'jogador-suspenso';
+        return '';
+    }
+
+    // Função para obter ícone de status
+    function getStatusIcon(jogador) {
+        if (jogador.banido) return ' 🚫';
+        if (estaSuspenso(jogador)) return ' ⏳';
+        return '';
     }
 
     // CADASTRO
@@ -2384,7 +2912,9 @@
                 d: 0,
                 status: 'ativo',
                 banido: false,
-                historico: [], // Inicializa histórico vazio
+                tipo: 'usuario', // 'master', 'staff', 'usuario'
+                avatar: '🎱', // Avatar padrão
+                historico: [],
                 dataNasc: `${dia}/${mes}/${ano}`,
                 email: document.getElementById('reg-email')?.value || '',
                 dataCadastro: new Date().toISOString()
@@ -2402,21 +2932,45 @@
         const id = document.getElementById('login-id').value;
         const pass = document.getElementById('login-pass').value;
 
+        // Master (ID fixo)
         if(id === "0001" && pass === "20042018") {
             document.getElementById('nav-master').style.display = 'block';
-            entrarNoPerfil({nickname: "LSJO_MASTER", id: "0001", pontos: "0", status: 'ativo'});
+            entrarNoPerfil({
+                nickname: "LSJO_MASTER", 
+                id: "0001", 
+                pontos: "0", 
+                status: 'ativo',
+                tipo: 'master',
+                avatar: '👑'
+            });
             return;
         }
 
         const dbRef = ref(db);
-        const snap = await get(child(dbRef, `usuarios/${id}`));
+        const snap = await get(child(dbRef, 'usuarios/' + id));
+        
         if (snap.exists() && snap.val().senha === pass) {
-            if (snap.val().banido) {
+            const user = snap.val();
+            
+            // Verificar se está banido
+            if (user.banido) {
                 alert("❌ Esta conta está banida!");
                 return;
             }
-            usuarioLogado = snap.val();
-            entrarNoPerfil(usuarioLogado);
+            
+            // Verificar se está suspenso
+            if (estaSuspenso(user)) {
+                alert(`⚠️ Sua conta está suspensa até ${formatarDataSuspenso(user.suspensoAte)}. Você pode fazer login, mas não pode notificar derrotas.`);
+            }
+            
+            usuarioLogado = user;
+            entrarNoPerfil(user);
+            
+            // Se for staff ou master, mostrar painel master
+            if (user.tipo === 'staff' || user.tipo === 'master') {
+                document.getElementById('nav-master').style.display = 'block';
+                usuarioLogadoTipo = user.tipo;
+            }
         } else {
             alert("ID ou Senha incorretos!");
         }
@@ -2425,9 +2979,30 @@
     // Função para entrar no perfil
     function entrarNoPerfil(user) {
         usuarioLogado = user;
+        
+        // Atualizar avatar
+        document.getElementById('profile-avatar').innerText = user.avatar || '🎱';
+        
         document.getElementById('user-name').innerText = user.nickname;
         document.getElementById('user-id-card').innerText = user.id;
         document.getElementById('user-pts-card').innerText = user.pontos || 0;
+        
+        // Verificar status de suspensão
+        if (estaSuspenso(user)) {
+            document.getElementById('status-value').innerHTML = '⚠️ SUSPENSO';
+            document.getElementById('status-value').style.color = '#f39c12';
+            document.getElementById('suspenso-mensagem').style.display = 'block';
+            document.getElementById('suspenso-ate').innerText = formatarDataSuspenso(user.suspensoAte);
+            
+            // Desabilitar patinho
+            document.getElementById('pato-perfil').classList.add('disabled');
+        } else {
+            document.getElementById('status-value').innerHTML = 'Ativa';
+            document.getElementById('status-value').style.color = 'green';
+            document.getElementById('suspenso-mensagem').style.display = 'none';
+            document.getElementById('pato-perfil').classList.remove('disabled');
+        }
+        
         document.getElementById('box-login').style.display = 'none';
         document.getElementById('box-perfil').style.display = 'block';
         document.getElementById('nav-pato').style.display = 'block';
@@ -2437,9 +3012,37 @@
         atualizarIconesLigas();
     }
 
+    // ===== FUNÇÕES DE AVATAR =====
+    
+    window.abrirModalAvatar = () => {
+        document.getElementById('modal-avatar').style.display = 'flex';
+    };
+
+    window.selecionarAvatar = async (avatar) => {
+        if (!usuarioLogado) return;
+        
+        try {
+            await update(ref(db, 'usuarios/' + usuarioLogado.id), {
+                avatar: avatar
+            });
+            
+            usuarioLogado.avatar = avatar;
+            document.getElementById('profile-avatar').innerText = avatar;
+            
+            document.getElementById('avatar-sucesso').style.display = 'block';
+            
+            setTimeout(() => {
+                document.getElementById('avatar-sucesso').style.display = 'none';
+                fecharModal('modal-avatar');
+            }, 1500);
+            
+        } catch (error) {
+            alert("Erro ao atualizar avatar: " + error.message);
+        }
+    };
+
     // ===== FUNÇÕES DAS LIGAS =====
     
-    // Abrir modal para selecionar liga
     window.abrirModalSelecionarLiga = () => {
         if (!usuarioLogado) {
             alert("Faça login primeiro!");
@@ -2449,7 +3052,6 @@
         document.getElementById('modal-select-liga').style.display = 'flex';
     };
 
-    // Inscrever na liga selecionada (com feedback visual)
     window.inscreverNaLiga = async (liga) => {
         if (!usuarioLogado) {
             alert("Faça login primeiro!");
@@ -2458,7 +3060,6 @@
         }
         
         try {
-            // Verificar se já está inscrito
             const inscricaoRef = ref(db, `ligas/${liga}/inscritos/${usuarioLogado.id}`);
             const snap = await get(inscricaoRef);
             
@@ -2468,29 +3069,24 @@
                 return;
             }
             
-            // Inscrever na liga
             await set(ref(db, `ligas/${liga}/inscritos/${usuarioLogado.id}`), {
                 id: usuarioLogado.id,
                 nickname: usuarioLogado.nickname,
                 dataInscricao: Date.now()
             });
             
-            // Inicializar estatísticas
             await set(ref(db, `ligas/${liga}/estatisticas/${usuarioLogado.id}`), {
                 pontos: 0,
                 vitorias: 0,
                 derrotas: 0
             });
             
-            // Mostrar mensagem de sucesso
             const msgDiv = document.getElementById('mensagem-sucesso');
             msgDiv.style.display = 'block';
             msgDiv.innerHTML = `✅ Inscrito na ${liga} com sucesso!`;
             
-            // Atualizar ícones
             await atualizarIconesLigas();
             
-            // Fechar modal após 1.5 segundos
             setTimeout(() => {
                 fecharModal('modal-select-liga');
             }, 1500);
@@ -2500,14 +3096,12 @@
         }
     };
 
-    // Abrir estatísticas da liga
     window.abrirEstatisticasLiga = async (liga) => {
         if (!usuarioLogado) {
             alert("Faça login primeiro!");
             return;
         }
         
-        // Verificar se o usuário está inscrito na liga
         const inscricaoRef = ref(db, `ligas/${liga}/inscritos/${usuarioLogado.id}`);
         const snap = await get(inscricaoRef);
         
@@ -2516,28 +3110,20 @@
             return;
         }
         
-        // Buscar estatísticas da liga
         const estatisticasRef = ref(db, `ligas/${liga}/estatisticas/${usuarioLogado.id}`);
         const statsSnap = await get(estatisticasRef);
-        const stats = statsSnap.val() || {
-            pontos: 0,
-            vitorias: 0,
-            derrotas: 0
-        };
+        const stats = statsSnap.val() || { pontos: 0, vitorias: 0, derrotas: 0 };
         
-        // Buscar todos os jogadores da liga para calcular rankings
         const rankingRef = ref(db, `ligas/${liga}/estatisticas`);
         const rankingSnap = await get(rankingRef);
         const rankingData = rankingSnap.val() || {};
         
-        // Calcular posição no ranking geral
         const rankingGeral = Object.entries(rankingData)
             .map(([id, data]) => ({ id, pontos: data.pontos || 0, vitorias: data.vitorias || 0, derrotas: data.derrotas || 0 }))
             .sort((a, b) => b.pontos - a.pontos);
         
         const posicaoGeral = rankingGeral.findIndex(j => j.id === usuarioLogado.id) + 1;
         
-        // Calcular ranking por aproveitamento
         const rankingAproveitamento = Object.entries(rankingData)
             .map(([id, data]) => {
                 const vitorias = data.vitorias || 0;
@@ -2550,7 +3136,6 @@
         
         const posicaoAproveitamento = rankingAproveitamento.findIndex(j => j.id === usuarioLogado.id) + 1;
         
-        // Calcular streak (últimas partidas na liga)
         const historicoRef = ref(db, `usuarios/${usuarioLogado.id}/historico`);
         const historicoSnap = await get(historicoRef);
         const historico = historicoSnap.val() || [];
@@ -2562,13 +3147,11 @@
             else break;
         }
         
-        // Calcular aproveitamento
         const vitorias = stats.vitorias || 0;
         const derrotas = stats.derrotas || 0;
         const total = vitorias + derrotas;
         const aproveitamento = total > 0 ? Math.round((vitorias / total) * 100) : 0;
         
-        // Atualizar modal com os dados
         const modalId = liga === 'BOLA 8' ? 'modal-bola8' : (liga === 'BOLA 9' ? 'modal-bola9' : 'modal-truco');
         const prefixo = liga === 'BOLA 8' ? 'bola8' : (liga === 'BOLA 9' ? 'bola9' : 'truco');
         
@@ -2579,16 +3162,13 @@
         document.getElementById(`${prefixo}-aproveitamento`).innerText = `${aproveitamento}%`;
         document.getElementById(`${prefixo}-posicao-aproveitamento`).innerText = `#${posicaoAproveitamento || 0}`;
         
-        // Mostrar modal
         document.getElementById(modalId).style.display = 'flex';
     };
 
-    // Fechar modal de estatísticas
     window.fecharModalEstatisticas = (modalId) => {
         document.getElementById(modalId).style.display = 'none';
     };
 
-    // Atualizar ícones das ligas no perfil (sempre visíveis, mudam de cor)
     async function atualizarIconesLigas() {
         if (!usuarioLogado) return;
         
@@ -2603,7 +3183,6 @@
             const iconeId = icones[liga];
             const icone = document.getElementById(iconeId);
             
-            // Verificar se está inscrito
             const inscricaoRef = ref(db, `ligas/${liga}/inscritos/${usuarioLogado.id}`);
             const snap = await get(inscricaoRef);
             
@@ -2617,6 +3196,46 @@
         }
     }
 
+    // ===== FUNÇÃO PARA VER ESTATÍSTICAS DE OUTRO JOGADOR =====
+    window.verEstatisticasJogador = async (jogadorId, jogadorNome) => {
+        if (!usuarioLogado) {
+            alert("Faça login para ver estatísticas de outros jogadores!");
+            return;
+        }
+        
+        // Buscar dados do jogador
+        const jogadorRef = ref(db, `usuarios/${jogadorId}`);
+        const jogadorSnap = await get(jogadorRef);
+        
+        if (!jogadorSnap.exists()) {
+            alert("Jogador não encontrado!");
+            return;
+        }
+        
+        const jogador = jogadorSnap.val();
+        
+        // Verificar se está banido
+        if (jogador.banido) {
+            alert("❌ Este jogador está banido!");
+            return;
+        }
+        
+        // Abrir modal com estatísticas do jogador (usando o mesmo modal do ranking)
+        // Por simplicidade, vamos mostrar um alert com as informações básicas
+        const status = jogador.banido ? '🚫 Banido' : (estaSuspenso(jogador) ? '⏳ Suspenso' : '✅ Ativo');
+        const data = `📊 ESTATÍSTICAS DE ${jogador.nickname}
+        
+ID: ${jogador.id}
+Status: ${status}
+Pontos: ${jogador.pontos || 0}
+Vitórias: ${jogador.v || 0}
+Derrotas: ${jogador.d || 0}
+Aproveitamento: ${calcularAproveitamento(jogador)}%
+Avatar: ${jogador.avatar || '🎱'}`;
+        
+        alert(data);
+    };
+
     // RANKING COM PAGINAÇÃO
     window.abrirRanking = (tipo) => {
         rankingTipoAtual = tipo;
@@ -2625,7 +3244,6 @@
         paginaAtual = 1;
         tipoOrdenacaoAtual = 'PONTOS';
         
-        // Resetar abas
         document.querySelectorAll('.tab-button').forEach((btn, index) => {
             if (index === 0) {
                 btn.classList.add('active');
@@ -2641,10 +3259,9 @@
             
             if(data) {
                 todosJogadores = Object.values(data)
-                    .filter(u => u.id !== "0001" && !u.banido)
+                    .filter(u => u.id !== "0001")
                     .map(jogador => {
                         if (!jogador.historico) {
-                            // Criar histórico baseado nas vitórias/derrotas
                             const historico = [];
                             const totalVitorias = jogador.v || 0;
                             const totalDerrotas = jogador.d || 0;
@@ -2655,9 +3272,9 @@
                             for (let i = 0; i < totalDerrotas; i++) {
                                 historico.push({ resultado: 'derrota' });
                             }
-                            return { ...jogador, historico };
+                            return { ...jogador, historico, avatar: jogador.avatar || '🎱' };
                         }
-                        return jogador;
+                        return { ...jogador, avatar: jogador.avatar || '🎱' };
                     });
             }
             
@@ -2679,14 +3296,14 @@
         corpo.innerHTML = "";
         cardsContainer.innerHTML = "";
         
-        // Calcular streak e aproveitamento para todos os jogadores
         const jogadoresComMetricas = todosJogadores.map(jogador => ({
             ...jogador,
             streak: calcularStreak(jogador),
-            aproveitamento: calcularAproveitamento(jogador)
+            aproveitamento: calcularAproveitamento(jogador),
+            statusClass: getStatusClass(jogador),
+            statusIcon: getStatusIcon(jogador)
         }));
         
-        // Ordenar baseado no tipo selecionado
         let jogadoresOrdenados = [...jogadoresComMetricas];
         
         switch(tipoOrdenacao) {
@@ -2701,8 +3318,11 @@
                 break;
         }
         
-        // Se não há jogadores, mostrar mensagem vazia
-        if (todosJogadores.length === 0) {
+        // Filtrar banidos? (decidi mostrar todos, mas com indicador visual)
+        // Se quiser esconder banidos, descomente a linha abaixo:
+        // jogadoresOrdenados = jogadoresOrdenados.filter(j => !j.banido);
+        
+        if (jogadoresOrdenados.length === 0) {
             emptyMessage.style.display = 'block';
             document.getElementById('pagination').style.display = 'none';
             return;
@@ -2711,16 +3331,13 @@
             document.getElementById('pagination').style.display = 'flex';
         }
         
-        // Calcular itens da página atual
         const inicio = (paginaAtual - 1) * ITENS_POR_PAGINA;
         const fim = inicio + ITENS_POR_PAGINA;
         const jogadoresPagina = jogadoresOrdenados.slice(inicio, fim);
         
-        // Renderizar jogadores reais
         jogadoresPagina.forEach((jogador, index) => {
             const posicaoGlobal = inicio + index + 1;
             const classeLinha = posicaoGlobal === 1 ? 'top-1' : (posicaoGlobal === 2 ? 'top-2' : (posicaoGlobal === 3 ? 'top-3' : ''));
-            const avatar = ["🎱", "🔥", "⚡", "👑", "⭐"][index % 5];
             const streakClass = jogador.streak > 5 ? 'streak-high' : '';
             
             let valorColuna;
@@ -2732,10 +3349,24 @@
                 valorColuna = `${jogador.aproveitamento}%`;
             }
             
+            // Determinar se o jogador pode ser clicado (banidos não)
+            const podeClicar = !jogador.banido;
+            const onclickAttr = podeClicar ? `onclick="verEstatisticasJogador('${jogador.id}', '${jogador.nickname}')"` : '';
+            const cursorStyle = podeClicar ? 'cursor: pointer;' : 'cursor: not-allowed;';
+            const statusDisplay = jogador.banido ? '🚫 ' : (estaSuspenso(jogador) ? '⏳ ' : '');
+            
             corpo.innerHTML += `
                 <tr class="${classeLinha}">
                     <td><strong>${posicaoGlobal}º</strong></td>
-                    <td>${jogador.nickname}</td>
+                    <td style="font-size: 20px;">${jogador.avatar || '🎱'}</td>
+                    <td>
+                        <span class="jogador-link ${jogador.statusClass}" 
+                              style="${cursorStyle}" 
+                              ${onclickAttr}
+                              title="${podeClicar ? 'Clique para ver estatísticas' : (jogador.banido ? 'Jogador banido' : 'Jogador suspenso')}">
+                            ${statusDisplay}${jogador.nickname}
+                        </span>
+                    </td>
                     <td>${jogador.id}</td>
                     <td><strong style="color: #2980b9;">${valorColuna}</strong></td>
                     <td>${jogador.v || 0}/${jogador.d || 0}</td>
@@ -2748,12 +3379,14 @@
                 </tr>
             `;
             
-            // Cards para mobile
+            // Cards para mobile (também com link)
             cardsContainer.innerHTML += `
-                <div class="ranking-card ${classeLinha}">
-                    <div class="ranking-card-avatar">${avatar}</div>
+                <div class="ranking-card ${classeLinha}" ${podeClicar ? `onclick="verEstatisticasJogador('${jogador.id}', '${jogador.nickname}')"` : ''} style="${podeClicar ? 'cursor: pointer;' : 'cursor: not-allowed; opacity: 0.7;'}">
+                    <div class="ranking-card-avatar" style="font-size: 24px;">${jogador.avatar || '🎱'}</div>
                     <div class="ranking-card-info">
-                        <div class="ranking-card-nome">${jogador.nickname}</div>
+                        <div class="ranking-card-nome ${jogador.statusClass}">
+                            ${statusDisplay}${jogador.nickname}
+                        </div>
                         <div class="ranking-card-detalhes">
                             <span>ID: ${jogador.id}</span>
                             <span>${jogador.v || 0}V / ${jogador.d || 0}D</span>
@@ -2765,15 +3398,14 @@
             `;
         });
         
-        // Preencher vagas restantes na página
         const vagasRestantes = ITENS_POR_PAGINA - jogadoresPagina.length;
         for (let i = 0; i < vagasRestantes; i++) {
             const posicaoVaga = inicio + jogadoresPagina.length + i + 1;
-            const avatar = ["🎱", "🔥", "⚡", "👑", "⭐"][(jogadoresPagina.length + i) % 5];
             
             corpo.innerHTML += `
                 <tr class="slot-vazio">
                     <td><strong>${posicaoVaga}º</strong></td>
+                    <td>⚪</td>
                     <td>--- VAGA DISPONÍVEL ---</td>
                     <td>-----</td>
                     <td><strong style="color: #94a3b8;">0</strong></td>
@@ -2784,7 +3416,7 @@
             
             cardsContainer.innerHTML += `
                 <div class="ranking-card vazio">
-                    <div class="ranking-card-avatar">${avatar}</div>
+                    <div class="ranking-card-avatar" style="font-size: 24px;">⚪</div>
                     <div class="ranking-card-info">
                         <div class="ranking-card-nome">--- VAGA DISPONÍVEL ---</div>
                         <div class="ranking-card-detalhes">
@@ -2799,7 +3431,7 @@
     }
 
     function atualizarPaginacao() {
-        const totalPaginas = Math.max(1, Math.ceil(Math.max(totalJogadores, 1) / ITENS_POR_PAGINA));
+        const totalPaginas = Math.max(1, Math.ceil(Math.max(todosJogadores.length, 1) / ITENS_POR_PAGINA));
         document.getElementById('page-info').innerHTML = `Página ${paginaAtual} de ${totalPaginas}`;
         
         document.getElementById('prev-page').disabled = paginaAtual === 1;
@@ -2810,7 +3442,7 @@
         if (direcao === 'anterior' && paginaAtual > 1) {
             paginaAtual--;
         } else if (direcao === 'proxima') {
-            const totalPaginas = Math.max(1, Math.ceil(Math.max(totalJogadores, 1) / ITENS_POR_PAGINA));
+            const totalPaginas = Math.max(1, Math.ceil(todosJogadores.length / ITENS_POR_PAGINA));
             if (paginaAtual < totalPaginas) {
                 paginaAtual++;
             }
@@ -2828,7 +3460,7 @@
         renderizarPaginaAtual(tipo);
     };
 
-    // NOTIFICAR DERROTA - AGORA COM LIGA ESPECÍFICA
+    // NOTIFICAR DERROTA (com verificação de suspensão)
     document.getElementById('btn-enviar-notif').onclick = async () => {
         const liga = document.getElementById('notif-liga').value;
         const idVenc = document.getElementById('notif-venc').value;
@@ -2839,6 +3471,13 @@
             alert("Você precisa estar logado!");
             return;
         }
+        
+        // Verificar se está suspenso
+        if (estaSuspenso(usuarioLogado)) {
+            alert(`❌ Você está suspenso até ${formatarDataSuspenso(usuarioLogado.suspensoAte)} e não pode notificar derrotas.`);
+            return;
+        }
+        
         if(idVenc === usuarioLogado.id) {
             alert("Você não pode notificar derrota para si mesmo!");
             return;
@@ -2867,11 +3506,9 @@
             return;
         }
 
-        // Atualizar pontos apenas na liga específica
         const pontosPerdidos = qtd * 2;
         const pontosGanhos = qtd * 2;
         
-        // Atualizar no perfil geral
         await update(ref(db, `usuarios/${usuarioLogado.id}`), { 
             pontos: (usuarioLogado.pontos || 0) - pontosPerdidos, 
             d: (usuarioLogado.d || 0) + qtd 
@@ -2882,7 +3519,6 @@
             v: (snapV.val().v || 0) + qtd 
         });
         
-        // Atualizar estatísticas da liga
         const statsPerdedorRef = ref(db, `ligas/${liga}/estatisticas/${usuarioLogado.id}`);
         const statsPerdedorSnap = await get(statsPerdedorRef);
         const statsPerdedor = statsPerdedorSnap.val() || { pontos: 0, vitorias: 0, derrotas: 0 };
@@ -2903,7 +3539,6 @@
             derrotas: statsVencedor.derrotas || 0
         });
         
-        // Atualizar histórico
         const perdedorHist = [...(usuarioLogado.historico || [])];
         const vencedorHist = [...(snapV.val().historico || [])];
         
@@ -2915,7 +3550,6 @@
         await update(ref(db, `usuarios/${usuarioLogado.id}`), { historico: perdedorHist });
         await update(ref(db, `usuarios/${idVenc}`), { historico: vencedorHist });
         
-        // Registrar notificação para o master
         const notifRef = ref(db, 'notificacoes');
         await push(notifRef, {
             liga: liga,
@@ -2934,30 +3568,33 @@
         document.getElementById('duckSound').play();
         alert(`🦆 Derrota Notificada na liga ${liga} com sucesso!`);
         
-        // Atualizar ícones das ligas
         await atualizarIconesLigas();
     };
 
-    // ===== FUNÇÕES DO PAINEL MASTER =====
+    // ===== FUNÇÕES DO PAINEL MASTER/STAFF =====
     
     window.mudarMasterTab = (tab) => {
-        // Atualizar abas
         document.querySelectorAll('.master-tab').forEach(t => t.classList.remove('active'));
         event.target.classList.add('active');
         
-        // Mostrar painel correspondente
         if (tab === 'usuarios') {
             document.getElementById('master-usuarios').style.display = 'block';
+            document.getElementById('master-staff').style.display = 'none';
             document.getElementById('master-notificacoes').style.display = 'none';
             carregarUsuariosMaster();
+        } else if (tab === 'staff') {
+            document.getElementById('master-usuarios').style.display = 'none';
+            document.getElementById('master-staff').style.display = 'block';
+            document.getElementById('master-notificacoes').style.display = 'none';
+            carregarListaStaff(); // <-- CARREGAR LISTA DE STAFF
         } else {
             document.getElementById('master-usuarios').style.display = 'none';
+            document.getElementById('master-staff').style.display = 'none';
             document.getElementById('master-notificacoes').style.display = 'block';
             carregarNotificacoes();
         }
     };
 
-    // Carregar usuários no painel master
     function carregarUsuariosMaster() {
         const usuariosRef = ref(db, 'usuarios');
         onValue(usuariosRef, (snapshot) => {
@@ -2969,16 +3606,45 @@
             if(data) {
                 Object.values(data).forEach(u => {
                     if(u.id !== "0001") {
-                        const status = u.banido ? '<span style="color: #c0392b;">🔴 BANIDO</span>' : '<span style="color: #27ae60;">🟢 ATIVO</span>';
-                        const acoes = u.banido ? 
-                            `<button class="btn-unban" onclick="desbanirUsuario('${u.id}')">DESBANIR</button>` :
-                            `<button class="btn-edit" onclick="abrirModalEditarId('${u.id}')">✏️ ID</button>
-                             <button class="btn-ban" onclick="banirUsuario('${u.id}')">🚫 BANIR</button>`;
+                        let status = '';
+                        let acoes = '';
+                        
+                        // Verificar status
+                        if (u.banido) {
+                            status = '<span style="color: #c0392b;">🔴 BANIDO</span>';
+                        } else if (estaSuspenso(u)) {
+                            status = `<span style="color: #f39c12;">⚠️ SUSPENSO até ${formatarDataSuspenso(u.suspensoAte)}</span>`;
+                        } else {
+                            status = '<span style="color: #27ae60;">🟢 ATIVO</span>';
+                        }
+                        
+                        // Ações baseadas no tipo de usuário logado
+                        if (usuarioLogadoTipo === 'master') {
+                            // Master tem todas as ações
+                            acoes = `
+                                <button class="btn-edit" onclick="abrirModalEditarId('${u.id}')">✏️ ID</button>
+                                <button class="btn-suspend" onclick="abrirModalSuspender('${u.id}', '${u.nickname}')">⏰ SUSPENDER</button>
+                                ${u.banido ? 
+                                    `<button class="btn-unban" onclick="desbanirUsuario('${u.id}')">✅ DESBANIR</button>` : 
+                                    `<button class="btn-ban" onclick="banirUsuario('${u.id}')">🚫 BANIR</button>`
+                                }
+                                <button class="btn-staff" onclick="abrirModalStaff('${u.id}', '${u.nickname}', '${u.tipo || 'usuario'}')">🛡️ STAFF</button>
+                            `;
+                        } else if (usuarioLogadoTipo === 'staff') {
+                            // Staff só pode banir/desbanir/suspender (sem ver senha ou editar ID)
+                            acoes = `
+                                <button class="btn-suspend" onclick="abrirModalSuspender('${u.id}', '${u.nickname}')">⏰ SUSPENDER</button>
+                                ${u.banido ? 
+                                    `<button class="btn-unban" onclick="desbanirUsuario('${u.id}')">✅ DESBANIR</button>` : 
+                                    `<button class="btn-ban" onclick="banirUsuario('${u.id}')">🚫 BANIR</button>`
+                                }
+                            `;
+                        }
                         
                         listaMaster.innerHTML += `<tr>
                             <td><strong>${u.id}</strong></td>
+                            <td style="font-size: 20px;">${u.avatar || '🎱'}</td>
                             <td>${u.nickname}</td>
-                            <td>${u.senha}</td>
                             <td>${u.pontos || 0}</td>
                             <td>${status}</td>
                             <td>${acoes}</td>
@@ -2989,7 +3655,131 @@
         });
     }
 
-    // Carregar notificações dos últimos 30 minutos
+    // ===== NOVAS FUNÇÕES PARA GERENCIAR STAFF =====
+    
+    window.adicionarStaff = async () => {
+        const idInput = document.getElementById('staff-id-input');
+        const id = idInput.value.trim();
+        const mensagemDiv = document.getElementById('staff-mensagem');
+        
+        if (!id) {
+            mensagemDiv.innerHTML = '<span style="color: #e67e22;">⚠️ Digite um ID!</span>';
+            return;
+        }
+        
+        if (id.length !== 4 || isNaN(id)) {
+            mensagemDiv.innerHTML = '<span style="color: #e67e22;">⚠️ ID deve ter 4 dígitos!</span>';
+            return;
+        }
+        
+        // Verificar se o usuário existe
+        const snap = await get(child(ref(db), `usuarios/${id}`));
+        
+        if (!snap.exists()) {
+            mensagemDiv.innerHTML = `<span style="color: #c0392b;">❌ Jogador com ID ${id} não encontrado!</span>`;
+            return;
+        }
+        
+        const usuario = snap.val();
+        
+        // Verificar se já é staff ou master
+        if (usuario.tipo === 'master') {
+            mensagemDiv.innerHTML = '<span style="color: #f39c12;">👑 Este é o Master, não pode ser alterado!</span>';
+            return;
+        }
+        
+        if (usuario.tipo === 'staff') {
+            mensagemDiv.innerHTML = `<span style="color: #f39c12;">⚠️ ${usuario.nickname} já é staff!</span>`;
+            return;
+        }
+        
+        // Promover a staff
+        await update(ref(db, `usuarios/${id}`), {
+            tipo: 'staff'
+        });
+        
+        mensagemDiv.innerHTML = `<span style="color: #27ae60;">✅ ${usuario.nickname} agora é staff!</span>`;
+        idInput.value = '';
+        
+        // Recarregar lista de staff
+        carregarListaStaff();
+        
+        // Limpar mensagem após 3 segundos
+        setTimeout(() => {
+            mensagemDiv.innerHTML = '';
+        }, 3000);
+    };
+
+    // Função para carregar lista de staff
+    async function carregarListaStaff() {
+        const usuariosRef = ref(db, 'usuarios');
+        const snapshot = await get(usuariosRef);
+        const data = snapshot.val();
+        const tbody = document.getElementById('lista-staff-tbody');
+        const vazioDiv = document.getElementById('staff-vazio');
+        
+        if (!tbody) return;
+        
+        tbody.innerHTML = "";
+        let temStaff = false;
+        
+        if (data) {
+            // Primeiro mostra o Master (sempre no topo)
+            Object.values(data).forEach(u => {
+                if (u.id === "0001") {
+                    temStaff = true;
+                    tbody.innerHTML += `
+                        <tr style="background: rgba(241, 196, 15, 0.1);">
+                            <td style="font-size: 20px;">${u.avatar || '👑'}</td>
+                            <td><strong>${u.id}</strong></td>
+                            <td>${u.nickname} <span style="background: #f1c40f; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 9px; margin-left: 5px;">MASTER</span></td>
+                            <td>👑 Master</td>
+                            <td>-</td>
+                        </tr>
+                    `;
+                }
+            });
+            
+            // Depois mostra os staffs
+            Object.values(data).forEach(u => {
+                if (u.tipo === 'staff' && u.id !== "0001") {
+                    temStaff = true;
+                    tbody.innerHTML += `
+                        <tr>
+                            <td style="font-size: 20px;">${u.avatar || '🛡️'}</td>
+                            <td><strong>${u.id}</strong></td>
+                            <td>${u.nickname}</td>
+                            <td>🛡️ Staff</td>
+                            <td>
+                                <button class="btn-ban" onclick="removerStaff('${u.id}', '${u.nickname}')" style="background: #c0392b; padding: 5px 10px;">
+                                    ❌ REMOVER
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                }
+            });
+        }
+        
+        if (!temStaff) {
+            vazioDiv.style.display = 'block';
+        } else {
+            vazioDiv.style.display = 'none';
+        }
+    }
+
+    // Função para remover staff
+    window.removerStaff = async (id, nome) => {
+        if (confirm(`Tem certeza que deseja remover ${nome} (ID: ${id}) do staff?`)) {
+            await update(ref(db, `usuarios/${id}`), {
+                tipo: 'usuario'
+            });
+            
+            alert(`✅ ${nome} não é mais staff!`);
+            carregarListaStaff();
+        }
+    };
+
     async function carregarNotificacoes() {
         const notifRef = ref(db, 'notificacoes');
         const snapshot = await get(notifRef);
@@ -3000,7 +3790,7 @@
         listaNotif.innerHTML = "";
         
         const agora = Date.now();
-        const meiaHora = 30 * 60 * 1000; // 30 minutos em ms
+        const meiaHora = 30 * 60 * 1000;
         
         if (data) {
             const notificacoes = Object.entries(data)
@@ -3015,7 +3805,7 @@
             
             notificacoes.forEach(notif => {
                 const dataNotif = new Date(notif.timestamp).toLocaleString('pt-BR');
-                const tempoAtras = Math.round((agora - notif.timestamp) / 60000); // minutos
+                const tempoAtras = Math.round((agora - notif.timestamp) / 60000);
                 
                 listaNotif.innerHTML += `
                     <div class="notificacao-item">
@@ -3025,7 +3815,10 @@
                                 <strong class="vencedor">${notif.vencedorNome}</strong> 🏆 vs 
                                 <strong class="perdedor">${notif.perdedorNome}</strong>
                             </div>
-                            <button class="btn-revert" onclick="abrirModalReverter('${notif.id}', '${notif.vencedorId}', '${notif.perdedorId}', ${notif.quantidade}, ${notif.pontosGanhos})">↩️ REVERTER</button>
+                            ${usuarioLogadoTipo === 'master' ? 
+                                `<button class="btn-revert" onclick="abrirModalReverter('${notif.id}', '${notif.vencedorId}', '${notif.perdedorId}', ${notif.quantidade}, ${notif.pontosGanhos})">↩️ REVERTER</button>` : 
+                                ''
+                            }
                         </div>
                         <div style="margin-top: 5px; color: #bdc3c7;">
                             ${notif.quantidade}x derrotas | +${notif.pontosGanhos} pts / -${notif.pontosPerdidos} pts
@@ -3039,7 +3832,7 @@
         }
     }
 
-    // Funções do Master
+    // Funções de banimento (staff e master)
     window.banirUsuario = async (id) => {
         if(confirm(`⚠️ Tem certeza que deseja BANIR o ID ${id}?`)) {
             await update(ref(db, `usuarios/${id}`), { 
@@ -3047,7 +3840,6 @@
                 status: 'banido'
             });
             alert(`✅ Usuário ${id} banido com sucesso!`);
-            carregarUsuariosMaster();
         }
     };
 
@@ -3058,17 +3850,79 @@
                 status: 'ativo'
             });
             alert(`✅ Usuário ${id} desbanido com sucesso!`);
-            carregarUsuariosMaster();
         }
     };
 
+    // Funções de suspensão (staff e master)
+    window.abrirModalSuspender = (id, nome) => {
+        usuarioSelecionado = id;
+        document.getElementById('suspend-user-info').innerHTML = `Suspender usuário: <strong>${nome}</strong> (ID: ${id})`;
+        document.getElementById('modal-suspender').style.display = 'flex';
+    };
+
+    window.confirmarSuspender = async () => {
+        const tempo = parseInt(document.getElementById('tempo-suspensao').value);
+        const suspensoAte = Date.now() + tempo;
+        
+        await update(ref(db, `usuarios/${usuarioSelecionado}`), {
+            suspensoAte: suspensoAte,
+            status: 'suspenso'
+        });
+        
+        alert(`✅ Usuário suspenso até ${formatarDataSuspenso(suspensoAte)}!`);
+        fecharModal('modal-suspender');
+    };
+
+    // Funções de staff (apenas master)
+    window.abrirModalStaff = (id, nome, tipoAtual) => {
+        if (usuarioLogadoTipo !== 'master') {
+            alert("Apenas o Master pode gerenciar staff!");
+            return;
+        }
+        
+        usuarioSelecionado = id;
+        document.getElementById('staff-user-info').innerHTML = `Gerenciar staff: <strong>${nome}</strong> (ID: ${id})`;
+        document.getElementById('modal-staff').style.display = 'flex';
+    };
+
+    window.confirmarStaff = async () => {
+        const acao = document.getElementById('staff-tipo').value;
+        
+        if (acao === 'staff') {
+            await update(ref(db, `usuarios/${usuarioSelecionado}`), {
+                tipo: 'staff'
+            });
+            alert(`✅ Usuário promovido a Staff!`);
+        } else {
+            await update(ref(db, `usuarios/${usuarioSelecionado}`), {
+                tipo: 'usuario'
+            });
+            alert(`✅ Staff removido!`);
+        }
+        
+        fecharModal('modal-staff');
+        carregarListaStaff();
+    };
+
+    // Funções de edição de ID (apenas master)
     window.abrirModalEditarId = (id) => {
+        if (usuarioLogadoTipo !== 'master') {
+            alert("Apenas o Master pode alterar IDs!");
+            return;
+        }
+        
         usuarioSelecionado = id;
         document.getElementById('edit-user-id').value = id;
         document.getElementById('modal-edit-id').style.display = 'flex';
     };
 
     window.confirmarAlterarId = async () => {
+        if (usuarioLogadoTipo !== 'master') {
+            alert("Apenas o Master pode alterar IDs!");
+            fecharModal('modal-edit-id');
+            return;
+        }
+        
         const novoId = document.getElementById('edit-new-id').value;
         
         if (!novoId || novoId.length !== 4 || isNaN(novoId)) {
@@ -3076,33 +3930,34 @@
             return;
         }
         
-        // Verificar se o novo ID já existe
         const snap = await get(child(ref(db), `usuarios/${novoId}`));
         if (snap.exists()) {
             alert("❌ Este ID já está em uso por outro jogador!");
             return;
         }
         
-        // Buscar dados do usuário antigo
         const snapOld = await get(child(ref(db), `usuarios/${usuarioSelecionado}`));
         const userData = snapOld.val();
         
-        // Criar novo usuário com o novo ID
         await set(ref(db, `usuarios/${novoId}`), {
             ...userData,
             id: novoId
         });
         
-        // Remover usuário antigo
         await remove(ref(db, `usuarios/${usuarioSelecionado}`));
         
         alert(`✅ ID alterado de ${usuarioSelecionado} para ${novoId} com sucesso!`);
         fecharModal('modal-edit-id');
         document.getElementById('edit-new-id').value = '';
-        carregarUsuariosMaster();
     };
 
+    // Funções de reverter notificação (apenas master)
     window.abrirModalReverter = (notifId, vencedorId, perdedorId, qtd, pontos) => {
+        if (usuarioLogadoTipo !== 'master') {
+            alert("Apenas o Master pode reverter notificações!");
+            return;
+        }
+        
         notificacaoSelecionada = { notifId, vencedorId, perdedorId, qtd, pontos };
         document.getElementById('revert-info').innerHTML = 
             `Reverter notificação?<br><br>` +
@@ -3114,16 +3969,16 @@
     };
 
     window.confirmarReverter = async () => {
+        if (usuarioLogadoTipo !== 'master') return;
+        
         const n = notificacaoSelecionada;
         
-        // Buscar dados atuais
         const snapVencedor = await get(child(ref(db), `usuarios/${n.vencedorId}`));
         const snapPerdedor = await get(child(ref(db), `usuarios/${n.perdedorId}`));
         
         const vencedor = snapVencedor.val();
         const perdedor = snapPerdedor.val();
         
-        // Reverter pontos
         await update(ref(db, `usuarios/${n.vencedorId}`), {
             pontos: (vencedor.pontos || 0) - n.pontos,
             v: (vencedor.v || 0) - n.qtd
@@ -3134,7 +3989,6 @@
             d: (perdedor.d || 0) - n.qtd
         });
         
-        // Remover do histórico
         const novoHistVencedor = (vencedor.historico || []).filter(h => 
             !(h.data === n.timestamp && h.resultado === 'vitoria' && h.perdedorId === n.perdedorId)
         );
@@ -3146,7 +4000,6 @@
         await update(ref(db, `usuarios/${n.vencedorId}`), { historico: novoHistVencedor });
         await update(ref(db, `usuarios/${n.perdedorId}`), { historico: novoHistPerdedor });
         
-        // Remover notificação
         await remove(ref(db, `notificacoes/${n.notifId}`));
         
         alert("✅ Notificação revertida com sucesso!");
@@ -3154,6 +4007,7 @@
         carregarNotificacoes();
     };
 
+    // Funções auxiliares
     window.filtrarUsuarios = () => {
         const filtro = document.getElementById('search-user').value.toLowerCase();
         const linhas = document.querySelectorAll('#lista-usuarios-master tr');
@@ -3172,9 +4026,8 @@
         document.getElementById(modalId).style.display = 'none';
     };
 
-    // PAINEL MASTER - Monitorar notificações em tempo real
+    // Monitorar notificações em tempo real
     onValue(ref(db, 'notificacoes'), () => {
-        // Se a aba de notificações estiver visível, atualizar
         if (document.getElementById('master-notificacoes').style.display === 'block') {
             carregarNotificacoes();
         }
@@ -3187,7 +4040,6 @@
         atualizarRelogio();
         showSection('home');
         
-        // Carregar usuários master se estiver logado
         const navMaster = document.getElementById('nav-master');
         if (navMaster.style.display === 'block') {
             carregarUsuariosMaster();
@@ -3231,7 +4083,6 @@
         }
     }
     
-    // Fechar modal ao clicar fora
     window.onclick = function(event) {
         if (event.target.classList.contains('modal')) {
             event.target.style.display = 'none';

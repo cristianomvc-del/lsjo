@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LSJO - Liga Supremos de Jogos Online</title>
+    
+    <style>
+        /* ESTRUTURA BASE MANTIDA - ZERO ALTERAÇÕES */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: radial-gradient(circle, #1e2a3a 0%, #111821 100%); color: #eee; display: flex; justify-content: center; padding: 20px; }
+        .container { width: 95%; max-width: 1200px; background-color: #243142; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.7); display: flex; flex-direction: column; border: 1px solid #34495e; min-height: 850px; }
+
+        .header { 
+            display: flex; align-items: center; justify-content: space-between; padding: 40px 60px; 
+            background: linear-gradient(135deg, #2c3e50 0%, #000000 100%); position: relative;
+            border-bottom: 4px solid #f1c40f; overflow: hidden;
+        }
+        .header::before { content: ""; position: absolute; top: -50%; left: -10%; width: 70%; height: 200%; background: radial-gradient(circle, rgba(52, 152, 219, 0.2) 0%, transparent 70%); transform: rotate(-15deg); }
+        .logo-area { position: relative; z-index: 2; }
+        .logo-area h1 { font-size: 72px; color: #fff; text-shadow: 0 4px 10px rgba(0,0,0,0.5); margin: 0; font-family: 'Arial Black', sans-serif; line-height: 0.9; letter-spacing: -2px; }
+        .logo-area p { font-size: 18px; color: #f1c40f; font-weight: bold; margin: 0; letter-spacing: 2px; text-transform: uppercase; }
+        .logo-area span { font-size: 14px; color: #bdc3c7; display: block; margin-top: 5px; }
+
+        .pool-table-visual {
+            position: relative; z-index: 2; width: 300px; height: 160px; background: #222; border: 8px solid #555;
+            border-radius: 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.8), inset 0 0 50px rgba(0,0,0,0.5);
+            display: flex; align-items: center; justify-content: center; transform: perspective(500px) rotateX(20deg);
+        }
+        .cue-stick { position: absolute; width: 200px; height: 4px; background: linear-gradient(90deg, #63472b, #d4af37, #fff); transform: rotate(-25deg); top: 60px; left: -20px; box-shadow: 2px 5px 10px rgba(0,0,0,0.5); border-radius: 2px; }
+        .ball-8-top { width: 80px; height: 80px; background: radial-gradient(circle at 30% 30%, #444, #000); border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; box-shadow: 5px 10px 20px rgba(0,0,0,0.6); border: 1px solid #333; }
+        .ball-8-top .inner-circle { width: 35px; height: 35px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: black; font-size: 20px; }
+
+        .info-bar { background-color: #ecf0f1; padding: 8px 20px; font-size: 12px; color: #2c3e50; font-weight: bold; border-bottom: 1px solid #bdc3c7; }
+        .main-content { display: grid; grid-template-columns: 220px 1fr 250px; gap: 20px; padding: 20px; background-color: #1a2533; }
+        .sidebar-left, .sidebar-right { display: flex; flex-direction: column; gap: 10px; }
+        .btn-menu { background: linear-gradient(180deg, #ffffff 0%, #dfe6e9 100%); color: #2d3436; border: 1px solid #b2bec3; padding: 12px; border-radius: 20px; text-align: center; font-weight: bold; cursor: pointer; font-size: 11px; transition: 0.3s; }
+        .btn-menu:hover { background: linear-gradient(180deg, #636e72 0%, #2d3436 100%); color: white; transform: translateY(-2px); }
+        .btn-blue { background: linear-gradient(180deg, #3498db 0%, #2980b9 100%); color: white; border: 1px solid #1c5980; }
+        
+        .btn-master-especial { background: #000; color: #f1c40f; border: 2px solid #f1c40f; display: none; }
+        .btn-pato { background: linear-gradient(180deg, #e67e22 0%, #d35400 100%) !important; color: white !important; display: none; }
+
+        .center-panel { background: #ffffff; border-radius: 15px; padding: 25px; color: #2c3e50; box-shadow: 0 5px 20px rgba(0,0,0,0.4); min-height: 600px; }
+        .section-title { color: white; padding: 12px; border-radius: 10px; text-align: center; margin-bottom: 20px; font-weight: bold; text-transform: uppercase; }
+
+        .ranking-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+        .ranking-table th { background: #34495e; color: white; padding: 10px; border: 1px solid #2c3e50; }
+        .ranking-table td { padding: 10px; border: 1px solid #ecf0f1; text-align: center; font-weight: 500; }
+        .row-vazio { color: #bdc3c7; background-color: #fcfcfc; }
+
+        .btn-jogar-agora { 
+            background: linear-gradient(180deg, #27ae60 0%, #219150 100%); 
+            color: white; border: none; padding: 20px; border-radius: 15px; 
+            font-size: 20px; font-weight: bold; cursor: pointer; width: 100%;
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4); transition: 0.3s;
+        }
+        .btn-jogar-agora:hover { transform: scale(1.02); background: #2ecc71; }
+
+        .right-box { background: white; border-radius: 12px; overflow: hidden; margin-bottom: 15px; color: #2c3e50; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+        .right-box-title { background: #2c3e50; color: white; padding: 8px; font-size: 11px; text-align: center; font-weight: bold; text-transform: uppercase; }
+        .right-box-content { padding: 12px; font-size: 11px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="header">
+        <div class="logo-area">
+            <h1>LSJO</h1>
+            <p>Liga Supremos de Jogos Online</p>
+            <span>Liderando a diversão desde 2026</span>
+        </div>
+        <div class="pool-table-visual">
+            <div class="cue-stick"></div>
+            <div class="ball-8-top"><div class="inner-circle">8</div></div>
+        </div>
+    </header>
+
+    <div class="info-bar" id="relogio">relógio: pt-BR | Carregando...</div>
+
+    <div class="main-content">
+        <aside class="sidebar-left">
+            <button class="btn-menu" onclick="showSection('home')">HOME</button>
+            <button class="btn-menu btn-blue" onclick="showSection('jogar-net')">🌐 JOGAR NA NET</button>
+            <button class="btn-menu btn-pato" id="nav-pato" onclick="showSection('notificar')">🦆 NOTIFICAR</button>
+            <button class="btn-menu btn-master-especial" id="nav-master" onclick="showSection('master')">👑 PAINEL MASTER</button>
+            <button class="btn-menu btn-blue" onclick="showSection('rankings-hub')">RANKINGS</button>
+            <button class="btn-menu" id="nav-cadastro" onclick="showSection('cadastro')">CADASTRO</button>
+        </aside>
+
+        <main class="center-panel">
+            <section id="section-jogar-net" style="display:none;">
+                <div class="section-title" style="background: #27ae60;">🌐 SERVIDORES ONLINE</div>
+                <div style="text-align: center; padding: 20px;">
+                    <p style="margin-bottom: 20px; font-weight: bold;">Escolha um servidor para começar a subir no Ranking!</p>
+                    <button class="btn-jogar-agora" onclick="window.open('https://www.gamezer.com/billiards/', '_blank')">🎱 ENTRAR NO GAMEZER (BOLA 8/9)</button>
+                    <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div style="padding: 15px; background: #f8f9fa; border-radius: 10px; border-left: 5px solid #2980b9;">
+                            <strong>Servidor 1:</strong> Brasil Sala 01
+                        </div>
+                        <div style="padding: 15px; background: #f8f9fa; border-radius: 10px; border-left: 5px solid #2980b9;">
+                            <strong>Servidor 2:</strong> Portugal Sala 05
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-home">
+                <div class="section-title" style="background: #2980b9;">🏠 BEM-VINDO À LSJO</div>
+                <p style="text-align:center; padding: 20px;">A maior liga de competição online. Jogue, vença e conquiste o topo do mundo!</p>
+            </section>
+
+            <section id="section-ranking-view" style="display:none;">
+                <div class="section-title" id="ranking-view-title" style="background: #2c3e50;">RANKING</div>
+                <table class="ranking-table">
+                    <thead>
+                        <tr>
+                            <th>POS</th>
+                            <th>ID</th>
+                            <th>NICKNAME</th>
+                            <th>PONTOS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-tabela-dinamica">
+                        </tbody>
+                </table>
+            </section>
+
+            <section id="section-master" style="display:none;">
+                <div class="section-title" style="background: #000; color: #f1c40f;">👑 PAINEL MASTER</div>
+                <table class="ranking-table"><tbody id="lista-usuarios-master"></tbody></table>
+            </section>
+
+            <section id="section-rankings-hub" style="display:none;">
+                <div class="section-title" style="background: #34495e;">🏆 RANKINGS</div>
+                <button class="btn-menu" onclick="abrirRanking('BOLA 8')">🎱 BOLA 8</button>
+            </section>
+        </main>
+
+        <aside class="sidebar-right">
+            <div class="right-box" id="box-login">
+                <div class="right-box-title">🔐 LOGIN</div>
+                <div class="right-box-content">
+                    <input type="text" class="login-input" id="login-id" placeholder="ID">
+                    <input type="password" class="login-input" id="login-pass" placeholder="Senha">
+                    <button class="btn-login" id="btn-login-firebase">ENTRAR</button>
+                </div>
+            </div>
+            </aside>
+    </div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDez172nRfLpCffiEKRRtxMsVR0LL12sbE",
+        authDomain: "lsjo-a5672.firebaseapp.com",
+        projectId: "lsjo-a5672",
+        databaseURL: "https://lsjo-a5672-default-rtdb.firebaseio.com/",
+        appId: "1:251677846751:web:6eb9ebf1c1f6159b9a8d6a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // FUNÇÃO RANKING COM PREENCHIMENTO VISUAL (TABELA CERTA)
+    window.abrirRanking = (tipo) => {
+        showSection('ranking-view');
+        document.getElementById('ranking-view-title').innerText = "🏆 RANKING " + tipo;
+        
+        onValue(ref(db, 'usuarios'), (snapshot) => {
+            const data = snapshot.val();
+            const corpo = document.getElementById('corpo-tabela-dinamica');
+            corpo.innerHTML = "";
+            
+            let lista = [];
+            if(data) {
+                lista = Object.values(data)
+                    .filter(u => u.id !== "0001")
+                    .sort((a, b) => b.pontos - a.pontos);
+            }
+
+            // 1. Jogadores Reais
+            lista.forEach((u, i) => {
+                corpo.innerHTML += `<tr><td>${i+1}º</td><td>${u.id}</td><td>${u.nickname}</td><td>${u.pontos} pts</td></tr>`;
+            });
+
+            // 2. Preenchimento de 15 linhas (Fiel à sua imagem "Tabela Certa")
+            const maxLinhas = 15;
+            for (let i = lista.length + 1; i <= maxLinhas; i++) {
+                corpo.innerHTML += `
+                    <tr class="row-vazio">
+                        <td>${i}º</td>
+                        <td>----</td>
+                        <td>Vazio</td>
+                        <td>0 pts</td>
+                    </tr>`;
+            }
+        });
+    };
+</script>
+
+<script>
+    function showSection(id) {
+        document.querySelectorAll('main > section').forEach(s => s.style.display = 'none');
+        document.getElementById('section-' + id).style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

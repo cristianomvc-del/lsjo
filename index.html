@@ -1274,6 +1274,41 @@
             transform: scale(1.05);
         }
 
+        /* ===== NOVOS BOTÕES DE REVERSÃO PARA STAFF ===== */
+        .btn-revert-ban {
+            background: #9b59b6;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            margin-left: 3px;
+            transition: 0.3s;
+        }
+
+        .btn-revert-ban:hover {
+            background: #8e44ad;
+            transform: scale(1.05);
+        }
+
+        .btn-revert-suspend {
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            margin-left: 3px;
+            transition: 0.3s;
+        }
+
+        .btn-revert-suspend:hover {
+            background: #d35400;
+            transform: scale(1.05);
+        }
+
         .badge-staff {
             background: #8e44ad;
             color: white;
@@ -1410,7 +1445,7 @@
             color: #f39c12 !important;
         }
 
-        /* ===== NOVO ESTILO PARA ÚLTIMAS NOTIFICAÇÕES ===== */
+        /* ===== ESTILO PARA ÚLTIMAS NOTIFICAÇÕES ===== */
         .notificacao-item-publico {
             background: #f8f9fa;
             border-radius: 10px;
@@ -1478,6 +1513,68 @@
         .notificacao-tempo::before {
             content: "🕐";
             font-size: 10px;
+        }
+
+        /* ===== NOVOS ESTILOS PARA O CONTADOR REGRESSIVO ===== */
+        .contador-suspensao {
+            background: rgba(241, 196, 15, 0.15);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            border: 2px solid #f39c12;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(241, 196, 15, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0); }
+        }
+
+        .contador-titulo {
+            color: #f39c12;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .contador-tempo {
+            font-size: 32px;
+            font-weight: 900;
+            color: #f1c40f;
+            line-height: 1.2;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
+        }
+
+        .contador-legenda {
+            font-size: 11px;
+            color: #bdc3c7;
+            margin-top: 5px;
+        }
+
+        .contador-data {
+            font-size: 12px;
+            color: #ecf0f1;
+            background: rgba(0,0,0,0.3);
+            padding: 5px;
+            border-radius: 20px;
+            margin-top: 8px;
+        }
+
+        /* Estilo para quando o tempo está acabando */
+        .contador-urgente .contador-tempo {
+            color: #e74c3c;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
 
         /* ===== MODAIS DE ESTATÍSTICAS ===== */
@@ -2114,7 +2211,7 @@
                 padding: 6px;
             }
             
-            .btn-edit, .btn-ban, .btn-unban, .btn-revert, .btn-suspend, .btn-staff, .btn-delete {
+            .btn-edit, .btn-ban, .btn-unban, .btn-revert, .btn-suspend, .btn-staff, .btn-delete, .btn-revert-ban, .btn-revert-suspend {
                 padding: 3px 6px;
                 font-size: 9px;
             }
@@ -2153,6 +2250,10 @@
             
             .regras-secao {
                 padding: 15px;
+            }
+            
+            .contador-tempo {
+                font-size: 24px;
             }
         }
 
@@ -2198,6 +2299,10 @@
             .opcao-liga .icone-grande {
                 font-size: 36px;
             }
+            
+            .contador-tempo {
+                font-size: 20px;
+            }
         }
 
         .char-counter {
@@ -2210,9 +2315,7 @@
     <!-- Adicionar CryptoJS para hash SHA256 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
-<body>
-
-<div class="container">
+<body><div class="container">
     <header class="header">
         <div class="logo-area">
             <h1>LSJO</h1>
@@ -2934,7 +3037,6 @@
     </div>
     <footer class="footer-line">LSJO © 2026 - Todos os direitos reservados</footer>
 </div>
-
 <!-- MODAL DE SELEÇÃO DE AVATAR -->
 <div id="modal-avatar" class="modal">
     <div class="modal-select-liga">
@@ -3032,7 +3134,7 @@
     </div>
 </div>
 
-<!-- Modais do Master (já existentes) -->
+<!-- MODAL DE EDIÇÃO DE ID -->
 <div id="modal-edit-id" class="modal">
     <div class="modal-content">
         <h3>✏️ ALTERAR ID</h3>
@@ -3045,6 +3147,7 @@
     </div>
 </div>
 
+<!-- MODAL DE REVERTER NOTIFICAÇÃO -->
 <div id="modal-revert-notif" class="modal">
     <div class="modal-content">
         <h3>↩️ REVERTER NOTIFICAÇÃO</h3>
@@ -3056,7 +3159,7 @@
     </div>
 </div>
 
-<!-- NOVO MODAL DE EXCLUSÃO DE CONTA -->
+<!-- MODAL DE EXCLUSÃO DE CONTA -->
 <div id="modal-excluir-conta" class="modal">
     <div class="modal-content" style="max-width: 350px; text-align: center;">
         <h3 style="color: #c0392b; margin-bottom: 20px;">⚠️ ATENÇÃO! ⚠️</h3>
@@ -3079,7 +3182,7 @@
     </div>
 </div>
 
-<!-- NOVO MODAL DE PERFIL DO JOGADOR -->
+<!-- ===== NOVO MODAL DE PERFIL DO JOGADOR COM CONTADOR REGRESSIVO ===== -->
 <div id="modal-perfil-jogador" class="estatisticas-modal">
     <div class="modal-content-estatisticas" style="max-width: 450px;">
         <span class="modal-close" onclick="fecharModalPerfil()">&times;</span>
@@ -3092,6 +3195,14 @@
                 <span>ID: <strong id="perfil-id">0000</strong></span>
                 <span id="perfil-status-badge" style="background: #27ae60; padding: 3px 10px; border-radius: 20px; color: white;">✅ ATIVO</span>
             </div>
+        </div>
+        
+        <!-- ===== NOVO CONTADOR REGRESSIVO (aparece apenas se suspenso) ===== -->
+        <div id="perfil-contador-container" style="display: none;" class="contador-suspensao">
+            <div class="contador-titulo">⏳ TEMPO RESTANTE DE SUSPENSÃO</div>
+            <div class="contador-tempo" id="perfil-contador">00:00:00</div>
+            <div class="contador-legenda" id="perfil-contador-legenda">Aguarde o término para voltar a jogar</div>
+            <div class="contador-data" id="perfil-contador-data">Termina em: --/--/---- --:--</div>
         </div>
         
         <!-- Rankings -->
@@ -3276,6 +3387,31 @@
     </div>
 </div>
 
+<!-- NOVOS MODAIS PARA REVERSÃO (STAFF) -->
+<div id="modal-reverter-banimento" class="modal">
+    <div class="modal-content">
+        <h3 style="color: #9b59b6;">🚫 REVERTER BANIMENTO</h3>
+        <p id="reverter-ban-info" style="color: white; margin-bottom: 15px;"></p>
+        <p style="color: #bdc3c7; font-size: 12px; margin-bottom: 15px;">Esta ação reativará a conta do jogador.</p>
+        <div class="modal-buttons">
+            <button class="modal-confirm" onclick="confirmarReverterBanimento()" style="background: #9b59b6;">SIM, REVERTER</button>
+            <button class="modal-cancel" onclick="fecharModal('modal-reverter-banimento')">CANCELAR</button>
+        </div>
+    </div>
+</div>
+
+<div id="modal-reverter-suspensao" class="modal">
+    <div class="modal-content">
+        <h3 style="color: #e67e22;">⏰ REVERTER SUSPENSÃO</h3>
+        <p id="reverter-suspend-info" style="color: white; margin-bottom: 15px;"></p>
+        <p style="color: #bdc3c7; font-size: 12px; margin-bottom: 15px;">A suspensão será removida imediatamente.</p>
+        <div class="modal-buttons">
+            <button class="modal-confirm" onclick="confirmarReverterSuspensao()" style="background: #e67e22;">SIM, REVERTER</button>
+            <button class="modal-cancel" onclick="fecharModal('modal-reverter-suspensao')">CANCELAR</button>
+        </div>
+    </div>
+</div>
+
 <audio id="duckSound" src="https://www.soundjay.com/nature/sounds/duck-quack-1.mp3"></audio>
 
 <script type="module">
@@ -3308,6 +3444,7 @@
     let usuarioSelecionado = null;
     let notificacaoSelecionada = null;
     let contaParaExcluir = null;
+    let contadorInterval = null; // Para o contador regressivo
     
     // Variáveis para segurança do master
     let tentativasMaster = 0;
@@ -3315,6 +3452,302 @@
 
     // Lista de avatares disponíveis
     const avatares = ['🎱', '9️⃣', '🃏', '🔥', '⚡', '👑', '⭐', '🎯', '🎮', '🏆'];
+
+    // ===== NOVA FUNÇÃO PARA FORMATAR TEMPO RESTANTE =====
+    function formatarTempoRestante(timestamp) {
+        const agora = Date.now();
+        const diff = timestamp - agora;
+        
+        if (diff <= 0) return { texto: "EXPIRADO", dias: 0, horas: 0, minutos: 0, segundos: 0, expirado: true };
+        
+        const segundos = Math.floor(diff / 1000) % 60;
+        const minutos = Math.floor(diff / (1000 * 60)) % 60;
+        const horas = Math.floor(diff / (1000 * 60 * 60)) % 24;
+        const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+        
+        let texto = "";
+        if (dias > 0) {
+            texto = `${dias}d ${horas}h ${minutos}m`;
+        } else if (horas > 0) {
+            texto = `${horas}h ${minutos}m ${segundos}s`;
+        } else if (minutos > 0) {
+            texto = `${minutos}m ${segundos}s`;
+        } else {
+            texto = `${segundos}s`;
+        }
+        
+        return { texto, dias, horas, minutos, segundos, expirado: false };
+    }
+
+    // ===== NOVA FUNÇÃO PARA ATUALIZAR CONTADOR EM TEMPO REAL =====
+    function iniciarContadorRegressivo(elementId, timestamp) {
+        // Parar contador anterior se existir
+        if (contadorInterval) {
+            clearInterval(contadorInterval);
+            contadorInterval = null;
+        }
+        
+        const element = document.getElementById(elementId);
+        const legendaElement = document.getElementById('perfil-contador-legenda');
+        const dataElement = document.getElementById('perfil-contador-data');
+        const container = document.getElementById('perfil-contador-container');
+        
+        if (!element) return;
+        
+        // Mostrar container
+        if (container) container.style.display = 'block';
+        
+        // Formatar data de término
+        const dataTermino = new Date(timestamp).toLocaleString('pt-BR');
+        if (dataElement) dataElement.innerHTML = `Termina em: ${dataTermino}`;
+        
+        const atualizar = () => {
+            const tempo = formatarTempoRestante(timestamp);
+            
+            if (tempo.expirado) {
+                element.innerHTML = "EXPIRADO";
+                if (legendaElement) legendaElement.innerHTML = "Suspensão encerrada! Recarregue a página.";
+                element.classList.add('contador-urgente');
+                
+                // Parar o contador quando expirar
+                if (contadorInterval) {
+                    clearInterval(contadorInterval);
+                    contadorInterval = null;
+                }
+                
+                // Se for o perfil do próprio usuário logado, atualizar status
+                if (usuarioLogado && usuarioLogado.suspensoAte === timestamp) {
+                    usuarioLogado.suspensoAte = null;
+                    document.getElementById('status-value').innerHTML = 'Ativa';
+                    document.getElementById('status-value').style.color = 'green';
+                    document.getElementById('suspenso-mensagem').style.display = 'none';
+                    document.getElementById('pato-perfil').classList.remove('disabled');
+                }
+            } else {
+                element.innerHTML = tempo.texto;
+                
+                // Se faltar menos de 1 hora, destacar
+                if (tempo.horas === 0 && tempo.dias === 0 && tempo.minutos < 60) {
+                    element.classList.add('contador-urgente');
+                    if (legendaElement) legendaElement.innerHTML = "⚠️ Suspensão prestes a acabar!";
+                } else {
+                    element.classList.remove('contador-urgente');
+                    if (legendaElement) legendaElement.innerHTML = "Aguarde o término para voltar a jogar";
+                }
+            }
+        };
+        
+        // Atualizar imediatamente
+        atualizar();
+        
+        // Atualizar a cada segundo
+        contadorInterval = setInterval(atualizar, 1000);
+    }
+
+    // ===== NOVAS FUNÇÕES PARA REVERTER PUNIÇÕES (STAFF E MASTER) =====
+    window.abrirModalReverterBanimento = (id, nome) => {
+        if (usuarioLogadoTipo !== 'master' && usuarioLogadoTipo !== 'staff') {
+            alert("Apenas Master e Staff podem reverter banimentos!");
+            return;
+        }
+        
+        usuarioSelecionado = id;
+        document.getElementById('reverter-ban-info').innerHTML = `Deseja reverter o banimento de:<br><br><strong style="color: #f1c40f;">${nome}</strong> (ID: ${id})?`;
+        document.getElementById('modal-reverter-banimento').style.display = 'flex';
+    };
+
+    window.confirmarReverterBanimento = async () => {
+        if (!usuarioSelecionado) return;
+        
+        try {
+            await update(ref(db, `usuarios/${usuarioSelecionado}`), {
+                banido: false,
+                status: 'ativo'
+            });
+            
+            // Registrar log
+            await push(ref(db, 'logs/reversoes'), {
+                adminId: usuarioLogado.id,
+                adminNome: usuarioLogado.nickname,
+                adminTipo: usuarioLogadoTipo,
+                usuarioId: usuarioSelecionado,
+                acao: 'reverter_banimento',
+                timestamp: Date.now()
+            });
+            
+            alert(`✅ Banimento revertido com sucesso!`);
+            fecharModal('modal-reverter-banimento');
+            
+            // Atualizar listas
+            if (document.getElementById('master-usuarios').style.display === 'block') {
+                carregarUsuariosMaster();
+            }
+            
+        } catch (error) {
+            alert("Erro ao reverter banimento: " + error.message);
+        }
+    };
+
+    window.abrirModalReverterSuspensao = (id, nome) => {
+        if (usuarioLogadoTipo !== 'master' && usuarioLogadoTipo !== 'staff') {
+            alert("Apenas Master e Staff podem reverter suspensões!");
+            return;
+        }
+        
+        usuarioSelecionado = id;
+        document.getElementById('reverter-suspend-info').innerHTML = `Deseja reverter a suspensão de:<br><br><strong style="color: #f1c40f;">${nome}</strong> (ID: ${id})?`;
+        document.getElementById('modal-reverter-suspensao').style.display = 'flex';
+    };
+
+    window.confirmarReverterSuspensao = async () => {
+        if (!usuarioSelecionado) return;
+        
+        try {
+            await update(ref(db, `usuarios/${usuarioSelecionado}`), {
+                suspensoAte: null,
+                status: 'ativo'
+            });
+            
+            // Registrar log
+            await push(ref(db, 'logs/reversoes'), {
+                adminId: usuarioLogado.id,
+                adminNome: usuarioLogado.nickname,
+                adminTipo: usuarioLogadoTipo,
+                usuarioId: usuarioSelecionado,
+                acao: 'reverter_suspensao',
+                timestamp: Date.now()
+            });
+            
+            alert(`✅ Suspensão revertida com sucesso!`);
+            fecharModal('modal-reverter-suspensao');
+            
+            // Atualizar listas
+            if (document.getElementById('master-usuarios').style.display === 'block') {
+                carregarUsuariosMaster();
+            }
+            
+        } catch (error) {
+            alert("Erro ao reverter suspensão: " + error.message);
+        }
+    };
+
+    // ===== FUNÇÃO MODIFICADA DE VER PERFIL (AGORA COM CONTADOR) =====
+    window.verEstatisticasJogador = async (jogadorId, jogadorNome) => {
+        if (!usuarioLogado) {
+            alert("Faça login para ver estatísticas de outros jogadores!");
+            return;
+        }
+        
+        try {
+            // Mostrar modal
+            document.getElementById('modal-perfil-jogador').style.display = 'flex';
+            
+            // Buscar dados do jogador
+            const jogadorRef = ref(db, `usuarios/${jogadorId}`);
+            const jogadorSnap = await get(jogadorRef);
+            
+            if (!jogadorSnap.exists()) {
+                alert("Jogador não encontrado!");
+                fecharModalPerfil();
+                return;
+            }
+            
+            const jogador = jogadorSnap.val();
+            
+            // Calcular streak e aproveitamento
+            const streak = calcularStreak(jogador);
+            const aproveitamento = calcularAproveitamento(jogador);
+            const totalPartidas = (jogador.v || 0) + (jogador.d || 0);
+            
+            // Buscar todos os jogadores para calcular posições
+            const todosRef = ref(db, 'usuarios');
+            const todosSnap = await get(todosRef);
+            const todos = todosSnap.val();
+            
+            // Calcular posição no ranking geral (por pontos)
+            const rankingGeral = Object.values(todos || {})
+                .filter(u => !u.banido)
+                .sort((a, b) => (b.pontos || 0) - (a.pontos || 0));
+            
+            const posicaoGeral = rankingGeral.findIndex(j => j.id === jogadorId) + 1;
+            
+            // Calcular posição no ranking de aproveitamento
+            const rankingAproveitamento = Object.values(todos || {})
+                .filter(u => !u.banido && ((u.v || 0) + (u.d || 0) > 0))
+                .sort((a, b) => {
+                    const apA = calcularAproveitamento(a);
+                    const apB = calcularAproveitamento(b);
+                    return apB - apA;
+                });
+            
+            const posicaoAproveitamento = rankingAproveitamento.findIndex(j => j.id === jogadorId) + 1;
+            
+            // Determinar status e cor
+            let statusTexto = '✅ ATIVO';
+            let statusBg = '#27ae60';
+            let estaSuspensoAgora = false;
+            
+            if (jogador.banido) {
+                statusTexto = '🚫 BANIDO';
+                statusBg = '#c0392b';
+            } else if (estaSuspenso(jogador)) {
+                statusTexto = '⏳ SUSPENSO';
+                statusBg = '#f39c12';
+                estaSuspensoAgora = true;
+            }
+            
+            // Formatar data de cadastro
+            let dataCadastro = '--/--/----';
+            if (jogador.dataCadastro) {
+                const data = new Date(jogador.dataCadastro);
+                dataCadastro = data.toLocaleDateString('pt-BR');
+            }
+            
+            // Preencher o modal
+            document.getElementById('perfil-avatar').innerText = jogador.avatar || '🎱';
+            document.getElementById('perfil-nome').innerText = jogador.nickname;
+            document.getElementById('perfil-id').innerText = jogador.id;
+            
+            const statusBadge = document.getElementById('perfil-status-badge');
+            statusBadge.innerText = statusTexto;
+            statusBadge.style.background = statusBg;
+            
+            document.getElementById('perfil-posicao').innerText = `#${posicaoGeral || 0}`;
+            document.getElementById('perfil-posicao-aproveitamento').innerText = `#${posicaoAproveitamento || 0}`;
+            document.getElementById('perfil-pontos').innerText = jogador.pontos || 0;
+            document.getElementById('perfil-vd').innerText = `${jogador.v || 0}/${jogador.d || 0}`;
+            document.getElementById('perfil-streak').innerText = streak;
+            document.getElementById('perfil-aproveitamento').innerText = `${aproveitamento}%`;
+            document.getElementById('perfil-data-cadastro').innerText = dataCadastro;
+            document.getElementById('perfil-total-partidas').innerText = totalPartidas;
+            
+            // ===== NOVO: CONTADOR REGRESSIVO =====
+            const contadorContainer = document.getElementById('perfil-contador-container');
+            if (estaSuspensoAgora && jogador.suspensoAte) {
+                iniciarContadorRegressivo('perfil-contador', jogador.suspensoAte);
+            } else {
+                contadorContainer.style.display = 'none';
+                if (contadorInterval) {
+                    clearInterval(contadorInterval);
+                    contadorInterval = null;
+                }
+            }
+            
+        } catch (error) {
+            console.error("Erro ao carregar perfil:", error);
+            alert("Erro ao carregar perfil do jogador!");
+            fecharModalPerfil();
+        }
+    };
+
+    // Função para fechar o modal de perfil
+    window.fecharModalPerfil = () => {
+        document.getElementById('modal-perfil-jogador').style.display = 'none';
+        if (contadorInterval) {
+            clearInterval(contadorInterval);
+            contadorInterval = null;
+        }
+    };
 
     // Gerar opções de data
     function gerarOpcoesData() {
@@ -3345,6 +3778,7 @@
             }
         }
     }
+    
     // Função para calcular streak baseado no histórico
     function calcularStreak(jogador) {
         if (!jogador.historico || jogador.historico.length === 0) {
@@ -3475,7 +3909,6 @@
         let id;
         let idExiste = true;
         
-        // Garantir que o ID seja único
         while (idExiste) {
             id = Math.floor(1000 + Math.random() * 9000).toString();
             const idSnap = await get(child(ref(db), `usuarios/${id}`));
@@ -3507,36 +3940,30 @@
         }
     };
 
-    // LOGIN com segurança reforçada para master - SUPER OFUSCADO
+    // LOGIN com segurança reforçada para master
     document.getElementById('btn-login-firebase').onclick = async () => {
         const id = document.getElementById('login-id').value;
         const pass = document.getElementById('login-pass').value;
         const agora = Date.now();
 
         // ===== SISTEMA MASTER SUPER OFUSCADO =====
-        // ID Master: 0001 (nunca aparece diretamente)
-        const seedA = [500, 250, 125, 62.5]; // Progressão geométrica
-        const masterIdCalc = Math.floor(seedA[3] * 16) - 999; // 62.5 * 16 = 1000 - 999 = 1
-        const masterId = masterIdCalc.toString().padStart(4, '0'); // "0001"
+        const seedA = [500, 250, 125, 62.5];
+        const masterIdCalc = Math.floor(seedA[3] * 16) - 999;
+        const masterId = masterIdCalc.toString().padStart(4, '0');
         
-        // Senha Master: 20042018 (nunca aparece no código)
-        // Construída a partir de uma data especial
-        const dataEspecial = new Date(2020, 3, 20, 18, 0, 0); // 20 de abril de 2020, 18:00
-        const ano = dataEspecial.getFullYear().toString().slice(-2); // "20"
-        const mes = (dataEspecial.getMonth() + 1).toString().padStart(2, '0'); // "04"
-        const dia = dataEspecial.getDate().toString().padStart(2, '0'); // "20"
-        const hora = dataEspecial.getHours().toString().padStart(2, '0'); // "18"
-        const masterPass = ano + mes + dia + hora; // "20042018"
+        const dataEspecial = new Date(2020, 3, 20, 18, 0, 0);
+        const ano = dataEspecial.getFullYear().toString().slice(-2);
+        const mes = (dataEspecial.getMonth() + 1).toString().padStart(2, '0');
+        const dia = dataEspecial.getDate().toString().padStart(2, '0');
+        const hora = dataEspecial.getHours().toString().padStart(2, '0');
+        const masterPass = ano + mes + dia + hora;
         
-        // Verificar tentativas excessivas
         if (tentativasMaster >= 5 && (agora - ultimaTentativaMaster) < 300000) {
             alert("⏳ Muitas tentativas de login. Aguarde 5 minutos.");
             return;
         }
 
-        // Verificar login master
         if (id === masterId && pass === masterPass) {
-            // Login master bem-sucedido
             document.getElementById('nav-master').style.display = 'block';
             entrarNoPerfil({
                 nickname: "LSJO_MASTER", 
@@ -3546,30 +3973,24 @@
                 tipo: 'master',
                 avatar: '👑'
             });
-            
-            // Resetar contador de tentativas
             tentativasMaster = 0;
             return;
         } else {
-            // Registrar tentativa falha
             tentativasMaster++;
             ultimaTentativaMaster = agora;
         }
 
-        // Login normal (não master)
         const dbRef = ref(db);
         const snap = await get(child(dbRef, 'usuarios/' + id));
         
         if (snap.exists() && snap.val().senha === pass) {
             const user = snap.val();
             
-            // Verificar se está banido
             if (user.banido) {
                 alert("❌ Esta conta está banida!");
                 return;
             }
             
-            // Verificar se está suspenso
             if (estaSuspenso(user)) {
                 alert(`⚠️ Sua conta está suspensa até ${formatarDataSuspenso(user.suspensoAte)}. Você pode fazer login, mas não pode notificar derrotas.`);
             }
@@ -3577,20 +3998,15 @@
             usuarioLogado = user;
             entrarNoPerfil(user);
             
-            // Se for staff ou master, mostrar painel master
             if (user.tipo === 'staff' || user.tipo === 'master') {
                 document.getElementById('nav-master').style.display = 'block';
                 usuarioLogadoTipo = user.tipo;
             }
             
-            // Resetar contador de tentativas
             tentativasMaster = 0;
         } else {
-            // Incrementar contador de tentativas
             tentativasMaster++;
             ultimaTentativaMaster = agora;
-            
-            // Mensagem genérica para não dar pistas
             alert("ID ou Senha incorretos!");
         }
     };
@@ -3600,27 +4016,21 @@
         usuarioLogado = user;
         usuarioLogadoTipo = user.tipo || 'usuario';
         
-        // Mostrar botão JOGOS
         const btnJogos = document.getElementById('nav-jogos');
         if (btnJogos) {
             btnJogos.style.display = 'block';
         }
         
-        // Atualizar avatar
         document.getElementById('profile-avatar').innerText = user.avatar || '🎱';
-        
         document.getElementById('user-name').innerText = user.nickname;
         document.getElementById('user-id-card').innerText = user.id;
         document.getElementById('user-pts-card').innerText = user.pontos || 0;
         
-        // Verificar status de suspensão
         if (estaSuspenso(user)) {
             document.getElementById('status-value').innerHTML = '⚠️ SUSPENSO';
             document.getElementById('status-value').style.color = '#f39c12';
             document.getElementById('suspenso-mensagem').style.display = 'block';
             document.getElementById('suspenso-ate').innerText = formatarDataSuspenso(user.suspensoAte);
-            
-            // Desabilitar patinho
             document.getElementById('pato-perfil').classList.add('disabled');
         } else {
             document.getElementById('status-value').innerHTML = 'Ativa';
@@ -3634,7 +4044,6 @@
         document.getElementById('nav-pato').style.display = 'block';
         document.getElementById('nav-cadastro').style.display = 'none';
         
-        // Atualizar ícones das ligas
         atualizarIconesLigas();
     }
 
@@ -3822,113 +4231,12 @@
         }
     }
 
-    // ===== NOVA FUNÇÃO PARA VER PERFIL DO JOGADOR EM MODAL BONITO =====
-    window.verEstatisticasJogador = async (jogadorId, jogadorNome) => {
-        if (!usuarioLogado) {
-            alert("Faça login para ver estatísticas de outros jogadores!");
-            return;
-        }
-        
-        try {
-            // Mostrar modal
-            document.getElementById('modal-perfil-jogador').style.display = 'flex';
-            
-            // Buscar dados do jogador
-            const jogadorRef = ref(db, `usuarios/${jogadorId}`);
-            const jogadorSnap = await get(jogadorRef);
-            
-            if (!jogadorSnap.exists()) {
-                alert("Jogador não encontrado!");
-                fecharModalPerfil();
-                return;
-            }
-            
-            const jogador = jogadorSnap.val();
-            
-            // Calcular streak e aproveitamento
-            const streak = calcularStreak(jogador);
-            const aproveitamento = calcularAproveitamento(jogador);
-            const totalPartidas = (jogador.v || 0) + (jogador.d || 0);
-            
-            // Buscar todos os jogadores para calcular posições
-            const todosRef = ref(db, 'usuarios');
-            const todosSnap = await get(todosRef);
-            const todos = todosSnap.val();
-            
-            // Calcular posição no ranking geral (por pontos)
-            const rankingGeral = Object.values(todos || {})
-                .filter(u => !u.banido) // Ignorar banidos no ranking
-                .sort((a, b) => (b.pontos || 0) - (a.pontos || 0));
-            
-            const posicaoGeral = rankingGeral.findIndex(j => j.id === jogadorId) + 1;
-            
-            // Calcular posição no ranking de aproveitamento
-            const rankingAproveitamento = Object.values(todos || {})
-                .filter(u => !u.banido && ((u.v || 0) + (u.d || 0) > 0)) // Só quem já jogou
-                .sort((a, b) => {
-                    const apA = calcularAproveitamento(a);
-                    const apB = calcularAproveitamento(b);
-                    return apB - apA;
-                });
-            
-            const posicaoAproveitamento = rankingAproveitamento.findIndex(j => j.id === jogadorId) + 1;
-            
-            // Determinar status e cor
-            let statusTexto = '✅ ATIVO';
-            let statusBg = '#27ae60';
-            
-            if (jogador.banido) {
-                statusTexto = '🚫 BANIDO';
-                statusBg = '#c0392b';
-            } else if (estaSuspenso(jogador)) {
-                statusTexto = '⏳ SUSPENSO';
-                statusBg = '#f39c12';
-            }
-            
-            // Formatar data de cadastro
-            let dataCadastro = '--/--/----';
-            if (jogador.dataCadastro) {
-                const data = new Date(jogador.dataCadastro);
-                dataCadastro = data.toLocaleDateString('pt-BR');
-            }
-            
-            // Preencher o modal
-            document.getElementById('perfil-avatar').innerText = jogador.avatar || '🎱';
-            document.getElementById('perfil-nome').innerText = jogador.nickname;
-            document.getElementById('perfil-id').innerText = jogador.id;
-            
-            const statusBadge = document.getElementById('perfil-status-badge');
-            statusBadge.innerText = statusTexto;
-            statusBadge.style.background = statusBg;
-            
-            document.getElementById('perfil-posicao').innerText = `#${posicaoGeral || 0}`;
-            document.getElementById('perfil-posicao-aproveitamento').innerText = `#${posicaoAproveitamento || 0}`;
-            document.getElementById('perfil-pontos').innerText = jogador.pontos || 0;
-            document.getElementById('perfil-vd').innerText = `${jogador.v || 0}/${jogador.d || 0}`;
-            document.getElementById('perfil-streak').innerText = streak;
-            document.getElementById('perfil-aproveitamento').innerText = `${aproveitamento}%`;
-            document.getElementById('perfil-data-cadastro').innerText = dataCadastro;
-            document.getElementById('perfil-total-partidas').innerText = totalPartidas;
-            
-        } catch (error) {
-            console.error("Erro ao carregar perfil:", error);
-            alert("Erro ao carregar perfil do jogador!");
-            fecharModalPerfil();
-        }
-    };
-
-    // Função para fechar o modal de perfil
-    window.fecharModalPerfil = () => {
-        document.getElementById('modal-perfil-jogador').style.display = 'none';
-    };
-
-    // ===== NOVA FUNÇÃO PARA CARREGAR ÚLTIMAS NOTIFICAÇÕES =====
+    // ===== FUNÇÃO PARA CARREGAR ÚLTIMAS NOTIFICAÇÕES =====
     function carregarUltimasNotificacoes() {
         const notifRef = ref(db, 'notificacoes');
         const listaDiv = document.getElementById('lista-ultimas-notificacoes');
         const loadingDiv = document.getElementById('loading-notificacoes');
         
-        // Escuta em tempo real as notificações
         onValue(notifRef, async (snapshot) => {
             const data = snapshot.val();
             
@@ -3938,19 +4246,14 @@
                 return;
             }
             
-            // Converter para array e pegar as 5 mais recentes
             const notificacoes = Object.entries(data)
                 .map(([key, value]) => ({ id: key, ...value }))
                 .sort((a, b) => b.timestamp - a.timestamp)
                 .slice(0, 5);
             
-            // Buscar os nomes completos dos jogadores
             const notificacoesComNomes = await Promise.all(notificacoes.map(async (notif) => {
-                // Buscar nome do vencedor
                 const vencedorSnap = await get(child(ref(db), `usuarios/${notif.vencedorId}`));
                 const vencedor = vencedorSnap.val();
-                
-                // Buscar nome do perdedor
                 const perdedorSnap = await get(child(ref(db), `usuarios/${notif.perdedorId}`));
                 const perdedor = perdedorSnap.val();
                 
@@ -3961,15 +4264,12 @@
                 };
             }));
             
-            // Esconder loading
             loadingDiv.style.display = 'none';
             
-            // Gerar HTML
             let html = '';
             const agora = Date.now();
             
             notificacoesComNomes.forEach(notif => {
-                // Definir ícone baseado na liga
                 let iconeLiga = '🎱';
                 let classeLiga = 'liga-bola8';
                 
@@ -3981,7 +4281,6 @@
                     classeLiga = 'liga-truco';
                 }
                 
-                // Calcular tempo
                 const diffMinutos = Math.round((agora - notif.timestamp) / 60000);
                 let tempoTexto = '';
                 
@@ -4015,7 +4314,6 @@
                 `;
             });
             
-            // Se não houver notificações após o filtro
             if (notificacoesComNomes.length === 0) {
                 html = '<div style="text-align: center; padding: 15px; color: #95a5a6;">📭 Nenhuma notificação ainda</div>';
             }
@@ -4138,7 +4436,6 @@
                 valorColuna = `${jogador.aproveitamento}%`;
             }
             
-            // Determinar se o jogador pode ser clicado (banidos não)
             const podeClicar = !jogador.banido;
             const onclickAttr = podeClicar ? `onclick="verEstatisticasJogador('${jogador.id}', '${jogador.nickname}')"` : '';
             const cursorStyle = podeClicar ? 'cursor: pointer;' : 'cursor: not-allowed;';
@@ -4168,7 +4465,6 @@
                 </tr>
             `;
             
-            // Cards para mobile (também com link)
             cardsContainer.innerHTML += `
                 <div class="ranking-card ${classeLinha}" ${podeClicar ? `onclick="verEstatisticasJogador('${jogador.id}', '${jogador.nickname}')"` : ''} style="${podeClicar ? 'cursor: pointer;' : 'cursor: not-allowed; opacity: 0.7;'}">
                     <div class="ranking-card-avatar" style="font-size: 24px;">${jogador.avatar || '🎱'}</div>
@@ -4261,7 +4557,6 @@
             return;
         }
         
-        // Verificar se está suspenso
         if (estaSuspenso(usuarioLogado)) {
             alert(`❌ Você está suspenso até ${formatarDataSuspenso(usuarioLogado.suspensoAte)} e não pode notificar derrotas.`);
             return;
@@ -4407,7 +4702,6 @@
                         let status = '';
                         let acoes = '';
                         
-                        // Verificar status
                         if (u.banido) {
                             status = '<span style="color: #c0392b;">🔴 BANIDO</span>';
                         } else if (estaSuspenso(u)) {
@@ -4416,26 +4710,34 @@
                             status = '<span style="color: #27ae60;">🟢 ATIVO</span>';
                         }
                         
-                        // Ações baseadas no tipo de usuário logado
+                        // ===== NOVO: AÇÕES COM REVERSÃO PARA STAFF E MASTER =====
                         if (usuarioLogadoTipo === 'master') {
-                            // Master tem todas as ações (incluindo editar ID e EXCLUIR)
+                            // Master tem todas as ações
                             acoes = `
                                 <button class="btn-edit" onclick="abrirModalEditarId('${u.id}')">✏️ ID</button>
                                 <button class="btn-suspend" onclick="abrirModalSuspender('${u.id}', '${u.nickname}')">⏰ SUSPENDER</button>
                                 ${u.banido ? 
-                                    `<button class="btn-unban" onclick="desbanirUsuario('${u.id}')">✅ DESBANIR</button>` : 
+                                    `<button class="btn-revert-ban" onclick="abrirModalReverterBanimento('${u.id}', '${u.nickname}')">↩️ REV. BAN</button>` : 
                                     `<button class="btn-ban" onclick="banirUsuario('${u.id}')">🚫 BANIR</button>`
+                                }
+                                ${estaSuspenso(u) ? 
+                                    `<button class="btn-revert-suspend" onclick="abrirModalReverterSuspensao('${u.id}', '${u.nickname}')">↩️ REV. SUSP</button>` : 
+                                    ''
                                 }
                                 <button class="btn-staff" onclick="abrirModalStaff('${u.id}', '${u.nickname}', '${u.tipo || 'usuario'}')">🛡️ STAFF</button>
                                 <button class="btn-delete" onclick="abrirModalExcluirConta('${u.id}', '${u.nickname}')">🗑️ EXCLUIR</button>
                             `;
                         } else if (usuarioLogadoTipo === 'staff') {
-                            // Staff NÃO pode editar ID nem excluir
+                            // Staff também pode reverter agora!
                             acoes = `
                                 <button class="btn-suspend" onclick="abrirModalSuspender('${u.id}', '${u.nickname}')">⏰ SUSPENDER</button>
                                 ${u.banido ? 
-                                    `<button class="btn-unban" onclick="desbanirUsuario('${u.id}')">✅ DESBANIR</button>` : 
+                                    `<button class="btn-revert-ban" onclick="abrirModalReverterBanimento('${u.id}', '${u.nickname}')">↩️ REV. BAN</button>` : 
                                     `<button class="btn-ban" onclick="banirUsuario('${u.id}')">🚫 BANIR</button>`
+                                }
+                                ${estaSuspenso(u) ? 
+                                    `<button class="btn-revert-suspend" onclick="abrirModalReverterSuspensao('${u.id}', '${u.nickname}')">↩️ REV. SUSP</button>` : 
+                                    ''
                                 }
                             `;
                         }
@@ -4471,7 +4773,6 @@
             return;
         }
         
-        // Verificar se o usuário existe
         const snap = await get(child(ref(db), `usuarios/${id}`));
         
         if (!snap.exists()) {
@@ -4481,7 +4782,6 @@
         
         const usuario = snap.val();
         
-        // Verificar se já é staff ou master
         if (usuario.tipo === 'master') {
             mensagemDiv.innerHTML = '<span style="color: #f39c12;">👑 Este é o Master, não pode ser alterado!</span>';
             return;
@@ -4492,7 +4792,6 @@
             return;
         }
         
-        // Promover a staff
         await update(ref(db, `usuarios/${id}`), {
             tipo: 'staff'
         });
@@ -4500,16 +4799,13 @@
         mensagemDiv.innerHTML = `<span style="color: #27ae60;">✅ ${usuario.nickname} agora é staff!</span>`;
         idInput.value = '';
         
-        // Recarregar lista de staff
         carregarListaStaff();
         
-        // Limpar mensagem após 3 segundos
         setTimeout(() => {
             mensagemDiv.innerHTML = '';
         }, 3000);
     };
 
-    // Função para carregar lista de staff
     async function carregarListaStaff() {
         const usuariosRef = ref(db, 'usuarios');
         const snapshot = await get(usuariosRef);
@@ -4523,7 +4819,6 @@
         let temStaff = false;
         
         if (data) {
-            // Primeiro mostra o Master (sempre no topo)
             Object.values(data).forEach(u => {
                 if (u.id === "0001") {
                     temStaff = true;
@@ -4539,7 +4834,6 @@
                 }
             });
             
-            // Depois mostra os staffs
             Object.values(data).forEach(u => {
                 if (u.tipo === 'staff' && u.id !== "0001") {
                     temStaff = true;
@@ -4567,7 +4861,6 @@
         }
     }
 
-    // Função para remover staff
     window.removerStaff = async (id, nome) => {
         if (confirm(`Tem certeza que deseja remover ${nome} (ID: ${id}) do staff?`)) {
             await update(ref(db, `usuarios/${id}`), {
@@ -4630,7 +4923,7 @@
             listaNotif.innerHTML = '<div style="text-align: center; padding: 30px; color: #95a5a6;">📭 Nenhuma notificação encontrada</div>';
         }
     }
-    // ===== FUNÇÃO PARA CARREGAR LOGS DE EXCLUSÕES =====
+    
     async function carregarLogsExclusoes() {
         const logsRef = ref(db, 'logs/exclusoes');
         const snapshot = await get(logsRef);
@@ -4670,14 +4963,13 @@
         }
     }
 
-    // ===== NOVA FUNÇÃO PARA EXCLUIR CONTA (MASTER) =====
+    // ===== FUNÇÃO DE EXCLUIR CONTA (MASTER) =====
     window.abrirModalExcluirConta = (id, nome) => {
         if (usuarioLogadoTipo !== 'master') {
             alert("Apenas o Master pode excluir contas!");
             return;
         }
         
-        // Verificar se não está tentando excluir o próprio master
         if (id === "0001") {
             alert("❌ Você não pode excluir a conta MASTER!");
             return;
@@ -4698,18 +4990,15 @@
         try {
             const id = contaParaExcluir;
             
-            // Buscar dados do usuário (para log)
             const userSnap = await get(child(ref(db), `usuarios/${id}`));
             const userData = userSnap.val();
             
-            // Remover de todas as ligas que participa
             const ligas = ['BOLA 8', 'BOLA 9', 'TRUCO'];
             for (const liga of ligas) {
                 await remove(ref(db, `ligas/${liga}/inscritos/${id}`));
                 await remove(ref(db, `ligas/${liga}/estatisticas/${id}`));
             }
             
-            // Remover das travas (limite de 7 derrotas)
             const travasRef = ref(db, 'travas');
             const travasSnap = await get(travasRef);
             if (travasSnap.exists()) {
@@ -4721,10 +5010,8 @@
                 }
             }
             
-            // Remover o usuário principal
             await remove(ref(db, `usuarios/${id}`));
             
-            // Registrar log da exclusão
             const logRef = ref(db, 'logs/exclusoes');
             await push(logRef, {
                 adminId: usuarioLogado.id,
@@ -4737,11 +5024,9 @@
             
             alert(`✅ Conta ID ${id} excluída com sucesso!`);
             
-            // Fechar modal
             fecharModal('modal-excluir-conta');
             contaParaExcluir = null;
             
-            // Atualizar lista de usuários
             carregarUsuariosMaster();
             
         } catch (error) {
@@ -4822,7 +5107,7 @@
         carregarListaStaff();
     };
 
-    // ===== FUNÇÃO DE EDIÇÃO DE ID (AGORA COM SUPORTE A MÚLTIPLOS DÍGITOS PARA MASTER) =====
+    // Função de edição de ID (apenas master)
     window.abrirModalEditarId = (id) => {
         if (usuarioLogadoTipo !== 'master') {
             alert("Apenas o Master pode alterar IDs!");
@@ -4845,31 +5130,26 @@
         
         const novoId = document.getElementById('edit-new-id').value.trim();
         
-        // VALIDAÇÃO: Apenas números, qualquer quantidade (1, 2, 3, 4, 5... dígitos)
         if (!novoId || !/^\d+$/.test(novoId)) {
             alert("❌ Digite um ID válido (apenas números)!");
             return;
         }
         
-        // Verificar se o novo ID já existe
         const snap = await get(child(ref(db), `usuarios/${novoId}`));
         if (snap.exists()) {
             alert("❌ Este ID já está em uso por outro jogador!");
             return;
         }
         
-        // Buscar dados do usuário antigo
         const snapOld = await get(child(ref(db), `usuarios/${usuarioSelecionado}`));
         const userData = snapOld.val();
         
         try {
-            // Criar novo usuário com o novo ID
             await set(ref(db, `usuarios/${novoId}`), {
                 ...userData,
                 id: novoId
             });
             
-            // Remover usuário antigo
             await remove(ref(db, `usuarios/${usuarioSelecionado}`));
             
             alert(`✅ ID alterado de ${usuarioSelecionado} para ${novoId} com sucesso!`);
@@ -4968,7 +5248,7 @@
         setInterval(atualizarRelogio, 1000);
         atualizarRelogio();
         showSection('home');
-        carregarUltimasNotificacoes(); // Carregar últimas notificações
+        carregarUltimasNotificacoes();
         
         const navMaster = document.getElementById('nav-master');
         if (navMaster.style.display === 'block') {

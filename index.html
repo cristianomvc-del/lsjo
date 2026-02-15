@@ -2922,7 +2922,7 @@
     <div class="modal-content">
         <h3>✏️ ALTERAR ID</h3>
         <input type="text" id="edit-user-id" placeholder="ID atual" readonly>
-        <input type="text" id="edit-new-id" placeholder="Novo ID (4 dígitos)" maxlength="4">
+        <input type="text" id="edit-new-id" placeholder="Novo ID (2 dígitos)" maxlength="2">
         <div class="modal-buttons">
             <button class="modal-confirm" onclick="confirmarAlterarId()">CONFIRMAR</button>
             <button class="modal-cancel" onclick="fecharModal('modal-edit-id')">CANCELAR</button>
@@ -3366,9 +3366,12 @@
         }
     };
 
-    // Função para entrar no perfil (agora mostra botão jogos)
+    // Função para entrar no perfil (CORRIGIDA - com usuarioLogadoTipo)
     function entrarNoPerfil(user) {
         usuarioLogado = user;
+        
+        // 🔴 LINHA CORRIGIDA - Define o tipo de usuário
+        usuarioLogadoTipo = user.tipo || 'usuario';
         
         // Mostrar botão JOGOS
         const btnJogos = document.getElementById('nav-jogos');
@@ -4016,7 +4019,7 @@ Avatar: ${jogador.avatar || '🎱'}`;
                         
                         // Ações baseadas no tipo de usuário logado
                         if (usuarioLogadoTipo === 'master') {
-                            // Master tem todas as ações
+                            // Master tem todas as ações (incluindo editar ID)
                             acoes = `
                                 <button class="btn-edit" onclick="abrirModalEditarId('${u.id}')">✏️ ID</button>
                                 <button class="btn-suspend" onclick="abrirModalSuspender('${u.id}', '${u.nickname}')">⏰ SUSPENDER</button>
@@ -4027,7 +4030,7 @@ Avatar: ${jogador.avatar || '🎱'}`;
                                 <button class="btn-staff" onclick="abrirModalStaff('${u.id}', '${u.nickname}', '${u.tipo || 'usuario'}')">🛡️ STAFF</button>
                             `;
                         } else if (usuarioLogadoTipo === 'staff') {
-                            // Staff só pode banir/desbanir/suspender (sem ver senha ou editar ID)
+                            // Staff NÃO pode editar ID
                             acoes = `
                                 <button class="btn-suspend" onclick="abrirModalSuspender('${u.id}', '${u.nickname}')">⏰ SUSPENDER</button>
                                 ${u.banido ? 
@@ -4300,7 +4303,7 @@ Avatar: ${jogador.avatar || '🎱'}`;
         carregarListaStaff();
     };
 
-    // Funções de edição de ID (apenas master)
+    // Funções de edição de ID (apenas master) - AGORA ACEITA 2 DÍGITOS
     window.abrirModalEditarId = (id) => {
         if (usuarioLogadoTipo !== 'master') {
             alert("Apenas o Master pode alterar IDs!");
@@ -4321,28 +4324,36 @@ Avatar: ${jogador.avatar || '🎱'}`;
         
         const novoId = document.getElementById('edit-new-id').value;
         
-        if (!novoId || novoId.length !== 4 || isNaN(novoId)) {
-            alert("❌ Digite um ID válido de 4 dígitos!");
+        // Validar ID de 2 dígitos (01 a 99)
+        if (!novoId || novoId.length < 1 || novoId.length > 2 || isNaN(novoId)) {
+            alert("❌ Digite um ID válido de 1 ou 2 dígitos (1 a 99)!");
             return;
         }
         
-        const snap = await get(child(ref(db), `usuarios/${novoId}`));
+        // Formatar para 2 dígitos (01, 02, etc)
+        const idFormatado = novoId.padStart(2, '0');
+        
+        // Verificar se o novo ID já existe
+        const snap = await get(child(ref(db), `usuarios/${idFormatado}`));
         if (snap.exists()) {
             alert("❌ Este ID já está em uso por outro jogador!");
             return;
         }
         
+        // Buscar dados do usuário antigo
         const snapOld = await get(child(ref(db), `usuarios/${usuarioSelecionado}`));
         const userData = snapOld.val();
         
-        await set(ref(db, `usuarios/${novoId}`), {
+        // Criar novo usuário com o novo ID
+        await set(ref(db, `usuarios/${idFormatado}`), {
             ...userData,
-            id: novoId
+            id: idFormatado
         });
         
+        // Remover usuário antigo
         await remove(ref(db, `usuarios/${usuarioSelecionado}`));
         
-        alert(`✅ ID alterado de ${usuarioSelecionado} para ${novoId} com sucesso!`);
+        alert(`✅ ID alterado de ${usuarioSelecionado} para ${idFormatado} com sucesso!`);
         fecharModal('modal-edit-id');
         document.getElementById('edit-new-id').value = '';
     };

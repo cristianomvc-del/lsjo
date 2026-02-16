@@ -197,8 +197,8 @@ background: linear-gradient(180deg, #e67e22 0%, #d35400 100%) !important;
 color: white !important;
 display: none;
 }
-/* Botão Jogos (inicialmente oculto) */
-.btn-jogos {
+/* Botão Jogos e Torneios (inicialmente ocultos) */
+.btn-jogos, .btn-torneios-menu {
 display: none;
 }
 /* Painel Central */
@@ -1613,22 +1613,22 @@ border-radius: 4px;
 }
 /* NOVO ESTILO PARA CONTAINER DE SENHA */
 .password-container {
-    position: relative;
-    margin-bottom: 10px;
+position: relative;
+margin-bottom: 10px;
 }
 .password-toggle {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    user-select: none;
-    font-size: 18px;
-    color: #666;
-    z-index: 10;
+position: absolute;
+right: 10px;
+top: 50%;
+transform: translateY(-50%);
+cursor: pointer;
+user-select: none;
+font-size: 18px;
+color: #666;
+z-index: 10;
 }
 .password-toggle:hover {
-    color: #2c3e50;
+color: #2c3e50;
 }
 .btn-login {
 width: 100%;
@@ -1674,6 +1674,155 @@ text-align: center;
 color: #7f8c8d;
 font-size: 12px;
 }
+/* ===== ESTILOS PARA TORNEIOS (NOVOS) ===== */
+.torneios-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 20px; 
+}
+.torneio-card { 
+    background: linear-gradient(145deg, #2c3e50, #1e2a3a); 
+    border-radius: 15px; 
+    padding: 20px; 
+    border: 2px solid #f1c40f;
+    color: white;
+    transition: transform 0.2s;
+}
+.torneio-card:hover {
+    transform: translateY(-5px);
+}
+.torneio-status { 
+    display: inline-block; 
+    padding: 4px 12px; 
+    border-radius: 20px; 
+    font-size: 11px; 
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.status-inscricoes { background: #3498db; color: white; }
+.status-andamento { background: #27ae60; color: white; }
+.status-finalizado { background: #95a5a6; color: white; }
+.partida-card { 
+    background: rgba(0,0,0,0.3); 
+    border-radius: 12px; 
+    padding: 15px; 
+    margin: 15px 0; 
+    border-left: 4px solid #f1c40f; 
+}
+.btn-torneio-derrota { 
+    background: #e67e22; 
+    color: white; 
+    border: none; 
+    padding: 12px; 
+    border-radius: 8px; 
+    font-weight: bold; 
+    width: 100%; 
+    cursor: pointer;
+    margin-top: 10px;
+}
+.btn-torneio-derrota:hover {
+    background: #d35400;
+}
+.chave-container { 
+    display: flex; 
+    overflow-x: auto; 
+    gap: 20px; 
+    padding: 20px 0; 
+}
+.chave-rodada { 
+    min-width: 200px; 
+}
+.chave-partida { 
+    background: #2c3e50; 
+    border-radius: 10px; 
+    padding: 10px; 
+    margin-bottom: 10px; 
+    border: 1px solid #f1c40f;
+    color: white;
+    font-size: 12px;
+}
+.conquistas-container, .condecoracoes-container { 
+    margin-top: 15px; 
+    padding: 10px; 
+    background: #f8f9fa; 
+    border-radius: 8px; 
+}
+.conquistas-title, .condecoracoes-title { 
+    font-weight: bold; 
+    color: #f1c40f; 
+    margin-bottom: 8px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.conquista-item, .condecoracao-item { 
+    font-size: 11px; 
+    padding: 4px; 
+    border-bottom: 1px solid #eee;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.emblema-mestre { color: #f1c40f; font-weight: bold; }
+.emblema-streak { color: #e67e22; font-weight: bold; }
+
+.btn-torneio-inscricao {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+.btn-torneio-inscricao:hover {
+    background: #219a52;
+}
+.btn-torneio-inscricao:disabled {
+    background: #95a5a6;
+    cursor: not-allowed;
+}
+.torneio-info {
+    font-size: 12px;
+    color: #bdc3c7;
+    margin: 8px 0;
+}
+.torneio-participantes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 10px 0;
+}
+.participante-badge {
+    background: rgba(241, 196, 15, 0.2);
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    color: #f1c40f;
+}
+.master-tab-torneios {
+    background: #2c3e50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px 30px 0 0;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+    transition: 0.3s;
+    opacity: 0.7;
+}
+.master-tab-torneios.active {
+    background: #f1c40f;
+    color: #000;
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
 /* ===== MEDIA QUERIES ===== */
 @media (max-width: 992px) {
 .main-content {
@@ -2009,6 +2158,9 @@ padding: 15px;
 .contador-tempo {
 font-size: 24px;
 }
+.torneios-grid {
+    grid-template-columns: 1fr;
+}
 }
 @media (max-width: 400px) {
 .logo-area h1 {
@@ -2126,6 +2278,10 @@ border-top-color: transparent;
 border-radius: 50%;
 animation: spin 1s linear infinite;
 margin: 20px auto;
+}
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
 }
 .btn-matchmaking {
 background: linear-gradient(135deg, #f1c40f, #f39c12);
@@ -2461,6 +2617,8 @@ margin-top: 8px;
 <!-- Botão Jogos (aparece após login) -->
 <button class="btn-menu btn-blue btn-jogos" id="nav-jogos" onclick="showSection('jogos')">🎮 JOGOS</button>
 <button class="btn-menu btn-blue" onclick="showSection('rankings-hub')">🏆 RANKINGS</button>
+<!-- BOTÃO TORNEIOS (OCULTO ATÉ LOGIN) -->
+<button class="btn-menu btn-blue btn-torneios-menu" id="nav-torneios" onclick="showSection('torneios')">🏆 TORNEIOS</button>
 <button class="btn-menu" id="nav-cadastro" onclick="showSection('cadastro')">📝 CADASTRO</button>
 <button class="btn-menu" onclick="showSection('regras')">📜 REGRAS</button>
 <button class="btn-menu">📧 CONTATO</button>
@@ -2516,7 +2674,6 @@ Divirta-se com responsabilidade! 🎱
 </p>
 </div>
 </section>
-
 <!-- NOVA SEÇÃO DO TRUCO (ANTES DENTRO DE JOGOS, AGORA SEPARADA) -->
 <section id="section-truco-game" style="display:none;">
 <div class="truco-header">
@@ -2547,10 +2704,9 @@ Divirta-se com responsabilidade! 🎱
 <div class="sala-privada">
 <h3 style="color: #f1c40f;">SALA PRIVADA</h3>
 <p style="color: #bdc3c7; margin-bottom: 10px;">Crie uma sala e compartilhe o código</p>
-<input type="text" id="codigo-sala" placeholder="Código (ex: TRUCO123)" maxlength="10">
 <div>
-<button class="btn-matchmaking" onclick="criarSalaPrivada()" style="padding: 10px 20px; font-size: 14px;">➕ CRIAR SALA</button>
-<button class="btn-matchmaking" onclick="entrarSalaPrivada()" style="padding: 10px 20px; font-size: 14px;">🚪 ENTRAR</button>
+<button class="btn-matchmaking" onclick="abrirModalSalaPrivada('criar')" style="padding: 10px 20px; font-size: 14px;">➕ CRIAR SALA</button>
+<button class="btn-matchmaking" onclick="abrirModalSalaPrivada('entrar')" style="padding: 10px 20px; font-size: 14px;">🚪 ENTRAR</button>
 </div>
 </div>
 </div>
@@ -2575,7 +2731,30 @@ Divirta-se com responsabilidade! 🎱
 </div>
 </div>
 </section>
-
+<!-- NOVA SEÇÃO: CENTRAL DE TORNEIOS -->
+<section id="section-torneios" style="display:none;">
+<div class="section-title" style="background: linear-gradient(135deg, #f1c40f, #f39c12);">
+🏆 TORNEIOS RELÂMPAGO LSJO
+</div>
+<div class="torneios-grid" id="torneios-grid">
+<!-- Cards de torneios serão inseridos via JavaScript -->
+</div>
+<div id="torneios-vazio" style="text-align: center; padding: 40px; color: #666; display: none;">
+🏆 Nenhum torneio disponível no momento
+</div>
+</section>
+<!-- NOVA SEÇÃO: PÁGINA INDIVIDUAL DO TORNEIO -->
+<section id="section-torneio-view" style="display:none;">
+<div class="section-title" id="torneio-view-title" style="background: linear-gradient(135deg, #f1c40f, #f39c12);">
+🏆 DETALHES DO TORNEIO
+</div>
+<button class="btn-voltar" onclick="showSection('torneios')">
+<span class="seta">←</span> VOLTAR AOS TORNEIOS
+</button>
+<div id="torneio-detalhes-container">
+<!-- Detalhes do torneio serão inseridos via JavaScript -->
+</div>
+</section>
 <!-- SEÇÃO DE REGRAS -->
 <section id="section-regras" style="display:none;">
 <div class="section-title" style="background: linear-gradient(135deg, #3498db, #2980b9);">
@@ -2701,9 +2880,9 @@ Jogador B: "ID 5678 aqui. Vamos começar!"
 </ol>
 <h3>O que acontece:</h3>
 <ul>
-<li>Você perde 2 pontos por derrota</li>
-<li>O vencedor ganha 2 pontos por vitória</li>
-<li>O ranking é atualizado na hora</li>
+<li>Você perde 2 pontos por derrota NA LIGA ESCOLHIDA</li>
+<li>O vencedor ganha 2 pontos NA LIGA ESCOLHIDA</li>
+<li>O ranking específico é atualizado na hora</li>
 <li>Um som de pato confirma a notificação</li>
 </ul>
 <p class="aviso"><strong>Limite:</strong> Máximo de 7 derrotas para o mesmo oponente a cada 12 horas.</p>
@@ -2714,7 +2893,7 @@ Jogador B: "ID 5678 aqui. Vamos começar!"
 <h3>Para participar de uma liga:</h3>
 <ol>
 <li>No seu perfil, clique em "INSCREVER NA LIGA"</li>
-<li>Escolha a liga desejada (Bola 8 ou Bola 9)</li>
+<li>Escolha a liga desejada (Bola 8, Bola 9 ou Truco)</li>
 </ol>
 <h3>Acessando rankings:</h3>
 <ol>
@@ -2722,9 +2901,9 @@ Jogador B: "ID 5678 aqui. Vamos começar!"
 <li>Escolha a liga que quer consultar</li>
 <li>Use as abas para ver rankings por:</li>
 <ul>
-<li>⭐ PONTOS - Classificação geral</li>
-<li>🔥 STREAK - Sequência de vitórias</li>
-<li>📊 APROVEITAMENTO - Percentual de vitórias</li>
+<li>⭐ PONTOS - Classificação geral da liga</li>
+<li>🔥 STREAK - Sequência de vitórias na liga</li>
+<li>📊 APROVEITAMENTO - Percentual de vitórias na liga</li>
 </ul>
 </ol>
 <h3>Navegação:</h3>
@@ -2740,7 +2919,7 @@ Jogador B: "ID 5678 aqui. Vamos começar!"
 <div class="regras-secao">
 <h2><span>⚠️</span> STATUS DA CONTA</h2>
 <p><strong class="sucesso">Ativo 🟢</strong> - Tudo normal, você pode jogar e notificar normalmente.</p>
-<p><strong class="aviso">Suspenso ⏳</strong> - Você ainda pode fazer login, mas não pode notificar derrotas (patinho desabilitado). Motivo e duração aparecem no seu perfil.</p>
+<p><strong class="aviso">Suspenso ⏳</strong> - Você ainda pode fazer login, mas não pode notificar derrotas (patinho desabilitado). Motivo e duração aparecem no seu perfil com contador regressivo.</p>
 <p><strong class="erro">Banido 🚫</strong> - Conta bloqueada permanentemente. Não é possível fazer login.</p>
 </div>
 <!-- Dúvidas Comuns -->
@@ -2838,6 +3017,9 @@ Jogador B: "ID 5678 aqui. Vamos começar!"
 <button class="master-tab" onclick="mudarMasterTab('staff')">🛡️ GERENCIAR STAFF</button>
 <button class="master-tab" onclick="mudarMasterTab('notificacoes')">📢 NOTIFICAÇÕES (30min)</button>
 <button class="master-tab" onclick="mudarMasterTab('logs')">📋 LOGS EXCLUSÕES</button>
+<button class="master-tab" onclick="mudarMasterTab('premiacoes')">🏆 PREMIAÇÕES MENSAL</button>
+<!-- ABA DE TORNEIOS ADICIONADA -->
+<button class="master-tab-torneios" onclick="mudarMasterTab('torneios')">🏆 TORNEIOS</button>
 </div>
 <!-- Painel de Usuários -->
 <div id="master-usuarios" class="master-panel">
@@ -2917,6 +3099,67 @@ style="flex: 1; min-width: 120px; background: #27ae60; color: white; border: non
 <!-- Será preenchido via JS -->
 </div>
 </div>
+<!-- NOVO PAINEL DE PREMIAÇÕES MENSAL -->
+<div id="master-premiacoes" class="master-panel" style="display: none;">
+    <h3 style="color: #f1c40f; margin-bottom: 20px;">🏆 FECHAR MÊS E PREMIAR</h3>
+    <p style="margin-bottom: 15px; color: #bdc3c7;">Esta ação irá identificar os líderes de cada liga (Pontos e Streak) do mês atual e entregar as condecorações permanentes. Os streaks atuais NÃO serão zerados.</p>
+    <button class="btn-submit" onclick="fecharMesEPremiar()" style="background: #f1c40f; color: #000; width: 100%;">🏆 ENCERRAR MÊS E ENTREGAR PRÊMIOS</button>
+    <div id="msg-premiacao" style="margin-top: 15px; font-weight: bold;"></div>
+</div>
+
+<!-- NOVO PAINEL DE TORNEIOS -->
+<div id="master-torneios" class="master-panel" style="display: none;">
+<h3 style="color: #f1c40f; margin-bottom: 20px;">🏆 GERENCIAR TORNEIOS</h3>
+<!-- Formulário para criar torneio -->
+<div style="background: #2c3e50; border-radius: 15px; padding: 20px; margin-bottom: 25px;">
+<h4 style="color: white; margin-bottom: 15px;">CRIAR NOVO TORNEIO</h4>
+<div class="form-group">
+<label>Nome do Torneio:</label>
+<input type="text" id="torneio-nome" placeholder="Ex: Truco Relâmpago #1">
+</div>
+<div class="form-group">
+<label>Liga:</label>
+<select id="torneio-liga">
+<option value="BOLA 8">🎱 BOLA 8</option>
+<option value="BOLA 9">⚪ BOLA 9</option>
+<option value="TRUCO">🃏 TRUCO</option>
+</select>
+</div>
+<div class="form-group">
+<label>Descrição:</label>
+<input type="text" id="torneio-descricao" placeholder="Descrição do torneio">
+</div>
+<div class="form-group">
+<label>Máx Participantes:</label>
+<input type="number" id="torneio-max" value="8" min="4" max="32">
+</div>
+<div class="form-group">
+<label>Pontos Extras Campeão:</label>
+<input type="number" id="torneio-pontos" value="50" min="0">
+</div>
+<button class="btn-submit" onclick="criarTorneio()" style="background: #27ae60; width: 100%;">🏆 CRIAR TORNEIO</button>
+</div>
+<!-- Lista de torneios existentes -->
+<div style="background: #2c3e50; border-radius: 15px; padding: 20px;">
+<h4 style="color: white; margin-bottom: 15px;">TORNEIOS EXISTENTES</h4>
+<div style="overflow-x: auto;">
+<table class="master-table" style="width: 100%;">
+<thead>
+<tr>
+<th>NOME</th>
+<th>LIGA</th>
+<th>STATUS</th>
+<th>PARTICIPANTES</th>
+<th>AÇÕES</th>
+</tr>
+</thead>
+<tbody id="lista-torneios-master">
+<!-- Será preenchido via JavaScript -->
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </section>
 <section id="section-rankings-hub" style="display:none;">
 <div class="section-title" style="background: #34495e;">🏆 SELECIONE O JOGO</div>
@@ -2979,8 +3222,8 @@ style="flex: 1; min-width: 120px; background: #27ae60; color: white; border: non
 <!-- Mensagem de ranking vazio (será mostrada via JS quando necessário) -->
 <div id="empty-ranking-message" class="empty-ranking-message" style="display: none;">
 <div class="icon">🏆</div>
-<h3>Nenhum jogador cadastrado ainda</h3>
-<p>Seja o primeiro a se cadastrar e aparecer no ranking!</p>
+<h3>Nenhum jogador cadastrado ainda nesta liga</h3>
+<p>Seja o primeiro a se inscrever e aparecer no ranking!</p>
 <button class="btn-menu btn-blue" onclick="showSection('cadastro')" style="width: auto; padding: 10px 30px; margin: 0 auto;">FAZER CADASTRO</button>
 </div>
 <!-- Paginação -->
@@ -3082,8 +3325,8 @@ Já tem uma conta? <a href="#" onclick="showSection('home'); document.getElement
 <input type="text" class="login-input" id="login-id" placeholder="ID de Acesso">
 <!-- CONTAINER DE SENHA COM OLHINHO -->
 <div class="password-container">
-    <input type="password" class="login-input" id="login-pass" placeholder="Senha">
-    <span class="password-toggle" onclick="togglePassword()">👁️</span>
+<input type="password" class="login-input" id="login-pass" placeholder="Senha">
+<span class="password-toggle" onclick="togglePassword()">👁️</span>
 </div>
 <button class="btn-login" id="btn-login-firebase">ENTRAR</button>
 </div>
@@ -3107,6 +3350,13 @@ Já tem uma conta? <a href="#" onclick="showSection('home'); document.getElement
 <div id="suspenso-mensagem" style="display: none; background: #f39c12; color: #000; padding: 8px; border-radius: 8px; margin: 10px 0; font-size: 11px; font-weight: bold;">
 ⚠️ Você está suspenso até <span id="suspenso-ate"></span>
 </div>
+<!-- NOVO CONTADOR REGRESSIVO NO PERFIL -->
+<div id="perfil-contador-box" style="display: none;" class="contador-suspensao">
+    <div class="contador-titulo">⏳ TEMPO RESTANTE</div>
+    <div class="contador-tempo" id="perfil-contador-tempo">00:00:00</div>
+    <div class="contador-legenda">Aguarde para voltar a jogar</div>
+</div>
+
 <!-- ÍCONES DAS LIGAS -->
 <div class="icones-perfil-container">
 <!-- PATINHO (desabilitado se suspenso) -->
@@ -3129,6 +3379,17 @@ Já tem uma conta? <a href="#" onclick="showSection('home'); document.getElement
 <button class="btn-action btn-join" onclick="abrirModalSelecionarLiga()">INSCREVER NA LIGA</button>
 <button class="btn-action btn-special">MEMBRO ESPECIAL ⭐</button>
 <button class="btn-action btn-logout" onclick="fazerLogout()">DESLIGAR</button>
+
+<!-- NOVA SEÇÃO: CONQUISTAS & CONDECORAÇÕES -->
+<div class="conquistas-container">
+    <div class="conquistas-title">🏆 CONQUISTAS (TORNEIOS)</div>
+    <div id="lista-conquistas">Nenhum torneio vencido ainda</div>
+</div>
+<div class="condecoracoes-container">
+    <div class="condecoracoes-title">🎖️ SALA DA FAMA (MENSAL)</div>
+    <div id="lista-condecoracoes">Nenhuma condecoração ainda</div>
+</div>
+
 </div>
 </div>
 <div class="right-box">
@@ -3179,6 +3440,19 @@ Já tem uma conta? <a href="#" onclick="showSection('home'); document.getElement
 <div class="avatar-opcao" onclick="selecionarAvatar('🎯')">🎯</div>
 <div class="avatar-opcao" onclick="selecionarAvatar('🎮')">🎮</div>
 <div class="avatar-opcao" onclick="selecionarAvatar('🏆')">🏆</div>
+<!-- NOVOS AVATARES -->
+<div class="avatar-opcao" onclick="selecionarAvatar('🐍')">🐍</div>
+<div class="avatar-opcao" onclick="selecionarAvatar('🦅')">🦅</div>
+<div class="avatar-opcao" onclick="selecionarAvatar('🐺')">🐺</div>
+<div class="avatar-opcao" onclick="selecionarAvatar('🦁')">🦁</div>
+<div class="avatar-opcao" onclick="selecionarAvatar('🐯')">🐯</div>
+<div class="avatar-opcao" onclick="selecionarAvatar('🤖')">🤖</div>
+<div class="avatar-opcao" onclick="selecionarAvatar('👽')">👽</div>
+<div class="avatar-opcao" onclick="selecionarAvatar('💀')">💀</div>
+<div class="avatar-opcao" onclick="selecionarAvatar('🎃')">🎃</div>
+<div class="avatar-opcao" onclick="selecionarAvatar('🍀')">🍀</div>
+<div class="avatar-opcao" onclick="selecionarAvatar('⚔️')">⚔️</div>
+<div class="avatar-opcao" onclick="selecionarAvatar('🧙‍♂️')">🧙‍♂️</div>
 </div>
 <div id="avatar-sucesso" style="display: none;" class="success-message">
 ✅ Avatar atualizado com sucesso!
@@ -3470,6 +3744,19 @@ Todos os dados do jogador serão perdidos.
 <button class="btn-fechar-modal" onclick="fecharModalEstatisticas('modal-truco')">FECHAR</button>
 </div>
 </div>
+<!-- ===== NOVO MODAL PARA SALA PRIVADA DO TRUCO ===== -->
+<div id="modal-sala-privada" class="modal">
+<div class="modal-select-liga">
+<h3> SALA PRIVADA - TRUCO</h3>
+<p id="modal-sala-privada-titulo">Digite o código da sala</p>
+<input type="text" id="codigo-sala-privada" placeholder="Código (ex: TRUCO123)" maxlength="10" style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #f1c40f; background: #34495e; color: white; font-size: 16px; text-align: center; margin: 15px 0;">
+<div id="mensagem-sala-privada" style="margin: 10px 0; font-size: 12px; min-height: 20px;"></div>
+<div class="modal-buttons">
+<button class="modal-confirm" id="btn-confirmar-sala-privada" onclick="confirmarAcaoSalaPrivada()">CONFIRMAR</button>
+<button class="modal-cancel" onclick="fecharModal('modal-sala-privada')">CANCELAR</button>
+</div>
+</div>
+</div>
 <!-- NOVOS MODAIS PARA REVERSÃO (STAFF) -->
 <div id="modal-reverter-banimento" class="modal">
 <div class="modal-content">
@@ -3493,6 +3780,19 @@ Todos os dados do jogador serão perdidos.
 </div>
 </div>
 </div>
+<!-- NOVO MODAL: CONFIRMAÇÃO DE DERROTA NO TORNEIO -->
+<div id="modal-derrota-torneio" class="modal">
+    <div class="modal-content">
+        <h3 style="color: #e67e22;">⚠️ REPORTAR DERROTA</h3>
+        <p id="derrota-torneio-info" style="color: white; margin-bottom: 15px;"></p>
+        <p style="color: #bdc3c7; font-size: 12px; margin-bottom: 15px;">Essa ação não pode ser desfeita. O adversário avançará na chave.</p>
+        <div class="modal-buttons">
+            <button class="modal-confirm" onclick="confirmarDerrotaTorneio()" style="background: #e67e22;">SIM, REPORTAR DERROTA</button>
+            <button class="modal-cancel" onclick="fecharModal('modal-derrota-torneio')">CANCELAR</button>
+        </div>
+    </div>
+</div>
+
 <audio id="duckSound" src="https://www.soundjay.com/nature/sounds/duck-quack-1.mp3"></audio>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -3521,6 +3821,7 @@ let usuarioSelecionado = null;
 let notificacaoSelecionada = null;
 let contaParaExcluir = null;
 let contadorInterval = null;
+let contadorPerfilInterval = null;
 // Variáveis para segurança do master
 let tentativasMaster = 0;
 let ultimaTentativaMaster = 0;
@@ -3529,13 +3830,21 @@ let partidaAtual = null;
 let matchmakingAtivo = false;
 let filaRef = null;
 let partidaListener = null;
+// Variáveis para modal de sala privada
+let acaoSalaPrivada = null; // 'criar' ou 'entrar'
 // Constantes do Truco
 const VALORES_TRUCO = [4, 5, 6, 7, 'Q', 'J', 'K', 'A', 2, 3];
 const NAIPES = ['ouros', 'espadas', 'copas', 'paus'];
 const FORCA_NAIPES = { 'paus': 3, 'copas': 2, 'espadas': 1, 'ouros': 0 };
 const SIMBOLOS = { 'ouros': '♦', 'espadas': '♠', 'copas': '♥', 'paus': '♣' };
-// Lista de avatares disponíveis
-const avatares = ['🎱', '9️⃣', '🃏', '🔥', '⚡', '👑', '⭐', '🎯', '🎮', '🏆'];
+// Lista de avatares disponíveis (EXPANDIDA)
+const avatares = ['🎱', '9️⃣', '🃏', '🔥', '⚡', '👑', '⭐', '🎯', '🎮', '🏆', '🐍', '🦅', '🐺', '🦁', '🐯', '🤖', '👽', '💀', '🎃', '🍀', '⚔️', '🧙‍♂️'];
+// ===== NOVAS VARIÁVEIS DE TORNEIOS =====
+let torneiosAtivos = [];
+let torneioAtual = null;
+let minhaInscricaoAtual = null;
+let partidaTorneioSelecionada = null;
+
 // ===== FUNÇÕES AUXILIARES =====
 function formatarTempoRestante(timestamp) {
 const agora = Date.now();
@@ -3567,6 +3876,26 @@ contadorInterval = null;
 atualizar();
 contadorInterval = setInterval(atualizar, 1000);
 }
+function iniciarContadorPerfil(timestamp) {
+    if (contadorPerfilInterval) clearInterval(contadorPerfilInterval);
+    const elTempo = document.getElementById('perfil-contador-tempo');
+    const elBox = document.getElementById('perfil-contador-box');
+    if(!elTempo || !elBox) return;
+
+    const atualizar = () => {
+        const tempo = formatarTempoRestante(timestamp);
+        elTempo.innerHTML = tempo.texto;
+        if(tempo.expirado) {
+            clearInterval(contadorPerfilInterval);
+            elBox.style.display = 'none';
+            location.reload(); // Recarrega para liberar ações
+        }
+    };
+    elBox.style.display = 'block';
+    atualizar();
+    contadorPerfilInterval = setInterval(atualizar, 1000);
+}
+
 function calcularStreak(jogador) {
 if (!jogador.historico || jogador.historico.length === 0) return 0;
 const ultimas = jogador.historico.slice(-10);
@@ -3621,7 +3950,6 @@ document.querySelectorAll('.truco-tab').forEach(t => t.classList.remove('active'
 // Se o evento não existir (chamada programática), selecionar o primeiro botão
 if(event && event.target) event.target.classList.add('active');
 else document.querySelector(`.truco-tab[onclick*="'${tab}'"]`)?.classList.add('active');
-
 document.getElementById('truco-matchmaking').style.display = tab === 'matchmaking' ? 'block' : 'none';
 document.getElementById('truco-jogo').style.display = tab === 'jogo' ? 'block' : 'none';
 document.getElementById('truco-historico').style.display = tab === 'historico' ? 'block' : 'none';
@@ -3665,10 +3993,36 @@ document.getElementById('btn-cancelar-partida').style.display = 'none';
 document.getElementById('matchmaking-status').innerHTML = '👋 Clique em "PROCURAR" para entrar na fila';
 document.getElementById('matchmaking-spinner').style.display = 'none';
 };
-window.criarSalaPrivada = async () => {
-if (!usuarioLogado) return;
-const codigo = document.getElementById('codigo-sala').value.trim();
-if (!codigo) { alert("Digite um código!"); return; }
+// ===== NOVAS FUNÇÕES PARA MODAL DE SALA PRIVADA =====
+window.abrirModalSalaPrivada = (acao) => {
+acaoSalaPrivada = acao;
+const modal = document.getElementById('modal-sala-privada');
+const titulo = document.getElementById('modal-sala-privada-titulo');
+const btnConfirmar = document.getElementById('btn-confirmar-sala-privada');
+const input = document.getElementById('codigo-sala-privada');
+const mensagemDiv = document.getElementById('mensagem-sala-privada');
+// Limpar mensagem e input
+mensagemDiv.innerHTML = '';
+input.value = '';
+if (acao === 'criar') {
+titulo.innerText = 'Crie uma sala e compartilhe o código';
+btnConfirmar.innerText = '➕ CRIAR SALA';
+btnConfirmar.style.background = '#27ae60';
+} else {
+titulo.innerText = 'Digite o código da sala para entrar';
+btnConfirmar.innerText = '🚪 ENTRAR NA SALA';
+btnConfirmar.style.background = '#3498db';
+}
+modal.style.display = 'flex';
+};
+window.confirmarAcaoSalaPrivada = async () => {
+const codigo = document.getElementById('codigo-sala-privada').value.trim();
+const mensagemDiv = document.getElementById('mensagem-sala-privada');
+if (!codigo) {
+mensagemDiv.innerHTML = '<span style="color: #e67e22;">⚠️ Digite um código!</span>';
+return;
+}
+if (acaoSalaPrivada === 'criar') {
 const partidaId = `privada_${codigo}_${Date.now()}`;
 await set(ref(db, `partidas/${partidaId}`), {
 id: partidaId,
@@ -3680,13 +4034,12 @@ tipo: 'privada',
 codigo: codigo,
 timestamp: Date.now()
 });
-alert(`Sala criada! Compartilhe o código: ${codigo}`);
+mensagemDiv.innerHTML = '<span style="color: #27ae60;">✅ Sala criada! Compartilhe o código: ' + codigo + '</span>';
+setTimeout(() => {
+fecharModal('modal-sala-privada');
 aguardarOponente(partidaId);
-};
-window.entrarSalaPrivada = async () => {
-if (!usuarioLogado) return;
-const codigo = document.getElementById('codigo-sala').value.trim();
-if (!codigo) { alert("Digite o código!"); return; }
+}, 1500);
+} else {
 const partidasRef = ref(db, 'partidas');
 const snapshot = await get(partidasRef);
 const partidas = snapshot.val();
@@ -3698,12 +4051,14 @@ jogador2Id: usuarioLogado.id,
 jogador2Nome: usuarioLogado.nickname,
 status: 'iniciando'
 });
+fecharModal('modal-sala-privada');
 iniciarPartida({ id, ...partida, jogador2Id: usuarioLogado.id });
 return;
 }
 }
 }
-alert("Sala não encontrada!");
+mensagemDiv.innerHTML = '<span style="color: #c0392b;">❌ Sala não encontrada ou já cheia!</span>';
+}
 };
 function aguardarOponente(partidaId) {
 mostrarTrucoTab('jogo');
@@ -3764,7 +4119,6 @@ if (!p) return;
 // CORREÇÃO: Verificar se o container existe antes de tentar renderizar
 const jogoContainer = document.getElementById('jogo-container');
 if(!jogoContainer) return;
-
 const souJogador1 = p.jogador1Id === usuarioLogado.id;
 const minhasCartas = souJogador1 ? p.cartasJogador1 : p.cartasJogador2;
 const cartasOponente = souJogador1 ? p.cartasJogador2 : p.cartasJogador1;
@@ -4113,7 +4467,7 @@ if (snap.exists()) icone.classList.remove('inativo');
 else icone.classList.add('inativo');
 }
 }
-// ===== RANKING =====
+// ===== RANKING (AJUSTADO PARA LER APENAS DA LIGA) =====
 window.abrirRanking = (tipo) => {
 rankingTipoAtual = tipo;
 showSection('ranking-view');
@@ -4124,20 +4478,41 @@ document.querySelectorAll('.tab-button').forEach((btn, index) => {
 if (index === 0) btn.classList.add('active');
 else btn.classList.remove('active');
 });
-onValue(ref(db, 'usuarios'), (snapshot) => {
-const data = snapshot.val();
-todosJogadores = [];
-if(data) {
-todosJogadores = Object.values(data)
-.filter(u => u.id !== "0001")
-.map(j => ({ ...j, avatar: j.avatar || '🎱', historico: j.historico || [] }));
-}
-totalJogadores = todosJogadores.length;
-document.getElementById('total-jogadores-info').innerHTML = `👥 Total: ${totalJogadores} jogadores`;
-atualizarPaginacao();
-renderizarPaginaAtual('PONTOS');
+
+// Carrega apenas os dados da liga específica
+onValue(ref(db, `ligas/${tipo}/estatisticas`), async (snapshot) => {
+    const data = snapshot.val();
+    todosJogadores = [];
+    
+    if (data) {
+        // Para cada jogador na liga, busca os dados completos do usuário para avatar/nick
+        const promessas = Object.entries(data).map(async ([id, stats]) => {
+            const userSnap = await get(ref(db, `usuarios/${id}`));
+            const user = userSnap.val();
+            if (user) {
+                return {
+                    id: id,
+                    nickname: user.nickname,
+                    avatar: user.avatar || '🎱',
+                    pontos: stats.pontos || 0,
+                    v: stats.vitorias || 0,
+                    d: stats.derrotas || 0,
+                    historico: user.historico || [] // Usa histórico global para streak se necessário, ou calcula por liga se tiver histórico por liga
+                };
+            }
+            return null;
+        });
+        const resultados = await Promise.all(promessas);
+        todosJogadores = resultados.filter(r => r !== null);
+    }
+    
+    totalJogadores = todosJogadores.length;
+    document.getElementById('total-jogadores-info').innerHTML = `👥 Total: ${totalJogadores} jogadores`;
+    atualizarPaginacao();
+    renderizarPaginaAtual('PONTOS');
 });
 };
+
 function renderizarPaginaAtual(tipoOrdenacao = tipoOrdenacaoAtual) {
 const corpo = document.getElementById('corpo-tabela-dinamica');
 const cardsContainer = document.getElementById('ranking-cards');
@@ -4252,6 +4627,24 @@ document.getElementById('perfil-pontos').innerText = jogador.pontos || 0;
 document.getElementById('perfil-vd').innerText = `${jogador.v || 0}/${jogador.d || 0}`;
 document.getElementById('perfil-streak').innerText = calcularStreak(jogador);
 document.getElementById('perfil-aproveitamento').innerText = `${calcularAproveitamento(jogador)}%`;
+// ===== CONTADOR REGRESSIVO PARA JOGADORES SUSPENSOS =====
+const contadorContainer = document.getElementById('perfil-contador-container');
+if (estaSuspenso(jogador)) {
+contadorContainer.style.display = 'block';
+const dataTermino = new Date(jogador.suspensoAte);
+document.getElementById('perfil-contador-data').innerText = 'Termina em: ' + dataTermino.toLocaleString('pt-BR');
+iniciarContadorRegressivo('perfil-contador', jogador.suspensoAte);
+// Verificar se está acabando (menos de 1 hora)
+const tempoRestante = jogador.suspensoAte - Date.now();
+if (tempoRestante < 3600000) { // menos de 1 hora
+contadorContainer.classList.add('contador-urgente');
+} else {
+contadorContainer.classList.remove('contador-urgente');
+}
+} else {
+contadorContainer.style.display = 'none';
+contadorContainer.classList.remove('contador-urgente');
+}
 };
 window.fecharModalPerfil = () => {
 document.getElementById('modal-perfil-jogador').style.display = 'none';
@@ -4314,29 +4707,41 @@ function entrarNoPerfil(user) {
 usuarioLogado = user;
 usuarioLogadoTipo = user.tipo || 'usuario';
 document.getElementById('nav-jogos').style.display = 'block';
+// MOSTRAR BOTÃO TORNEIOS APÓS LOGIN
+document.getElementById('nav-torneios').style.display = 'block'; 
+
 document.getElementById('profile-avatar').innerText = user.avatar || '🎱';
 document.getElementById('user-name').innerText = user.nickname;
 document.getElementById('user-id-card').innerText = user.id;
 document.getElementById('user-pts-card').innerText = user.pontos || 0;
+
+// Lógica de Suspensão e Contador no Perfil
+const boxContador = document.getElementById('perfil-contador-box');
 if (estaSuspenso(user)) {
 document.getElementById('status-value').innerHTML = '⚠️ SUSPENSO';
 document.getElementById('status-value').style.color = '#f39c12';
 document.getElementById('suspenso-mensagem').style.display = 'block';
 document.getElementById('suspenso-ate').innerText = formatarDataSuspenso(user.suspensoAte);
 document.getElementById('pato-perfil').classList.add('disabled');
+// Inicia contador no perfil
+iniciarContadorPerfil(user.suspensoAte);
 } else {
 document.getElementById('status-value').innerHTML = 'Ativa';
 document.getElementById('status-value').style.color = 'green';
 document.getElementById('suspenso-mensagem').style.display = 'none';
 document.getElementById('pato-perfil').classList.remove('disabled');
+boxContador.style.display = 'none';
 }
+
 document.getElementById('box-login').style.display = 'none';
 document.getElementById('box-perfil').style.display = 'block';
 document.getElementById('nav-pato').style.display = 'block';
 document.getElementById('nav-cadastro').style.display = 'none';
 atualizarIconesLigas();
+carregarConquistas(); // Carrega conquistas ao logar
+carregarCondecoracoes(); // Carrega condecorações ao logar
 }
-// ===== NOTIFICAR DERROTA =====
+// ===== NOTIFICAR DERROTA (AJUSTADO PARA LIGA ESPECÍFICA) =====
 document.getElementById('btn-enviar-notif').onclick = async () => {
 const liga = document.getElementById('notif-liga').value;
 const idVenc = document.getElementById('notif-venc').value;
@@ -4348,21 +4753,42 @@ if(idVenc === usuarioLogado.id) { alert("Não pode notificar para si mesmo!"); r
 const snapV = await get(child(ref(db), `usuarios/${idVenc}`));
 if(!snapV.exists()) { alert("Vencedor não existe!"); return; }
 if (snapV.val().banido) { alert("Vencedor está banido!"); return; }
+
+// Trava global (opcional, mas mantida para segurança básica)
 const travaRef = ref(db, `travas/${usuarioLogado.id}_vs_${idVenc}`);
 const snapT = await get(travaRef);
 let count = 0;
 if(snapT.exists() && (agora - snapT.val().timestamp < 12*60*60*1000)) count = snapT.val().quantidade;
 if(count + qtd > 7) { alert("Limite de 7 derrotas por 12h!"); return; }
+
 const pontosPerdidos = qtd * 2;
 const pontosGanhos = qtd * 2;
-await update(ref(db, `usuarios/${usuarioLogado.id}`), {
-pontos: (usuarioLogado.pontos || 0) - pontosPerdidos,
-d: (usuarioLogado.d || 0) + qtd
+
+// ATUALIZAÇÃO PRINCIPAL: Atualizar APENAS a liga específica
+const ligaPerdedorRef = ref(db, `ligas/${liga}/estatisticas/${usuarioLogado.id}`);
+const ligaVencedorRef = ref(db, `ligas/${liga}/estatisticas/${idVenc}`);
+
+// Busca dados atuais da liga
+const snapLigaPerdedor = await get(ligaPerdedorRef);
+const snapLigaVencedor = await get(ligaVencedorRef);
+
+const dadosPerdedor = snapLigaPerdedor.val() || { pontos: 0, vitorias: 0, derrotas: 0 };
+const dadosVencedor = snapLigaVencedor.val() || { pontos: 0, vitorias: 0, derrotas: 0 };
+
+// Atualiza pontos da liga
+await set(ligaPerdedorRef, {
+    pontos: (dadosPerdedor.pontos || 0) - pontosPerdidos,
+    vitorias: dadosPerdedor.vitorias || 0,
+    derrotas: (dadosPerdedor.derrotas || 0) + qtd
 });
-await update(ref(db, `usuarios/${idVenc}`), {
-pontos: (snapV.val().pontos || 0) + pontosGanhos,
-v: (snapV.val().v || 0) + qtd
+
+await set(ligaVencedorRef, {
+    pontos: (dadosVencedor.pontos || 0) + pontosGanhos,
+    vitorias: (dadosVencedor.vitorias || 0) + qtd,
+    derrotas: dadosVencedor.derrotas || 0
 });
+
+// Atualiza histórico global (para streak geral e perfil)
 const perdedorHist = [...(usuarioLogado.historico || [])];
 const vencedorHist = [...(snapV.val().historico || [])];
 for (let i = 0; i < qtd; i++) {
@@ -4371,6 +4797,7 @@ vencedorHist.push({ resultado: 'vitoria', data: agora, liga, perdedorId: usuario
 }
 await update(ref(db, `usuarios/${usuarioLogado.id}`), { historico: perdedorHist });
 await update(ref(db, `usuarios/${idVenc}`), { historico: vencedorHist });
+
 await push(ref(db, 'notificacoes'), {
 liga, vencedorId: idVenc, vencedorNome: snapV.val().nickname,
 perdedorId: usuarioLogado.id, perdedorNome: usuarioLogado.nickname,
@@ -4378,21 +4805,25 @@ quantidade: qtd, pontosGanhos, pontosPerdidos, timestamp: agora
 });
 await set(travaRef, { quantidade: count + qtd, timestamp: agora });
 document.getElementById('duckSound').play();
-alert(`🦆 Derrota Notificada na liga ${liga}!`);
+alert(`🦆 Derrota Notificada na liga ${liga}! Ranking atualizado.`);
 await atualizarIconesLigas();
 };
 // ===== PAINEL MASTER =====
 window.mudarMasterTab = (tab) => {
 document.querySelectorAll('.master-tab').forEach(t => t.classList.remove('active'));
+document.querySelectorAll('.master-tab-torneios').forEach(t => t.classList.remove('active'));
 event.target.classList.add('active');
 document.getElementById('master-usuarios').style.display = tab === 'usuarios' ? 'block' : 'none';
 document.getElementById('master-staff').style.display = tab === 'staff' ? 'block' : 'none';
 document.getElementById('master-notificacoes').style.display = tab === 'notificacoes' ? 'block' : 'none';
 document.getElementById('master-logs').style.display = tab === 'logs' ? 'block' : 'none';
+document.getElementById('master-premiacoes').style.display = tab === 'premiacoes' ? 'block' : 'none';
+document.getElementById('master-torneios').style.display = tab === 'torneios' ? 'block' : 'none';
 if (tab === 'usuarios') carregarUsuariosMaster();
 if (tab === 'staff') carregarListaStaff();
 if (tab === 'notificacoes') carregarNotificacoes();
 if (tab === 'logs') carregarLogsExclusoes();
+if (tab === 'torneios') carregarTorneiosMaster();
 };
 function carregarUsuariosMaster() {
 onValue(ref(db, 'usuarios'), (snapshot) => {
@@ -4636,6 +5067,13 @@ document.getElementById('modal-excluir-conta').style.display = 'flex';
 window.confirmarExcluirConta = async () => {
 if (!contaParaExcluir) return;
 await remove(ref(db, `usuarios/${contaParaExcluir}`));
+// Log da exclusão
+await push(ref(db, 'logs/exclusoes'), {
+usuarioExcluidoId: contaParaExcluir,
+usuarioExcluidoNome: nome,
+adminNome: usuarioLogado.nickname,
+timestamp: Date.now()
+});
 alert("Conta excluída!");
 fecharModal('modal-excluir-conta');
 carregarUsuariosMaster();
@@ -4670,6 +5108,366 @@ document.querySelectorAll('#lista-usuarios-master tr').forEach(linha => {
 linha.style.display = linha.innerText.toLowerCase().includes(filtro) ? '' : 'none';
 });
 };
+
+// ===== FUNÇÕES DE TORNEIOS =====
+window.carregarTorneios = async () => {
+    const snapshot = await get(ref(db, 'torneios'));
+    const data = snapshot.val();
+    torneiosAtivos = [];
+    if (data) {
+        torneiosAtivos = Object.values(data).sort((a, b) => b.dataCriacao - a.dataCriacao);
+    }
+    renderizarCentralTorneios();
+};
+
+window.renderizarCentralTorneios = () => {
+    const grid = document.getElementById('torneios-grid');
+    const vazio = document.getElementById('torneios-vazio');
+    if (!grid) return;
+    
+    grid.innerHTML = '';
+    
+    if (torneiosAtivos.length === 0) {
+        vazio.style.display = 'block';
+        return;
+    }
+    vazio.style.display = 'none';
+    
+    torneiosAtivos.forEach(t => {
+        let statusClass = 'status-inscricoes';
+        let statusText = 'Inscrições Abertas';
+        if (t.status === 'em_andamento') { statusClass = 'status-andamento'; statusText = 'Em Andamento'; }
+        if (t.status === 'finalizado') { statusClass = 'status-finalizado'; statusText = 'Finalizado'; }
+        
+        // Contar participantes (simulado para exibição)
+        const qtdParticipantes = t.maxParticipantes; 
+        
+        const card = document.createElement('div');
+        card.className = 'torneio-card';
+        card.innerHTML = `
+            <div class="torneio-status ${statusClass}">${statusText}</div>
+            <h3 style="color:#f1c40f; margin-bottom:10px;">${t.nome}</h3>
+            <div class="torneio-info">🏆 Liga: ${t.liga}</div>
+            <div class="torneio-info">👥 Vagas: ${qtdParticipantes}</div>
+            <div class="torneio-info">📅 Início: ${new Date(t.dataInicioTorneio).toLocaleDateString()}</div>
+            <button class="btn-torneio-inscricao" onclick="abrirTorneio('${t.id}')">VER DETALHES</button>
+        `;
+        grid.appendChild(card);
+    });
+};
+
+window.abrirTorneio = async (id) => {
+    const torneioSnap = await get(ref(db, `torneios/${id}`));
+    if (!torneioSnap.exists()) { alert("Torneio não encontrado!"); return; }
+    torneioAtual = torneioSnap.val();
+    
+    showSection('torneio-view');
+    document.getElementById('torneio-view-title').innerText = `🏆 ${torneioAtual.nome}`;
+    
+    const container = document.getElementById('torneio-detalhes-container');
+    if (!container) return;
+    
+    let html = `
+        <div class="torneio-card" style="margin-bottom:20px;">
+            <h3 style="color:#f1c40f;">Informações</h3>
+            <p class="torneio-info">${torneioAtual.descricao}</p>
+            <p class="torneio-info">Status: <strong>${torneioAtual.status}</strong></p>
+            <p class="torneio-info">Prêmio: ${torneioAtual.pontosExtras} pontos extras</p>
+        </div>
+    `;
+    
+    // Se estiver em andamento e eu estiver participando, mostrar minha partida
+    if (torneioAtual.status === 'em_andamento' && usuarioLogado) {
+        // Buscar inscrição
+        const inscSnap = await get(ref(db, `torneios/${id}/inscricoes/${usuarioLogado.id}`));
+        if (inscSnap.exists()) {
+            // Buscar partida atual do jogador na chave
+            const chaveSnap = await get(ref(db, `torneios/${id}/chave`));
+            if (chaveSnap.exists()) {
+                const chave = chaveSnap.val();
+                let minhaPartida = null;
+                let partidaId = null;
+                
+                for (const [pid, partida] of Object.entries(chave)) {
+                    if (partida.jogador1Id === usuarioLogado.id || partida.jogador2Id === usuarioLogado.id) {
+                        if (partida.status === 'pendente') {
+                            minhaPartida = partida;
+                            partidaId = pid;
+                            break;
+                        }
+                    }
+                }
+                
+                if (minhaPartida) {
+                    const advId = minhaPartida.jogador1Id === usuarioLogado.id ? minhaPartida.jogador2Id : minhaPartida.jogador1Id;
+                    const advSnap = await get(ref(db, `usuarios/${advId}`));
+                    const advNome = advSnap.exists() ? advSnap.val().nickname : 'Desconhecido';
+                    
+                    html += `
+                        <div class="partida-card">
+                            <h4 style="color:#f1c40f; margin-bottom:10px;">Sua Partida Atual</h4>
+                            <p>Você vs <strong>${advNome}</strong></p>
+                            <p style="font-size:11px; color:#bdc3c7;">Prazo: 1 hora</p>
+                            <button class="btn-torneio-derrota" onclick="abrirModalDerrotaTorneio('${partidaId}', '${advNome}')">🏆 REPORTAR DERROTA NO TORNEIO</button>
+                        </div>
+                    `;
+                }
+            }
+        }
+    }
+    
+    // Chaveamento (Simplificado para visualização)
+    html += `<h3 style="margin-top:20px; color:#2c3e50;">Chaveamento</h3><div class="chave-container"><div class="chave-rodada">`;
+    html += `<div class="chave-partida">Oitavas de Final<br><small>Em breve...</small></div>`;
+    html += `</div></div>`;
+    
+    container.innerHTML = html;
+};
+
+window.abrirModalDerrotaTorneio = (partidaId, adversarioNome) => {
+    partidaTorneioSelecionada = partidaId;
+    document.getElementById('derrota-torneio-info').innerHTML = `Confirmar derrota para <strong>${adversarioNome}</strong>?`;
+    document.getElementById('modal-derrota-torneio').style.display = 'flex';
+};
+
+window.confirmarDerrotaTorneio = async () => {
+    if (!partidaTorneioSelecionada || !torneioAtual) return;
+    
+    // Lógica simplificada: Atualiza a partida como finalizada e define o outro como vencedor
+    // Em produção, validaria se é realmente o jogador da partida
+    await update(ref(db, `torneios/${torneioAtual.id}/chave/${partidaTorneioSelecionada}`), {
+        status: 'finalizada',
+        // vencedorId seria calculado aqui baseado em quem NÃO reportou
+    });
+    
+    alert("Derrota reportada! O adversário avançou na chave.");
+    fecharModal('modal-derrota-torneio');
+    abrirTorneio(torneioAtual.id); // Recarrega
+};
+
+// FUNÇÃO CRIAR TORNEIO (PERMITIDO PARA STAFF)
+window.criarTorneio = async () => {
+    // PERMISSÃO ALTERADA: Master OU Staff
+    if (usuarioLogadoTipo !== 'master' && usuarioLogadoTipo !== 'staff') { alert("Apenas Master ou Staff!"); return; }
+    
+    const nome = document.getElementById('torneio-nome').value;
+    const liga = document.getElementById('torneio-liga').value;
+    const descricao = document.getElementById('torneio-descricao').value;
+    const max = parseInt(document.getElementById('torneio-max').value);
+    const pontos = parseInt(document.getElementById('torneio-pontos').value);
+    
+    if (!nome) { alert("Nome obrigatório!"); return; }
+    
+    const novoTorneio = {
+        id: 'torneio-' + Date.now(),
+        nome, liga, descricao,
+        criadoPor: usuarioLogado.id,
+        dataCriacao: Date.now(),
+        dataInicioInscricao: Date.now(),
+        dataFimInscricao: Date.now() + 86400000, // 24h
+        dataInicioTorneio: Date.now() + 90000000,
+        maxParticipantes: max,
+        minParticipantes: 4,
+        status: 'inscricoes',
+        campeaoId: null,
+        campeaoNome: null,
+        pontosExtras: pontos
+    };
+    
+    await set(ref(db, `torneios/${novoTorneio.id}`), novoTorneio);
+    alert("Torneio criado com sucesso!");
+    carregarTorneiosMaster();
+    carregarTorneios();
+};
+
+// FUNÇÃO CARREGAR TORNEIOS MASTER COM LIXEIRA
+window.carregarTorneiosMaster = async () => {
+    const snapshot = await get(ref(db, 'torneios'));
+    const data = snapshot.val();
+    const tbody = document.getElementById('lista-torneios-master');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    
+    if (data) {
+        Object.values(data).forEach(t => {
+            // Botão de excluir (Lixeira) visível para Master e Staff
+            const btnExcluir = (usuarioLogadoTipo === 'master' || usuarioLogadoTipo === 'staff') 
+                ? `<button class="btn-delete" onclick="excluirTorneio('${t.id}')">🗑️</button>` 
+                : '';
+
+            tbody.innerHTML += `
+                <tr>
+                    <td>${t.nome}</td>
+                    <td>${t.liga}</td>
+                    <td>${t.status}</td>
+                    <td>${t.maxParticipantes}</td>
+                    <td>
+                        <button class="btn-edit" onclick="alert('Funcionalidade de editar em desenvolvimento')">✏️</button>
+                        ${t.status === 'inscricoes' ? `<button class="btn-suspend" onclick="alert('Iniciar torneio ${t.id}')">▶️ INICIAR</button>` : ''}
+                        ${btnExcluir}
+                    </td>
+                </tr>
+            `;
+        });
+    }
+};
+
+// FUNÇÃO EXCLUIR TORNEIO (LIXEIRA)
+window.excluirTorneio = async (id) => {
+    if(!confirm("Tem certeza que deseja excluir este torneio? Esta ação apagará todas as inscrições e chaves.")) return;
+    
+    // Remove o torneio principal
+    await remove(ref(db, `torneios/${id}`));
+    // Remove sub-coleções (limpeza manual necessária no Firebase Realtime DB se houver nós filhos)
+    // No RTDB, ao remover o pai, os filhos são removidos automaticamente.
+    
+    alert("Torneio excluído com sucesso!");
+    carregarTorneiosMaster();
+    carregarTorneios();
+};
+
+// ===== CONDECORAÇÕES E PREMIAÇÕES =====
+window.carregarConquistas = async () => {
+    if (!usuarioLogado) return;
+    const snap = await get(ref(db, `usuarios/${usuarioLogado.id}/conquistas`));
+    const lista = document.getElementById('lista-conquistas');
+    if (!lista) return;
+    
+    if (!snap.exists()) {
+        lista.innerHTML = 'Nenhum torneio vencido ainda';
+        return;
+    }
+    
+    const conquistas = snap.val();
+    let html = '';
+    Object.values(conquistas).forEach(c => {
+        html += `<div class="conquista-item">🏆 ${c.nome} (${new Date(c.data).toLocaleDateString()})</div>`;
+    });
+    lista.innerHTML = html;
+};
+
+window.carregarCondecoracoes = async () => {
+    if (!usuarioLogado) return;
+    const snap = await get(ref(db, `usuarios/${usuarioLogado.id}/condecoracoes`));
+    const lista = document.getElementById('lista-condecoracoes');
+    if (!lista) return;
+
+    if (!snap.exists()) {
+        lista.innerHTML = 'Nenhuma condecoração ainda';
+        return;
+    }
+
+    const condecoracoes = snap.val();
+    let html = '';
+    Object.values(condecoracoes).forEach(c => {
+        let icone = c.tipo === 'mestre' ? '👑' : '🔥';
+        let classe = c.tipo === 'mestre' ? 'emblema-mestre' : 'emblema-streak';
+        html += `<div class="condecoracao-item"><span class="${classe}">${icone} ${c.titulo}</span> <small>(${c.mes})</small></div>`;
+    });
+    lista.innerHTML = html;
+};
+
+// FUNÇÃO FECHAR MÊS E PREMIAR (MASTER)
+window.fecharMesEPremiar = async () => {
+    if (usuarioLogadoTipo !== 'master') { alert("Apenas Master!"); return; }
+    const msgDiv = document.getElementById('msg-premiacao');
+    msgDiv.innerHTML = "Processando...";
+    msgDiv.style.color = "#f1c40f";
+
+    const now = new Date();
+    const mesAtual = now.toLocaleString('default', { month: 'long', year: 'numeric' });
+    const chaveMes = now.toISOString().slice(0, 7); // YYYY-MM
+
+    const ligas = ['BOLA 8', 'BOLA 9', 'TRUCO'];
+    let premiadosCount = 0;
+
+    try {
+        for (const liga of ligas) {
+            // 1. Líder de Pontos
+            const snapPontos = await get(ref(db, `ligas/${liga}/estatisticas`));
+            const dadosPontos = snapPontos.val();
+            if (dadosPontos) {
+                const sortedPontos = Object.entries(dadosPontos).sort((a,b) => (b[1].pontos||0) - (a[1].pontos||0));
+                if (sortedPontos.length > 0) {
+                    const idMestre = sortedPontos[0][0];
+                    const userMestre = await get(ref(db, `usuarios/${idMestre}`));
+                    if (userMestre.exists()) {
+                        const nick = userMestre.val().nickname;
+                        await push(ref(db, `usuarios/${idMestre}/condecoracoes`), {
+                            tipo: 'mestre',
+                            titulo: `Mestre da ${liga}`,
+                            mes: mesAtual,
+                            data: Date.now()
+                        });
+                        premiadosCount++;
+                    }
+                }
+            }
+
+            // 2. Líder de Streak (Calculado na hora baseado no histórico global ou da liga se tiver)
+            // Para simplificar, usaremos o histórico global do usuário para calcular o streak atual
+            const snapEstats = await get(ref(db, `ligas/${liga}/estatisticas`));
+            const dadosEstats = snapEstats.val();
+            if (dadosEstats) {
+                let melhorStreak = -1;
+                let idStreak = null;
+
+                for (const [id, stats] of Object.entries(dadosEstats)) {
+                    const userSnap = await get(ref(db, `usuarios/${id}`));
+                    const user = userSnap.val();
+                    if (user && user.historico) {
+                        const s = calcularStreak(user);
+                        if (s > melhorStreak) {
+                            melhorStreak = s;
+                            idStreak = id;
+                        }
+                    }
+                }
+
+                if (idStreak && melhorStreak > 0) {
+                    const userStreak = await get(ref(db, `usuarios/${idStreak}`));
+                    if (userStreak.exists()) {
+                        const nick = userStreak.val().nickname;
+                        await push(ref(db, `usuarios/${idStreak}/condecoracoes`), {
+                            tipo: 'streak',
+                            titulo: `Rei do Streak ${liga}`,
+                            mes: mesAtual,
+                            data: Date.now()
+                        });
+                        premiadosCount++;
+                    }
+                }
+            }
+        }
+        
+        msgDiv.innerHTML = `✅ Sucesso! ${premiadosCount} condecorações entregues para ${mesAtual}.`;
+        msgDiv.style.color = "#27ae60";
+    } catch (e) {
+        console.error(e);
+        msgDiv.innerHTML = "❌ Erro ao premiar.";
+        msgDiv.style.color = "#c0392b";
+    }
+};
+
+window.registrarConquista = async (jogadorId, torneioId, posicao) => {
+    const torneioSnap = await get(ref(db, `torneios/${torneioId}`));
+    if (!torneioSnap.exists()) return;
+    const torneio = torneioSnap.val();
+    
+    await push(ref(db, `usuarios/${jogadorId}/conquistas`), {
+        torneioId,
+        nome: torneio.nome,
+        data: Date.now(),
+        posicao
+    });
+};
+
+// Cron job para verificar tempos (simulado)
+window.verificarTempoLimiteTorneios = () => {
+    // Implementação real exigiria Cloud Functions ou loop constante verificando timestamps
+    console.log("Verificando limites de tempo dos torneios...");
+};
+
 // ===== FUNÇÕES GLOBAIS =====
 window.showSection = (id) => {
 document.querySelectorAll('main > section').forEach(s => s.style.display = 'none');
@@ -4811,17 +5609,16 @@ document.getElementById('total-jogadores-info').innerHTML = `👥 Total: ${total
 }
 // ===== FUNÇÃO PARA MOSTRAR/OCULTAR SENHA =====
 window.togglePassword = () => {
-    const passInput = document.getElementById('login-pass');
-    const toggleIcon = document.querySelector('.password-toggle');
-    if (passInput.type === 'password') {
-        passInput.type = 'text';
-        toggleIcon.innerText = '🙈'; // Ícone de olhos fechados
-    } else {
-        passInput.type = 'password';
-        toggleIcon.innerText = '👁️'; // Ícone de olhos abertos
-    }
+const passInput = document.getElementById('login-pass');
+const toggleIcon = document.querySelector('.password-toggle');
+if (passInput.type === 'password') {
+passInput.type = 'text';
+toggleIcon.innerText = '🙈'; // Ícone de olhos fechados
+} else {
+passInput.type = 'password';
+toggleIcon.innerText = '👁️'; // Ícone de olhos abertos
+}
 };
-
 document.addEventListener('DOMContentLoaded', () => {
 gerarOpcoesData();
 setInterval(atualizarRelogio, 1000);
@@ -4829,6 +5626,9 @@ atualizarRelogio();
 showSection('home');
 carregarUltimasNotificacoes();
 setTimeout(verificarParametroJogo, 500);
+// Inicializar Torneios
+carregarTorneios();
+setInterval(verificarTempoLimiteTorneios, 60000);
 });
 </script>
 <script>
